@@ -1,0 +1,34 @@
+<div class="col-5">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>S.No:</th>
+        <th>Company Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @company.each_with_index do |company,i|%>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= company.name %></td>
+        <td>
+          <%= 
+            link_to "Edit", company_path(company.id),
+            class: "btn btn-primary btn-sm"
+          %>
+        </td>
+        <td>
+          <%= link_to "Delete",company_path(company.id), 
+            data: { method: :Delete, confirm: "Are you sure ?"},
+            class: "btn btn-danger btn-sm"
+          %>
+        </td>
+      </tr>
+      
+    <% end %>
+    </tbody>
+  </table>
+  
+      
+  <a class="btn btn-primary" href="/companies/new" role="button">New Company</a>
+</div>
