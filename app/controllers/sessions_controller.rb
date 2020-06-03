@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   include SessionsHelper
 
   def new
-    
   end
 
   def create
@@ -13,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = "Something Wrong in your login credentials!"
-      redirect_to new_Session_path
+      redirect_to login_path
     end
   end
 
