@@ -18,7 +18,7 @@ class EmployeesController < ApplicationController
       redirect_to employee_path(employee.id)
     else
       flash[:danger] = "Something went wrong. Try again!"
-      redirect_to signup_path
+      redirect_to new_employee_path
     end
   end
 
