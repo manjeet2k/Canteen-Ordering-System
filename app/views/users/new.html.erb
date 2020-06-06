@@ -1,43 +1,61 @@
 <%= form_for @user do |form| %>
-  <div class="col-8 mx-auto">    
+
+  <div class="col-8 mx-auto">       
     <div class="card">
       <div class="card-header text-center">
         <h3>Signup</h3>
       </div>
-      <div class="card-body text-center">
+      <div class="card-body text-right">
+
+        <% if @user.errors.any? %>          
+          <div class="alert alert-danger text-left">
+            <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <%end%>
+            </ul>
+          </div>
+        <%end%>
+
         <div class="form-group row">
           <%= form.label :email, for: "email", class:"col-sm-4 col-form-label"%>
           <div class="col-sm-6">
             <%= form.email_field :email,for: "email", class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Enter your e-mail address", required: true %>
           </div>
         </div>
+
         <div class="form-group row">
           <%= form.label :password, for: "password", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
             <%= form.password_field :password, for: "password", class: "form-control", autocomplete: "current-password", placeholder: "Choose a Password", required: true %>
           </div>
         </div>
+
         <div class="form-group row">
           <%= form.label :password_confirmation, for: "password_confirmation", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
             <%= form.password_field :password_confirmation, for: "password_confirmation", class: "form-control", autocomplete: "current-password", placeholder: "Confirm Password", required: true %>
           </div>
         </div>
+
         <div class="form-group row"> 
           <%= form.label :role, for: "role", class:"col-sm-4" %>
-          <div class="col-sm-6">
-            <%= form.select(:role, User.roles.keys.map {|role| [role.titleize,role]},class: "select") %>      
+          <div class="col-sm-1">
+            <%= form.select(:role, User.roles.keys.map {|role| [role.titleize,role]},class: "form-control") %>      
           </div>
-        </div>  
+        </div>
+
       </div>
     </div>
+
     <div class="row justify-content-center my-4">
       <div class="col-2">
-        <strong><%= link_to "Cancel", root_path, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
+        <strong><%= link_to "Cancel", root_path, class: "btn btn-danger btn-md btn-block my-2 my-sm-0" %></strong>
       </div>
       <div class="col-2">
         <strong><%= form.submit( "Signup",{ class: "btn btn-primary btn-md btn-block", data:{disable_with: "Signing in.."}})%></strong>
       </div>
     </div>
+
   </div>
 <% end %>
