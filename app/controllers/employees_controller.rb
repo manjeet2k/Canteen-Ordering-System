@@ -24,6 +24,9 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
+    unless  @employee == current_user.employee 
+      redirect_to error_path
+    end
   end
 
   def edit

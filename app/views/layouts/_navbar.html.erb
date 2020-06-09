@@ -25,9 +25,23 @@
 
       <ul class="navbar-nav justify-content-end">
         <% if logged_in?  %>
-          <%= link_to 'Logout', logout_path, class: 'nav-link', method: :delete %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.email %>
+            </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if current_role == "employee" %>
+              <%= link_to 'Profile', employee_path(current_user.employee.id), class: 'dropdown-item' %>
+            <% elsif current_role == "user" %>
+              <%= link_to 'Profile', root_path, class: 'dropdown-item' %>
+            <% end %>
+            <div class="dropdown-divider"></div>
+              <%= link_to 'Logout', logout_path, class: 'dropdown-item', method: :delete %>
+            </div>
+          </li>
+            
         <% else %>
-          <%= link_to 'Login',   login_path,    class: 'nav-link' %>
+          <%= link_to 'Login',   login_path,  class: 'nav-link' %>
           <%= link_to 'Sign up', signup_path, class: 'nav-link' %>
         <%end%>        
       </ul>

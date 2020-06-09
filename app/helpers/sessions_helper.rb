@@ -14,5 +14,9 @@ module SessionsHelper
       redirect_to login_path
     end
   end
+  
+  def current_role
+    @role ||= User.find(session[:user_id]).role
+  end
 
 end

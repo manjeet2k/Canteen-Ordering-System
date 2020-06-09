@@ -2,13 +2,14 @@ module EmployeesHelper
   
   def check_employee
     if logged_in?
-      unless current_user.employee?
-        redirect_to error_path
-      end
+      redirect_to error_path unless current_user.employee?
     else
-      flash[:warning] = "login first!"
+      flash[:warning] = "Login first!"
       redirect_to login_path
     end
   end
+  
+  
+
 
 end
