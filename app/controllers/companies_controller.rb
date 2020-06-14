@@ -27,11 +27,6 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 
-  def show
-    @company = Company.find(params[:id])
-    redirect_to "/companies/#{@company.id}/edit"
-  end
-
   def update
     company = Company.find(params[:id])
     
