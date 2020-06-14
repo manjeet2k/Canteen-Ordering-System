@@ -7,6 +7,7 @@ class EmployeesController < ApplicationController
   def new
     @employee = Employee.new
     @company = Company.all
+    redirect_to error_path if current_user.employee
   end
 
   def create

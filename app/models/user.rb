@@ -10,6 +10,6 @@ class User < ApplicationRecord
   
   
   has_one :employee
-  belongs_to :company
+  has_one :company, through: :employee
   
 end

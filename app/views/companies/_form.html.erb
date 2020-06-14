@@ -1,8 +1,24 @@
-<%= form_for(@company) do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name%>
-  </p>
+<%= form_for(@company) do |form| %>
+  <div class="col-8 mx-auto">    
+    <div class="card">
+      <div class="card-header text-center">
+        <h3><%= yield(:card_header) %></h3>
+      </div>
 
-  <%= f.submit %>
+      <div class="card-body text-right">
+        <div class="form-group row">
+          <%= form.label :name, for: "name", class:"col-sm-4 col-form-label"%>
+          <div class="col-sm-6">
+            <%= form.text_field :name, for: "name", class: "form-control", autofocus: true, autocomplete: "name", placeholder: "Enter Company's name", required: true %>
+          </div>
+        </div>      
+      </div>
+    </div>
+    
+    <div class="row justify-content-center my-4"> 
+      <div class="col-2">
+        <strong><%= form.submit( yield(:button_text),{ class: "btn btn-primary btn-md btn-block", data:{disable_with: "saving..."}})%></strong>
+      </div>
+    </div>
+  </div>
 <% end %>
