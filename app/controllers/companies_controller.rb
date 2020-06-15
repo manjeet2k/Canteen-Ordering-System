@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   include SessionsHelper
 
-  before_action :is_admin?
+  before_action :validate_admin
   
   def index
     @company = Company.all

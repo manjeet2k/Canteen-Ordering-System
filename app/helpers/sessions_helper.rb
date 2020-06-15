@@ -19,8 +19,20 @@ module SessionsHelper
     @role ||= User.find(session[:user_id]).role
   end
 
-  def is_admin?
-    unless logged_in? && current_user.admin
+  def validate_admin
+    unless logged_in? && current_user.admin?
+      redirect_to error_path
+    end
+  end
+
+  def validate_employee
+    unless logged_in? && current_user.employee?
+      redirect_to error_path
+    end
+  end
+
+  def validate_chef
+    unless logged_in? && current_user.chef?
       redirect_to error_path
     end
   end

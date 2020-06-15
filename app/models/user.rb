@@ -8,10 +8,10 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false } , format: { with: VALID_EMAIL_REGEX }  
   validates :password, presence: true, length: { maximum: 30, minimum: 6 } , on: :create 
   
-  
-  has_one :employee
-  has_one :company, through: :employee
+
   has_one :chef
+  has_one :employee
   has_one :food_store, through: :chef
+  has_one :company, through: :employee
   
 end

@@ -1,0 +1,32 @@
+<%= form_for @item do |form| %>
+
+  <div class="col-8 mx-auto">    
+    <div class="card">
+      <div class="card-header text-center">
+        <h3><%= yield(:card_header) %></h3>
+      </div>
+
+      <div class="card-body text-right">
+        <div class="form-group row">
+          <%= form.label :name, for: "name", class:"col-sm-4 col-form-label"%>
+          <div class="col-sm-6">
+            <%= form.text_field :name, for: "name", class: "form-control", autofocus: true, autocomplete: "name", placeholder: "Enter your full name", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :price, for: "price", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= form.number_field :price, value: @item.price ? '%.2f' % @item.price : nil, min: 0, step: 0.01, for: "price", class: "form-control", autocomplete: "price", placeholder: "Enter price of food item", required: true %>
+          </div>
+        </div>      
+      </div>
+    </div>
+    
+    <div class="row justify-content-center my-4"> 
+      <div class="col-2">
+        <strong><%= form.submit( yield(:button_text),{ class: "btn btn-primary btn-md btn-block", data:{disable_with: "saving..."}})%></strong>
+      </div>
+    </div>
+  </div>
+<% end %>

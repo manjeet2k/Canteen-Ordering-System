@@ -1,5 +1,4 @@
 class ChefsController < ApplicationController
-  include EmployeesHelper
   include SessionsHelper
 
 

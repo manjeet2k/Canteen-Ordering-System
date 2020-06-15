@@ -1,0 +1,34 @@
+<div class="col-5">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>S.No:</th>
+        <th>Food Item Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @item.each_with_index do |item,i|%>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= item.name %></td>
+        <td>
+          <%= 
+            link_to "Edit", edit_food_item_path(item.id),
+            class: "btn btn-primary btn-sm"
+          %>
+        </td>
+        <td>
+          <%= link_to "Delete",food_item_path(item.id), 
+            data: { method: :Delete, confirm: "Are you sure ?"},
+            class: "btn btn-danger btn-sm"
+          %>
+        </td>
+      </tr>
+      
+    <% end %>
+    </tbody>
+  </table>
+  
+      
+  <a class="btn btn-primary" href="/food_items/new" role="button">New Food Item</a>
+</div>
