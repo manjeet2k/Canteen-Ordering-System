@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_14_054155) do
+ActiveRecord::Schema.define(version: 2020_06_14_130504) do
+
+  create_table "chefs", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.integer "food_store_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["food_store_id"], name: "index_chefs_on_food_store_id"
+    t.index ["user_id"], name: "index_chefs_on_user_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -44,6 +55,8 @@ ActiveRecord::Schema.define(version: 2020_06_14_054155) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "chefs", "food_stores"
+  add_foreign_key "chefs", "users"
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
 end

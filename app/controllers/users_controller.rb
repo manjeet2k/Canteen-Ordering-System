@@ -8,7 +8,8 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to new_employee_path
+      redirect_to new_employee_path if current_user.employee?
+      redirect_to new_chef_path if current_user.chef?
     else
       render 'new'
     end

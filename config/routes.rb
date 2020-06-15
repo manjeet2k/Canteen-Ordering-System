@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :companies
   resources :users, except: [:new]
   resources :employees
+  resources :chefs
   resources :food_stores
 
   get 'signup', to: 'users#new'
