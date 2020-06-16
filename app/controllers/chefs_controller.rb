@@ -1,6 +1,8 @@
 class ChefsController < ApplicationController
   include SessionsHelper
 
+  before_action :validate_chef
+
 
   def new
     @chef = Chef.new

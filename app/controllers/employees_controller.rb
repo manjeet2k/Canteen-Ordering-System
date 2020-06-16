@@ -1,8 +1,7 @@
 class EmployeesController < ApplicationController
-  include EmployeesHelper
   include SessionsHelper
 
-  before_action :check_employee
+  before_action :validate_employee
 
   def new
     @employee = Employee.new

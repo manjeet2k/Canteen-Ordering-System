@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_145753) do
+ActiveRecord::Schema.define(version: 2020_06_16_073024) do
 
   create_table "chefs", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_145753) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
+    t.boolean "approved", default: false
     t.index ["food_store_id"], name: "index_chefs_on_food_store_id"
     t.index ["user_id"], name: "index_chefs_on_user_id"
   end
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_145753) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
+    t.boolean "approved", default: false
     t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_145753) do
     t.integer "food_store_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
     t.index ["food_store_id"], name: "index_food_items_on_food_store_id"
   end
 
