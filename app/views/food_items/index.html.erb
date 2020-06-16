@@ -1,9 +1,12 @@
-<div class="col-5">
+<div class=" col-8 offset-2">
+  <h1 class="text-center"> <%= current_user.food_store.name %> Items </h1>
+  <hr>
   <table class="table table-borderless">
     <thead>
       <tr>
         <th>S.No:</th>
         <th>Food Item Name</th>
+        <th>Price</th>
       </tr>
     </thead>
     <tbody>
@@ -11,6 +14,7 @@
       <tr>
         <td><%= i+1 %></td>
         <td><%= item.name %></td>
+        <td>Rs.<%= item.price %></td>
         <td>
           <%= 
             link_to "Edit", edit_food_item_path(item.id),
@@ -28,7 +32,7 @@
     <% end %>
     </tbody>
   </table>
+  <hr>
   
-      
-  <a class="btn btn-primary" href="/food_items/new" role="button">New Food Item</a>
+  <%= link_to "New Food Item", new_food_item_path, class: "btn btn-primary" %>
 </div>

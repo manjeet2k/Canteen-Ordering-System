@@ -14,4 +14,6 @@ class User < ApplicationRecord
   has_one :food_store, through: :chef
   has_one :company, through: :employee
   
+  has_many :orders
+  
 end
