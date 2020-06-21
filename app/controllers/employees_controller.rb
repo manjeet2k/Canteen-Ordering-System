@@ -1,7 +1,11 @@
 class EmployeesController < ApplicationController
-  include SessionsHelper
 
-  before_action :validate_employee
+  before_action :validate_admin,    only: :index
+  before_action :validate_employee, except: [:index, :show]
+
+  def index
+    @employee = Employee.where(approved: false) 
+  end
 
   def new
     @employee = Employee.new
@@ -23,8 +27,8 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee = Employee.find(params[:id])
-    unless  @employee == current_user.employee 
+    @employee = Employee.find(params[:id])   
+    unless  @employee == current_user.employee || current_user.admin?
       redirect_to error_path
     end
   end

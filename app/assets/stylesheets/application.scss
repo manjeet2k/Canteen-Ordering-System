@@ -1,6 +1,27 @@
 @import "bootstrap/scss/bootstrap";
+@import "/*";
 
 .container {
   max-width: 1330px;
+}
+
+.navbar-brand {
+  color: rgb(88, 24, 69)!important;
+  font-size: xx-large;
+  letter-spacing: -2px;
+  font-weight: bolder;
+  font-style: oblique;
+}
+
+.navbar {
+  height: 100px;
+}
+
+.nav-link {
+  font-weight: bolder;
+}
+
+.nav-link:hover {
+  color: rgb(88, 24, 69)!important;
 }
 

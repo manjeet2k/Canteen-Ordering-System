@@ -1,5 +1,4 @@
 class CompaniesController < ApplicationController
-  include SessionsHelper
 
   before_action :validate_admin
   

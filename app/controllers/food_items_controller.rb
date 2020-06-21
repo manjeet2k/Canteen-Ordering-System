@@ -1,10 +1,13 @@
 class FoodItemsController < ApplicationController
-  include SessionsHelper
 
   before_action :validate_chef
 
   def index
-    @item = current_user.food_store.food_items
+    if current_user.admin?
+      @item = FoodItem.all
+    else
+      @item = current_user.food_store.food_items
+    end
   end
 
   def new
@@ -38,7 +41,7 @@ class FoodItemsController < ApplicationController
   private
 
   def itm_params
-    params.require(:food_item).permit(:name, :price, :food_store_id)
+    params.require(:food_item).permit(:name, :price, :description, :food_store_id)
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_073024) do
+ActiveRecord::Schema.define(version: 2020_06_16_102237) do
 
   create_table "chefs", force: :cascade do |t|
     t.string "name"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 2020_06_16_073024) do
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
+  create_table "food_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "food_items", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -56,6 +62,8 @@ ActiveRecord::Schema.define(version: 2020_06_16_073024) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "food_category_id", null: false
+    t.index ["food_category_id"], name: "index_food_stores_on_food_category_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -83,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_073024) do
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
   add_foreign_key "food_items", "food_stores"
+  add_foreign_key "food_stores", "food_categories"
   add_foreign_key "orders", "food_items"
   add_foreign_key "orders", "users"
 end

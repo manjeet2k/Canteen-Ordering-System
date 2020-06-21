@@ -1,5 +1,4 @@
 class FoodStoresController < ApplicationController
-  include SessionsHelper
 
   before_action :validate_admin
   
@@ -8,7 +7,8 @@ class FoodStoresController < ApplicationController
   end
 
   def new
-    @store = FoodStore.new
+    @store    = FoodStore.new
+    @category = FoodCategory.all
   end
 
   def create
@@ -19,12 +19,13 @@ class FoodStoresController < ApplicationController
       redirect_to food_stores_path
     else
       flash[:warning] = "#{store.errors.full_messages}"
-      redirect_to 
+      render 'new'
     end
   end
 
   def edit
     @store = FoodStore.find(params[:id])
+    @category = FoodCategory.all
   end
 
   def update
@@ -35,7 +36,7 @@ class FoodStoresController < ApplicationController
       redirect_to food_stores_path
     else
       flash[:warning] = "#{store.errors.full_messages}"
-      redirect_to edit_food_store_path(@store)
+      render 'edit'
     end
   end
 
@@ -49,6 +50,6 @@ class FoodStoresController < ApplicationController
   private
   
   def store_params
-    params.require(:food_store).permit(:name)
+    params.require(:food_store).permit(:name, :food_category_id)
   end
 end

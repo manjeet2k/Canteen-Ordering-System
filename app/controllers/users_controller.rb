@@ -1,6 +1,14 @@
 class UsersController < ApplicationController   
+  include SessionsHelper 
+
   def new
-    @user = User.new
+    if logged_in?
+      flash[:warning] = "User already logged in"
+      redirect_to root_path
+    else 
+      @user = User.new
+    end
+    
   end
 
   def create
@@ -20,9 +28,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,:role)
   end
-
-  def validate_user
-    redirect_to home_path unless current_user and current_user.id == params[:id]
-  end
-
 end

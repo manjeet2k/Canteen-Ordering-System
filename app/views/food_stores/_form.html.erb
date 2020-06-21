@@ -11,14 +11,25 @@
           <div class="col-sm-6">
             <%= form.text_field :name, for: "name", class: "form-control", autofocus: true, autocomplete: "name", placeholder: "Enter Food Store name", required: true %>
           </div>
-        </div>      
+        </div> 
+
+        <div class="form-group row">
+        <%= form.label :food_category, for: "food_category", class:"col-sm-4 col-form-label", autocomplete: "food_category"  %>
+        <div class="col-sm-2 my-2">
+          <%= form.select(:food_category_id)  do %>
+            <% @category.each do |c| -%>
+              <%= content_tag(:option, c.name, value: c.id) %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-    
-    <div class="row justify-content-center my-4"> 
-      <div class="col-2">
-        <strong><%= form.submit( yield(:button_text),{ class: "btn btn-primary btn-md btn-block", data:{disable_with: "saving..."}})%></strong>
-      </div>
+    </div>    
+  </div>
+
+  <div class="row justify-content-center my-4"> 
+    <div class="col-2">
+      <strong><%= form.submit( yield(:button_text),{ class: "btn btn-primary btn-md btn-block", data:{disable_with: "saving..."}})%></strong>
     </div>
   </div>
+  
 <% end %>

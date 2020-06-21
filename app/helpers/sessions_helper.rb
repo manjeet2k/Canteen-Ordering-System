@@ -26,7 +26,7 @@ module SessionsHelper
   end
 
   def validate_employee
-    unless logged_in? && (current_user.employee? || current_user.admin?)
+    unless logged_in? && current_user.employee?
       redirect_to error_path
     end
   end

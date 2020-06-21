@@ -3,22 +3,22 @@
     <thead>
       <tr>
         <th>S.No:</th>
-        <th>Food Store Name</th>
+        <th>Category Name</th>
       </tr>
     </thead>
     <tbody>
-    <% @store.each_with_index do |store,i|%>
+    <% @category.each_with_index do |category,i|%>
       <tr>
         <td><%= i+1 %></td>
-        <td><%= store.name %></td>
+        <td><%= category.name %></td>
         <td>
           <%= 
-            link_to "Edit", edit_food_store_path(store.id),
+            link_to "Edit", edit_food_category_path(category.id),
             class: "btn btn-primary btn-sm"
           %>
         </td>
         <td>
-          <%= link_to "Delete",food_store_path(store.id), 
+          <%= link_to "Delete",food_category_path(category.id), 
             data: { method: :Delete, confirm: "Are you sure ?"},
             class: "btn btn-danger btn-sm"
           %>
@@ -30,5 +30,5 @@
   </table>
   
       
-  <a class="btn btn-primary" href="/food_stores/new" role="button">New Food Store</a>
+  <a class="btn btn-primary" href="/food_categories/new" role="button">New Category</a>
 </div>
