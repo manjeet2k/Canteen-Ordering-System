@@ -1,7 +1,12 @@
 class ChefsController < ApplicationController
 
-  before_action :validate_chef
+  before_action :validate_admin,    only: :index
+  before_action :validate_chef,     except: [:index, :show]
 
+  def index
+    @chef = Chef.where(approved: false)
+  end
+   
   def new
     @chef = Chef.new
     @store = FoodStore.all
@@ -23,7 +28,7 @@ class ChefsController < ApplicationController
 
   def show
     @chef = Chef.find(params[:id])
-    unless  @chef == current_user.chef 
+    unless  @chef == current_user.chef || current_user.admin?
       redirect_to error_path
     end
   end
