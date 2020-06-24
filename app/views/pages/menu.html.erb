@@ -1,0 +1,26 @@
+<div class=" col-8 offset-2">
+  <h1 class="text-center"> <%= @store.name %> Items </h1>
+  <hr>
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>S.No:</th>
+        <th>Food Item Name</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @item.each_with_index do |item,i|%>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= item.name %></td>
+        <td>Rs.<%= item.price %></td>        
+      </tr>
+      <p class="text-center"><%= item.description%>
+    <% end %>
+    </tbody>
+  </table>
+  <hr>
+  
+  <%= link_to "New Food Item", new_food_item_path, class: "btn btn-primary" %>
+</div>

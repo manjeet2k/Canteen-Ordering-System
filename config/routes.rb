@@ -17,9 +17,10 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get   'dashboard', to: 'admins#dashboard'
+  match 'chef/:id/approve',     to: 'admins#approve_chef',     via: [:get, :post], as: 'approve_chef'
   match 'employee/:id/approve', to: 'admins#approve_employee', via: [:get, :post], as: 'approve_employee'
-  match 'chef/:id/approve', to: 'admins#approve_chef', via: [:get, :post], as: 'approve_chef'
-  get 'error', to: "pages#show"
 
+  get 'error', to: "pages#show"
+  get 'menu',  to: "pages#menu"
 
 end
