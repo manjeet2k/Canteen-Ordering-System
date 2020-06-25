@@ -1,14 +1,11 @@
 <h1 class="text-center mb-4"> Available  Restaurants </h1>
 <div class="row justify-content-center">
   <% @store.each do |s| %>
-    <div class="card text-left w-25 m-2">
+    <div class="card text-left col-md-4 m-2">
       <div class="card-body">
         <h6 class="card-subtitle mb-0 text-muted"><%= s.food_category.name %></h6>
-        <h4 class="card-title"><%= s.name %></h4>   
-      </div>
-      <div class="card-footer">
+        <h4 class="card-title"><%= s.name %></h4> 
         <small class="text-muted"><%= link_to "Menu", menu_path(s.id), class: "stretched-link" %></small>
-        
       </div>
     </div>
   <% end %>
