@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2020_06_16_102237) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "chefs", force: :cascade do |t|
     t.string "name"
     t.string "phone"
-    t.integer "food_store_id", null: false
+    t.bigint "food_store_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.boolean "approved", default: false
     t.index ["food_store_id"], name: "index_chefs_on_food_store_id"
     t.index ["user_id"], name: "index_chefs_on_user_id"
@@ -33,10 +36,10 @@ ActiveRecord::Schema.define(version: 2020_06_16_102237) do
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.string "phone"
-    t.integer "company_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.boolean "approved", default: false
     t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_102237) do
   create_table "food_items", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
-    t.integer "food_store_id", null: false
+    t.bigint "food_store_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
@@ -62,15 +65,15 @@ ActiveRecord::Schema.define(version: 2020_06_16_102237) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "food_category_id", null: false
+    t.bigint "food_category_id", null: false
     t.index ["food_category_id"], name: "index_food_stores_on_food_category_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "quantity"
     t.decimal "total"
-    t.integer "user_id", null: false
-    t.integer "food_item_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "food_item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_item_id"], name: "index_orders_on_food_item_id"
