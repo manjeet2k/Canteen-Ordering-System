@@ -25,7 +25,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'hirb'
 gem 'rails-erd'
 
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
