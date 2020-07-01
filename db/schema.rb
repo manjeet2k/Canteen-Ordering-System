@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_102237) do
+ActiveRecord::Schema.define(version: 2020_06_29_123350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "food_item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_item_id"], name: "index_carts_on_food_item_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "chefs", force: :cascade do |t|
     t.string "name"
@@ -69,17 +78,6 @@ ActiveRecord::Schema.define(version: 2020_06_16_102237) do
     t.index ["food_category_id"], name: "index_food_stores_on_food_category_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.integer "quantity"
-    t.decimal "total"
-    t.bigint "user_id", null: false
-    t.bigint "food_item_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["food_item_id"], name: "index_orders_on_food_item_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -89,12 +87,12 @@ ActiveRecord::Schema.define(version: 2020_06_16_102237) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "carts", "food_items"
+  add_foreign_key "carts", "users"
   add_foreign_key "chefs", "food_stores"
   add_foreign_key "chefs", "users"
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
   add_foreign_key "food_items", "food_stores"
   add_foreign_key "food_stores", "food_categories"
-  add_foreign_key "orders", "food_items"
-  add_foreign_key "orders", "users"
 end
