@@ -1,5 +1,4 @@
-class UsersController < ApplicationController   
-  include SessionsHelper 
+class UsersController < ApplicationController    
 
   def new
     if logged_in?

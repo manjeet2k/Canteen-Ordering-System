@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   match 'chef/:id/approve',     to: 'admins#approve_chef',     via: [:get, :post], as: 'approve_chef'
   match 'employee/:id/approve', to: 'admins#approve_employee', via: [:get, :post], as: 'approve_employee'
 
-  get 'error', to: "pages#show"
-  get 'menu',  to: "pages#menu"
+  get 'error',    to: "pages#show"
+  get 'menu/:id', to: "pages#menu", as: "menu"
 
 end

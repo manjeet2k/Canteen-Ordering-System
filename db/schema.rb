@@ -10,17 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_123350) do
+ActiveRecord::Schema.define(version: 2020_07_05_095810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "carts", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "cart_id", null: false
     t.bigint "food_item_id", null: false
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["food_item_id"], name: "index_carts_on_food_item_id"
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["food_item_id"], name: "index_cart_items_on_food_item_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "final", default: false
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -87,7 +96,8 @@ ActiveRecord::Schema.define(version: 2020_06_29_123350) do
     t.boolean "admin", default: false
   end
 
-  add_foreign_key "carts", "food_items"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "food_items"
   add_foreign_key "carts", "users"
   add_foreign_key "chefs", "food_stores"
   add_foreign_key "chefs", "users"
