@@ -14,11 +14,12 @@
         <% end %>
       </ul>
 
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav justify-content-end">
         <% if logged_in? %>
           <% unless current_user.chef? %>
             <li class="nav-item mx-4">
-              <a class="nav-link" href="/">Cart
+              <a class="nav-link" href="/cart">Cart
+                <span class="badge badge-primary"><%= current_cart.cart_items.count %></span>
               </a> 
             </li>
           <% end %>
@@ -32,6 +33,8 @@
               <%= link_to 'Profile', employee_path(current_user.employee.id), class: 'dropdown-item' %>
             <% elsif current_role == "user" %>
               <%= link_to 'Profile', root_path, class: 'dropdown-item' %>
+            <% else %>
+              <%= link_to 'Profile', chef_path(current_user.chef.id), class: 'dropdown-item' if current_user.chef %>
             <% end %>
             <div class="dropdown-divider"></div>
               <%= link_to 'Logout', logout_path, class: 'dropdown-item', method: :delete %>

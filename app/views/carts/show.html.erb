@@ -1,0 +1,32 @@
+<h1 class="text-center">C A R T</h1>
+<hr>
+<div class="col-8 offset-2">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>S.No:</th>
+        <th>Food Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @item.each_with_index do |item,i|%>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= item.food_item.name %></td>
+        <td><%= item.food_item.price %></td>
+        <td>        
+          <%= form_for item, url: cart_update_path(item.id) do |f| %>
+            <%= f.number_field :quantity, value: item.quantity %>
+            <%= f.submit "Update" %>
+          <% end %>          
+        </td>
+        <td><%= item.sub_total %></td>
+      </tr>      
+    <% end %>
+    </tbody>
+  </table>
+  Total: <%= current_cart.total %>
+</div>

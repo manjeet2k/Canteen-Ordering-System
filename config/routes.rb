@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   match 'employee/:id/approve', to: 'admins#approve_employee', via: [:get, :post], as: 'approve_employee'
 
   get 'error',    to: "pages#show"
-  get 'menu/:id', to: "pages#menu", as: "menu"
-
+  get 'menu', to: "pages#menu"
+  
+  post 'carts/add'
+  get 'cart', to: 'carts#show'
+  patch 'cart/:id/update', to: 'carts#update', as: 'cart_update'
+  
 end

@@ -12,11 +12,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       session[:user_id] = @user.id
+      get_cart                      unless current_user.chef?
+      redirect_to new_chef_path     if current_user.chef?
       redirect_to new_employee_path if current_user.employee?
-      redirect_to new_chef_path if current_user.chef?
     else
       render 'new'
     end
