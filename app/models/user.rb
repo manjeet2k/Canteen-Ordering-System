@@ -9,10 +9,10 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { maximum: 30, minimum: 6 } , on: :create 
   
 
-  has_one :chef
-  has_one :employee
-  has_one :food_store, through: :chef
-  has_one :company, through: :employee
+  has_one  :chef
+  has_one  :employee
+  has_one  :food_store, through: :chef
+  has_one  :company, through: :employee
   
   has_many :carts
   

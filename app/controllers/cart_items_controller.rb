@@ -4,12 +4,19 @@ class CartItemsController < ApplicationController
     item = CartItem.find(params[:id])
     if item.update(cart_items_params)
       flash[:success] = "Cart Updated"
-      redirect_to cart_path
+      redirect_back(fallback_location: cart_path)
     else
       flash[:danger] = "failed"
-      render cart_path
+      redirect_back(fallback_location: cart_path)
     end
   end
+
+  def delete
+    item = CartItem.find(params[:id])
+    item.destroy
+    flash[:success] = "Removed"
+    redirect_to cart_path
+  end 
 
   private
   

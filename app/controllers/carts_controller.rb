@@ -13,28 +13,42 @@ class CartsController < ApplicationController
   end
 
   def show
-    @item = current_cart.cart_items.order(:id)
+    @cart = current_cart
+    @item = @cart.cart_items.order(:id)
   end
 
   def update
-    item = CartItem.find(params[:id])
-    if item.update(cart_items_params)
-      flash[:success] = "Cart Updated"
+    @cart = Cart.find(params[:id])
+    unless current_user.carts.where(order_status: 0..2).count == 0    
+      flash[:warning] = "Please wait till last order is completed!"
       redirect_back(fallback_location: cart_path)
     else
-      flash[:danger] = "failed"
-      redirect_back(fallback_location: cart_path)
+      if @cart.update cart_params
+        flash[:success] = "Order placed Successfully!"
+        get_cart
+        redirect_to order_show_path
+      else
+        flash[:danger] = "Something went wrong!"
+        render cart_path
+      end
     end
   end
 
-  private
-  
-  def cart_items_params
-    params.require(:cart_item).permit(:food_item_id, :quantity)
+  def order_show
+    @carts = current_user.carts
+    # order_status = {"[Placed,0]", "[Recieved,1]", "[Preparing,2]", "[Delivered,3]"}
+    @past_orders  = @carts.where(order_status: 3)
+    @current_order = @carts.where(order_status: 0..2).first    
   end
 
-  def cart_update_params
-    params.require(:cart_item).permit(:quantity)
+  private
+
+  def cart_params
+    params.require(:cart).permit(:order_status)
+  end
+
+  def cart_items_params
+    params.require(:cart_item).permit(:food_item_id, :quantity)
   end
 
   def require_same_food_store
@@ -42,4 +56,5 @@ class CartsController < ApplicationController
       @cart.cart_items.destroy_all
     end
   end
+
 end

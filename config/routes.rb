@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'orders/new'
   root 'pages#home'
 
   resources :companies
@@ -25,6 +26,9 @@ Rails.application.routes.draw do
   
   post 'carts/add'
   get 'cart', to: 'carts#show'
-  patch 'cart/:id/update', to: 'carts#update', as: 'cart_update'
+  get 'orders', to: 'carts#order_show', as: 'order_show'
+  patch 'cart_item/:id/update', to: 'cart_items#update', as: 'item_update'
+  delete 'cart_item/:id', to: 'cart_items#delete', as: 'item_delete'
+  patch 'order/:id', to: 'carts#update', as: 'cart_update'
   
 end
