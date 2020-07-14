@@ -3,7 +3,7 @@ class FoodItemsController < ApplicationController
   before_action :validate_chef
 
   def index
-    @item = current_user.food_store.food_items
+    @item = current_store.food_items
   end
 
   def new
@@ -11,10 +11,8 @@ class FoodItemsController < ApplicationController
   end
 
   def create
-    item = FoodItem.new(itm_params)
-    item.food_store_id = current_user.food_store.id
-
-    if item.save 
+    @item = current_store.food_items.new(itm_params)
+    if @item.save 
       flash[:success] = "Food Item Successfully Created"
       redirect_to food_items_path
     else
@@ -30,13 +28,11 @@ class FoodItemsController < ApplicationController
   end
 
   def update
-    item = FoodItem.find(params[:id])
-
-    if item.update(itm_params)
+    @item = FoodItem.find(params[:id])
+    if @item.update(itm_params)
       flash[:success] = "Food item was succesfully Updated!"
       redirect_to food_items_path
     else
-      flash[:warning] = "#{item.errors.full_messages}"
       render "edit"
     end
   end
@@ -54,4 +50,7 @@ class FoodItemsController < ApplicationController
     params.require(:food_item).permit(:name, :price, :description, :food_store_id)
   end
 
+  def current_store
+    current_user.food_store
+  end
 end

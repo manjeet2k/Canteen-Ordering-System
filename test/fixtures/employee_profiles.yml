@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  phone: MyString
+  user: one
+  company: one
+  approved: false
+
+two:
+  name: MyString
+  phone: MyString
+  user: two
+  company: two
+  approved: false

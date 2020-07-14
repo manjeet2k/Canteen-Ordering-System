@@ -1,40 +1,43 @@
-<h1 class="text-center">C A R T</h1>
-<hr>
-<div class="col-8 offset-2">
-  <table class="table table-borderless">
-    <thead>
-      <tr>
-        <th>S.No:</th>
-        <th>Food Item</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Subtotal</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @item.each_with_index do |item,i|%>
-      <tr>
-        <td><%= i+1 %></td>
-        <td><%= item.food_item.name %></td>
-        <td>Rs.<%= item.food_item.price %></td>
-        <td>        
-          <%= form_for item, url: item_update_path(item.id) do |f| %>
-            <%= f.number_field :quantity, value: item.quantity %>
-            <%= f.submit "Update" %>
-          <% end %>          
-        </td>
-        <td>Rs.<%= item.sub_total %></td>
-        <td><%= link_to "remove item", item_delete_path(item.id), method: :delete %></td>
-      </tr>      
+<% if current_cart.cart_items.present? %>
+  <h1 class="text-center">C A R T</h1>
+  <hr>
+  <div class="col-8 offset-2">
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>S.No:</th>
+          <th>Food Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @item.each_with_index do |item,i|%>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= item.food_item.name %></td>
+          <td>Rs.<%= item.food_item.price %></td>
+          <td>        
+            <%= form_for item, url: item_update_path(item.id) do |f| %>
+              <%= f.number_field :quantity, value: item.quantity %>
+              <%= f.submit "Update" %>
+            <% end %>          
+          </td>
+          <td>Rs.<%= item.sub_total %></td>
+          <td><%= link_to "remove item", item_delete_path(item.id), method: :delete %></td>
+        </tr>      
+      <% end %>
+      </tbody>
+    </table>
+    <p class="text-right mr-6"><strong>Total: Rs.<%= current_cart.total %></strong></p>
+
+    <%= form_for @cart, url: cart_order_path(@cart.id) do |f| %>
+      <%= f.hidden_field :order_status, value: "Placed" %>
+      <%= f.submit "Order" %>
     <% end %>
-    </tbody>
-  </table>
-  <p class="text-right mr-6"><strong>Total: Rs.<%= current_cart.total %></strong></p>
-
-  <%= form_for @cart, url: cart_update_path(@cart.id) do |f| %>
-    <%= f.hidden_field :order_status, value: "Placed" %>
-    <%= f.submit "Order" %>
-  <% end %>
-
-</div>
+  </div>
+<% else %>
+  <h2 class="text-center text-muted">Add Some items to cart</h2>
+<% end %>

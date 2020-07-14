@@ -1,38 +1,40 @@
 <div class=" col-8 offset-2">
   <h1 class="text-center"> <%= current_user.food_store.name %> Items </h1>
   <hr>
-  <table class="table table-borderless">
-    <thead>
-      <tr>
-        <th>S.No:</th>
-        <th>Food Item Name</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @item.each_with_index do |item,i|%>
-      <tr>
-        <td><%= i+1 %></td>
-        <td><%= item.name %></td>
-        <td>Rs.<%= item.price %></td>
-        <td>
-          <%= 
-            link_to "Edit", edit_food_item_path(item.id),
-            class: "btn btn-primary btn-sm"
-          %>
-        </td>
-        <td>
-          <%= link_to "Delete",food_item_path(item.id), 
-            data: { method: :Delete, confirm: "Are you sure ?"},
-            class: "btn btn-danger btn-sm"
-          %>
-        </td>
-      </tr>
-      
-    <% end %>
-    </tbody>
-  </table>
-  <hr>
-  
+  <% if @item.present? %>
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>S.No:</th>
+          <th>Food Item Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @item.each_with_index do |item,i|%>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= item.name %></td>
+            <td>Rs.<%= item.price %></td>
+            <td>
+              <%= 
+                link_to "Edit", edit_food_item_path(item.id),
+                class: "btn btn-primary btn-sm"
+              %>
+            </td>
+            <td>
+              <%= link_to "Delete",food_item_path(item.id), 
+                data: { method: :Delete, confirm: "Are you sure ?"},
+                class: "btn btn-danger btn-sm"
+              %>
+            </td>
+          </tr>        
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h4 class="text-center text-muted">Add some food items</h4>
+  <% end %>
+  <hr>  
   <%= link_to "New Food Item", new_food_item_path, class: "btn btn-primary" %>
 </div>

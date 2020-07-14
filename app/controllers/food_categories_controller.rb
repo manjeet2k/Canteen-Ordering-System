@@ -1,4 +1,6 @@
 class FoodCategoriesController < ApplicationController
+  
+  before_action :validate_admin
 
   def index
     @category = FoodCategory.all
@@ -10,7 +12,6 @@ class FoodCategoriesController < ApplicationController
 
   def create
     @category = FoodCategory.new(cat_params)
-
     if @category.save
       flash[:success] = "Category Added"
       redirect_to food_categories_path
@@ -24,13 +25,12 @@ class FoodCategoriesController < ApplicationController
   end
 
   def update
-    category = FoodCategory.find(params[:id])
+    @category = FoodCategory.find(params[:id])
     
-    if category.update(store_params)
+    if @category.update(store_params)
       flash[:success] = "FoodCategory was succesfully Updated!"
       redirect_to food_categories_path
     else
-      flash[:warning] = "#{category.errors.full_messages}"
       render "edit"
     end
   end

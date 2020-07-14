@@ -1,9 +1,9 @@
 class CompaniesController < ApplicationController
-
   before_action :validate_admin
+  before_action :set_company, only: [:edit, :update, :destroy]
   
   def index
-    @company = Company.all
+    @company = Company.all.order(:id)
   end
 
   def new
@@ -11,38 +11,21 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    company = Company.new(comp_params)
-    
-    if company.save
-      flash[:success] = "Company was succesfully created!"
-      redirect_to "/companies"
-    else
-      flash[:warning] = "#{company.errors.full_messages}"
-      redirect_to "/companies/new"
-    end
+    @company = Company.new(comp_params)
+    return redirect_to companies_path, flash: { success: ("Company was succesfully created!") } if @company.save 
+    render "new"
   end
 
   def edit
-    @company = Company.find(params[:id])
   end
 
   def update
-    company = Company.find(params[:id])
-    
-    if company.update(comp_params)
-      flash[:success] = "Company was succesfully Updated!"
-      redirect_to "/companies"
-    else
-      flash[:warning] = "#{company.errors.full_messages}"
-      redirect_to "/companies/#{company.id}/edit"
-    end
+    return redirect_to companies_path, flash: { success: ( "Company was successfully updated!")} if @company.update(comp_params)
+    render 'edit'
   end
 
   def destroy
-    company = Company.find(params[:id])
-    company.destroy
-    flash[:danger] = " Company #{company.name} was deleted."
-    redirect_to "/companies"
+    redirect_to companies_path, flash:{ danger: ("Company #{@company.name} was deleted!")} if @company.destroy    
   end
 
   private
@@ -50,5 +33,8 @@ class CompaniesController < ApplicationController
   def comp_params
     params.require(:company).permit(:name)
   end
-  
+
+  def set_company
+    @company = Company.find(params[:id])
+  end  
 end

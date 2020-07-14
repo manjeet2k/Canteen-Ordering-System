@@ -29,13 +29,14 @@
               <%= current_user.email %>
             </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% if current_role == "employee" && current_user.employee %>
-              <%= link_to 'Profile', employee_path(current_user.employee.id), class: 'dropdown-item' %>
-              <%= link_to 'Orders' , order_show_path,                         class: 'dropdown-item' %>
-            <% elsif current_role == "user" %>
-              <%= link_to 'Profile', root_path, class: 'dropdown-item' %>
+            <% if current_user.employee?%>
+              <%= link_to 'Profile', employee_profile_path(current_user.employee_profile.id), class: 'dropdown-item' if !!current_user.employee_profile %>
+              <%= link_to 'Orders' , order_show_path, class: 'dropdown-item' %>
+            <% elsif current_user.user? %>
+              <%= link_to 'Profile', user_profile_path(current_user.user_profile.id), class: 'dropdown-item' %>
+              <%= link_to 'Orders' , order_show_path, class: 'dropdown-item' %>
             <% else %>
-              <%= link_to 'Profile', chef_path(current_user.chef.id), class: 'dropdown-item' if current_user.chef %>
+              <%= link_to 'Profile', chef_profile_path(current_user.chef_profile.id), class: 'dropdown-item' if !!current_user.chef_profile %>
             <% end %>
             <div class="dropdown-divider"></div>
               <%= link_to 'Logout', logout_path, class: 'dropdown-item', method: :delete %>

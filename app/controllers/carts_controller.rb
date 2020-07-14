@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :check_cart, only: :order
 
   def add
     item = current_cart.cart_items.new(cart_items_params)
@@ -17,7 +18,8 @@ class CartsController < ApplicationController
     @item = @cart.cart_items.order(:id)
   end
 
-  def update
+  def order
+    check_cart
     @cart = Cart.find(params[:id])
     unless current_user.carts.where(order_status: 0..2).count == 0    
       flash[:warning] = "Please wait till last order is completed!"
@@ -49,6 +51,13 @@ class CartsController < ApplicationController
 
   def cart_items_params
     params.require(:cart_item).permit(:food_item_id, :quantity)
+  end
+
+  def check_cart
+    if current_cart.cart_items.count == 0
+      flash[:danger] = "Add some food items in the cart first"
+      redirect_to root_path
+    end
   end
 
   def require_same_food_store

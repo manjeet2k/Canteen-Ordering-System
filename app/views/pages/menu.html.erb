@@ -6,16 +6,18 @@
         <h4 class="card-title"><%= i.name %></h4>
         <p class="card-body text-muted p-0"><%= i.description %></p>
         <p class="card-body p-0"><strong>Rs.<%= i.price %></strong></p>
-        <%= form_for CartItem.new, url: carts_add_path do |f| %>
-          <%= f.hidden_field :food_item_id, value: i.id %>
-          <div class="form-group row">
-            <%= f.label :quantity, for: "quantity", class:"col-sm-3 col-form-label" %>
-            <div class="col-sm-3">
-              <%= f.number_field :quantity, value: 1, min: 1, max: 5, class: "form-control"%>
+        <% if logged_in? && !current_user.chef? %>
+          <%= form_for CartItem.new, url: carts_add_path do |f| %>
+            <%= f.hidden_field :food_item_id, value: i.id %>
+            <div class="form-group row">
+              <%= f.label :quantity, for: "quantity", class:"col-sm-3 col-form-label" %>
+              <div class="col-sm-3">
+                <%= f.number_field :quantity, value: 1, min: 1, max: 5, class: "form-control"%>
+              </div>
+              <%= f.submit "Add to Cart", class: "btn btn-primary"%>
             </div>
-            <%= f.submit "Add to Cart", class: "btn btn-primary"%>
-          </div>
-        <% end %>          
+          <% end %>
+        <% end %>         
       </div>
     </div>
   <% end %>

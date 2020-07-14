@@ -20,25 +20,14 @@ module SessionsHelper
   end
 
   def validate_admin
-    unless logged_in? && current_user.admin?
-      redirect_to error_path
-    end
+    redirect_to error_path unless logged_in? && current_user.admin?
   end
 
   def validate_employee
-    unless logged_in? && current_user.employee?
-      redirect_to error_path
-    end
+    redirect_to error_path unless logged_in? && current_user.employee?    
   end
 
   def validate_chef
-    unless logged_in? && (current_user.chef? || current_user.admin?)
-      redirect_to error_path
-    end
+    redirect_to error_path unless logged_in? && current_user.chef? 
   end
-
-
-
-  
-
 end

@@ -1,20 +1,19 @@
 class AdminsController < ApplicationController
-
   before_action :validate_admin
   
   def dashboard
   end
 
   def approve_employee
-    @user = Employee.find(params[:id])
+    @user = EmployeeProfile.find(params[:id])
     approve_user
-    redirect_to employees_path
+    redirect_to employee_profiles_path
   end
 
   def approve_chef
-    @user = Chef.find(params[:id])
+    @user = ChefProfile.find(params[:id])
     approve_user
-    redirect_to chefs_path
+    redirect_to chef_profiles_path
   end
 
   private

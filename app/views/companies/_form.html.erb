@@ -1,4 +1,4 @@
-<%= form_for(@company) do |form| %>
+<%= form_for @company do |form| %>
   <div class="col-8 mx-auto">
     <div class="card">
       <div class="card-header text-center">
@@ -6,6 +6,7 @@
       </div>
 
       <div class="card-body text-right">
+        <%= render 'layouts/error', obj: @company %>
         <div class="form-group row">
           <%= form.label :name, for: "name", class:"col-sm-4 col-form-label"%>
           <div class="col-sm-6">

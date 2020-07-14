@@ -1,4 +1,4 @@
-<%= form_for(@store) do |form| %>
+<%= form_for @store do |form| %>
   <div class="col-8 mx-auto">    
     <div class="card">
       <div class="card-header text-center">
@@ -6,6 +6,7 @@
       </div>
 
       <div class="card-body text-right">
+        <%= render 'layouts/error', obj: @store %>
         <div class="form-group row">
           <%= form.label :name, for: "name", class:"col-sm-4 col-form-label"%>
           <div class="col-sm-6">
@@ -16,7 +17,7 @@
         <div class="form-group row">
         <%= form.label :food_category, for: "food_category", class:"col-sm-4 col-form-label", autocomplete: "food_category"  %>
         <div class="col-sm-2 my-2">
-          <%= form.select(:food_category_id)  do %>
+          <%= form.select(:food_category_id) do %>
             <% @category.each do |c| -%>
               <%= content_tag(:option, c.name, value: c.id) %>
             <% end %>
@@ -30,6 +31,5 @@
     <div class="col-2">
       <strong><%= form.submit( yield(:button_text),{ class: "btn btn-primary btn-md btn-block", data:{disable_with: "saving..."}})%></strong>
     </div>
-  </div>
-  
+  </div>  
 <% end %>

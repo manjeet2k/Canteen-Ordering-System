@@ -1,22 +1,11 @@
 <%= form_for @user do |form| %>
-
   <div class="col-8 mx-auto">       
     <div class="card">
       <div class="card-header text-center">
         <h3>Signup</h3>
       </div>
       <div class="card-body text-right">
-
-        <% if @user.errors.any? %>          
-          <div class="alert alert-danger text-left">
-            <ul>
-              <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <%end%>
-            </ul>
-          </div>
-        <%end%>
-
+        <%= render 'layouts/error', obj: @user%>
         <div class="form-group row">
           <%= form.label :email, for: "email", class:"col-sm-4 col-form-label"%>
           <div class="col-sm-6">
@@ -56,6 +45,5 @@
         <strong><%= link_to "Cancel", root_path, class: "btn btn-danger btn-md btn-block my-2 my-sm-0" %></strong>
       </div>
     </div>
-
   </div>
 <% end %>

@@ -1,0 +1,29 @@
+<div class="col-8 offset-2">
+  <hr>
+  <h1 class="text-center">Approve or Reject Chef</h1>
+  <hr>
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>S.No:</th>
+        <th>Chef Name</th>
+        <th>Food Store</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @chef.each_with_index do |chef,i|%>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= chef.name %></td>
+        <td><%= chef.food_store.name %></td>
+        <td>
+          <%= 
+            link_to "Profile", chef_profile_path(chef.id),
+            class: "btn btn-primary btn-sm"
+          %>
+      </tr>      
+    <% end %>
+    </tbody>
+  </table>      
+  <a class="btn btn-primary" href="/dashboard" role="button">Back</a>
+</div>
