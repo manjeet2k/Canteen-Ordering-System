@@ -24,10 +24,10 @@ module SessionsHelper
   end
 
   def validate_employee
-    redirect_to error_path unless logged_in? && current_user.employee?    
+    redirect_to error_path unless logged_in? && current_user.employee? && current_user.employee_profile.approved?  
   end
 
   def validate_chef
-    redirect_to error_path unless logged_in? && current_user.chef? 
+    redirect_to error_path unless logged_in? && current_user.chef? && current_user.chef_profile.approved?
   end
 end

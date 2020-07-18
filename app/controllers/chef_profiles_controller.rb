@@ -27,10 +27,11 @@ class ChefProfilesController < ApplicationController
 
   def show
     @profile = ChefProfile.find(params[:id])
+    redirect_to error_path unless current_user.chef_profile == @profile
   end
 
   def orders
-    @orders = Cart.where(order_status: 1..2)
+    @orders = Cart.where(order_status: 1..2).order(:id)
   end
 
   def order_update

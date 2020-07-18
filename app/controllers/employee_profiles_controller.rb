@@ -26,7 +26,7 @@ class EmployeeProfilesController < ApplicationController
 
   def show
     @profile = EmployeeProfile.find(params[:id])   
-    return redirect_to error_path unless  @profile == current_user.employee_profile || current_user.admin?
+    redirect_to error_path unless  @profile == current_user.employee_profile
   end
   
   private

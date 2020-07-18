@@ -6,7 +6,7 @@
         <h4 class="card-title"><%= i.name %></h4>
         <p class="card-body text-muted p-0"><%= i.description %></p>
         <p class="card-body p-0"><strong>Rs.<%= i.price %></strong></p>
-        <% if logged_in? && !current_user.chef? && !current_user.admin? %>
+        <% if logged_in? && !current_user.chef? && !current_user.admin? && current_user.employee_profile.approved? %>
           <%= form_for CartItem.new, url: carts_add_path do |f| %>
             <%= f.hidden_field :food_item_id, value: i.id %>
             <div class="form-group row">
