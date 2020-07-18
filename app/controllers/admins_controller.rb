@@ -16,16 +16,16 @@ class AdminsController < ApplicationController
     redirect_to chef_profiles_path
   end
 
-  private
-
-  def approve_user
-    @user.approved = true
-    if @user.save
-      flash[:success] = "#{@user.name} approved!"
-    else
-      flash[:danger] = "#{@user.name} approval failure"
-    end
+  def order
+    @orders = Cart.where(order_status: 0)
   end
 
-
+  def approve_order
+    order = Cart.find params[:id]
+    order.order_status = 1
+    if order.save
+      flash[:success] = "Order Approved"
+      redirect_to admin_orders_path
+    end
+  end
 end

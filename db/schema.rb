@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_054554) do
   create_table "cart_items", force: :cascade do |t|
     t.bigint "cart_id", null: false
     t.bigint "food_item_id", null: false
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_054554) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 2020_07_14_054554) do
   end
 
   create_table "food_items", force: :cascade do |t|
-    t.string "name"
-    t.decimal "price"
+    t.string "name", null: false
+    t.decimal "price", null: false
     t.bigint "food_store_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_054554) do
   end
 
   create_table "food_stores", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "food_category_id", null: false
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_054554) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "role"
+    t.integer "role", default: 0
     t.boolean "admin", default: false
   end
 

@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-  before_action :check_cart, only: :order
 
   def add
     item = current_cart.cart_items.new(cart_items_params)
@@ -37,10 +36,14 @@ class CartsController < ApplicationController
   end
 
   def order_show
-    @carts = current_user.carts
-    # order_status = {"[Placed,0]", "[Recieved,1]", "[Preparing,2]", "[Delivered,3]"}
-    @past_orders  = @carts.where(order_status: 3)
-    @current_order = @carts.where(order_status: 0..2).first    
+    unless current_user.admin?
+      @carts = current_user.carts
+      # order_status = {"[Placed,0]", "[Recieved,1]", "[Preparing,2]", "[Delivered,3]"}
+      @past_orders  = @carts.where(order_status: 3)
+      @current_order = @carts.where(order_status: 0..2).first
+    else
+      @current_order = Cart.find params[:format]
+    end
   end
 
   private

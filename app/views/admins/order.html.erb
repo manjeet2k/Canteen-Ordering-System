@@ -1,0 +1,49 @@
+<h3>Listing all orders</h3>
+<hr/>
+<div class="col-8 offset-2">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>Order No:</th>
+        <th>Order status</th>
+        <th>Placed by</th>
+        <th>Food Store</th>
+        <th>Bill Amount</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% i=0 %>
+    <% @orders.each do |order|%>
+      <% if order.user.employee? %>
+        <tr>
+          <td><%= i = i+1 %></td>
+          <td><%= order.order_status %></td>
+          <td><%= order.user.role %> </td>
+          <td><%= order.store.name %></td>
+          <td><%= order.total%> </td>
+          <td>
+            <%= link_to "details", order_show_path(order.id) %> | 
+            <%= link_to "approve", approve_order_path(order.id) %>
+          </td>
+        </tr>  
+      <% end %>              
+    <% end %>
+    <% @orders.each do |order|%>
+      <% if !order.user.employee? %>
+        <tr>
+          <td><%= i = i+1 %></td>
+          <td><%= order.order_status %></td>
+          <td><%= order.user.role %> </td>
+          <td><%= order.store.name %></td>
+          <td><%= order.total%> </td>
+          <td>
+            <%= link_to "details", order_show_path(order.id) %> | 
+            <%= link_to "approve", approve_order_path(order.id) %>
+          </td>
+        </tr>  
+      <% end %>              
+    <% end %>
+    </tbody>
+  </table>
+</div>

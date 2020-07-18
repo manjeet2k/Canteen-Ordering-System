@@ -1,6 +1,5 @@
 <div class="col-8 offset-2">
-  <hr>
-  <h1 class="text-center">Approve or Reject Employee</h1>
+  <h3>Approve Employees</h3>
   <hr>
   <table class="table table-borderless">
     <thead>
@@ -8,6 +7,8 @@
         <th>S.No:</th>
         <th>Employee Name</th>
         <th>Company</th>
+        <th>Phone</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -16,14 +17,11 @@
         <td><%= i+1 %></td>
         <td><%= employee.name %></td>
         <td><%= employee.company.name %></td>
-        <td>
-          <%= 
-            link_to "Profile", employee_profile_path(employee.id),
-            class: "btn btn-primary btn-sm"
-          %>
-      </tr>      
+        <td><%= employee.phone %></td>
+        <td><%= link_to "approve", approve_employee_path(employee.id), class: "btn btn-danger" %></td>
+       </tr>      
     <% end %>
     </tbody>
   </table>      
-  <a class="btn btn-primary" href="/dashboard" role="button">Back</a>
+  <a class="btn btn-secondary" href="/dashboard" role="button">Back</a>
 </div>

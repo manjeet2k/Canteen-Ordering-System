@@ -1,0 +1,71 @@
+<h3>Orders Section</h3>
+<hr/>
+<div class="row justify-content-center">
+  <% @orders.each do |order| %>
+    <% if order.store == current_user.food_store && order.user.employee? %>
+
+      <div class="card text-left col-5 m-2">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-0 text-muted">Priority Order</h6>
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th>Food Item</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% order.cart_items.each do |item| %>
+              <tr>
+                <td><%= item.food_item.name %></td>
+                <td><%= item.quantity %></td>
+              </tr>               
+            <% end %>
+          </table> 
+          <%= form_for order, url: order_update_chef_profile_path(order.id) do |f| %>
+            <div class="form-group row">
+              <%= f.label :order_status, for: "order_status", class:"col-sm-3 col-form-label" %>
+              <div class="col-sm-3">
+                <%= f.select(:order_status, Cart.order_statuses.keys.map {|order_status| [order_status.titleize,order_status]}, value: order.order_status, class: "form-control") %>      
+              </div>
+              <%= f.submit "Update order", class: "btn btn-primary"%>
+            </div>
+          <% end %>             
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% @orders.each do |order| %>
+    <% if order.store == current_user.food_store && order.user.user? %>
+      <div class="card text-left col-5 m-2">
+        <div class="card-body">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th>Food Item</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% order.cart_items.each do |item| %>
+              <tr>
+                <td><%= item.food_item.name %></td>
+                <td><%= item.quantity%> </td>
+              </tr>               
+            <% end %>
+          </table> 
+          <%= form_for order, url: order_update_chef_profile_path(order.id) do |f| %>
+            <div class="form-group row">
+              <%= f.label :order_status, for: "order_status", class:"col-sm-3 col-form-label" %>
+              <div class="col-sm-3">
+                <%= f.select(:order_status, Cart.order_statuses.keys.map {|order_status| [order_status.titleize,order_status]}, value: order.order_status, class: "form-control") %>      
+              </div>
+              <%= f.submit "Update order", class: "btn btn-primary"%>
+            </div>
+          <% end %>             
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

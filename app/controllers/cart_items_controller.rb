@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-
+  
   def update
     item = CartItem.find(params[:id])
     if item.update(cart_items_params)

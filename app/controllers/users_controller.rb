@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      get_cart unless current_user.chef?
+      get_cart unless current_user.chef? || current_user.admin?
       redirect_to new_chef_profile_path     if current_user.chef?
       redirect_to new_employee_profile_path if current_user.employee?
       redirect_to new_user_profile_path     if current_user.user?

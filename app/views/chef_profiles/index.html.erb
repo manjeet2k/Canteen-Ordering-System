@@ -1,6 +1,5 @@
 <div class="col-8 offset-2">
-  <hr>
-  <h1 class="text-center">Approve or Reject Chef</h1>
+  <h3>Approve Chefs</h3>
   <hr>
   <table class="table table-borderless">
     <thead>
@@ -8,6 +7,7 @@
         <th>S.No:</th>
         <th>Chef Name</th>
         <th>Food Store</th>
+        <th>Phone</th>
       </tr>
     </thead>
     <tbody>
@@ -16,11 +16,8 @@
         <td><%= i+1 %></td>
         <td><%= chef.name %></td>
         <td><%= chef.food_store.name %></td>
-        <td>
-          <%= 
-            link_to "Profile", chef_profile_path(chef.id),
-            class: "btn btn-primary btn-sm"
-          %>
+        <td><%= chef.phone %></td>
+        <td><%= link_to "approve", approve_employee_path(employee.id) %></td>
       </tr>      
     <% end %>
     </tbody>

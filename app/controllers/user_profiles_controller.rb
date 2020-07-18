@@ -4,6 +4,9 @@ class UserProfilesController < ApplicationController
     @profile = UserProfile.new
   end
 
+  def dashboard
+  end
+
   def create
     @profile = UserProfile.new(user_profile_params)
     if @profile.save

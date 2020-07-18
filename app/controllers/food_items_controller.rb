@@ -1,5 +1,4 @@
 class FoodItemsController < ApplicationController
-
   before_action :validate_chef
 
   def index
@@ -11,7 +10,7 @@ class FoodItemsController < ApplicationController
   end
 
   def create
-    @item = current_store.food_items.new(itm_params)
+    @item = current_store.food_items.new(item_params)
     if @item.save 
       flash[:success] = "Food Item Successfully Created"
       redirect_to food_items_path
@@ -46,7 +45,7 @@ class FoodItemsController < ApplicationController
 
   private
 
-  def itm_params
+  def item_params
     params.require(:food_item).permit(:name, :price, :description, :food_store_id)
   end
 

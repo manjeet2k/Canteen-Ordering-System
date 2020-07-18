@@ -1,12 +1,8 @@
 module CartsHelper  
 
   def get_cart
-    if current_user.carts.count > 0
-      unless current_cart.order_status.nil?
-        set_cart
-      else
-        current_cart
-      end
+    if current_user.carts.count > 0 && current_cart.order_status.nil?
+      current_cart
     else
       set_cart
     end
@@ -18,6 +14,5 @@ module CartsHelper
 
   def current_cart
     @cart ||= current_user.carts.last
-  end
-  
+  end 
 end

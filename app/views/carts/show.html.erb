@@ -1,5 +1,5 @@
 <% if current_cart.cart_items.present? %>
-  <h1 class="text-center">C A R T</h1>
+  <h1 class="text-center">Cart</h1>
   <hr>
   <div class="col-8 offset-2">
     <table class="table table-borderless">
@@ -21,7 +21,7 @@
           <td>Rs.<%= item.food_item.price %></td>
           <td>        
             <%= form_for item, url: item_update_path(item.id) do |f| %>
-              <%= f.number_field :quantity, value: item.quantity %>
+              <%= f.number_field :quantity, value: item.quantity, max:5, min:1 %>
               <%= f.submit "Update" %>
             <% end %>          
           </td>

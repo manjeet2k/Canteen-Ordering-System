@@ -7,6 +7,9 @@ class EmployeeProfilesController < ApplicationController
     @employee = EmployeeProfile.where(approved: false) 
   end
 
+  def dashboard
+  end
+
   def new
     @profile = EmployeeProfile.new
   end

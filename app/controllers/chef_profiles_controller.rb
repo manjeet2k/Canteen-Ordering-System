@@ -5,6 +5,9 @@ class ChefProfilesController < ApplicationController
   def index
     @chef = ChefProfile.where(approved: false)
   end
+
+  def dashboard
+  end
    
   def new
     @profile  = ChefProfile.new
@@ -24,10 +27,19 @@ class ChefProfilesController < ApplicationController
 
   def show
     @profile = ChefProfile.find(params[:id])
-    unless  @profile == current_user.chef_profile || current_user.admin?
-      redirect_to error_path
-    end
   end
+
+  def orders
+    @orders = Cart.where(order_status: 1..2)
+  end
+
+  def order_update
+    cart = Cart.find params[:id]
+    if cart.update(order_status: params[:cart][:order_status])
+      flash[:success]= "Order Status Updated"
+      redirect_to orders_chef_profiles_path
+    end
+  end 
 
   private
 
