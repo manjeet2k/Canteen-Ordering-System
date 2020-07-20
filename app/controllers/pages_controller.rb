@@ -11,4 +11,7 @@ class PagesController < ApplicationController
     @store = FoodStore.find(params[:food_store])
     @item  = @store.food_items
   end
+
+  def notification
+  end
 end

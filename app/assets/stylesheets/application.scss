@@ -6,6 +6,10 @@
   max-width: 1330px;
 }
 
+ul {
+  list-style: none;
+}
+
 .navbar-brand {
   color: rgb(88, 24, 69)!important;
   font-size: xx-large;
@@ -22,11 +26,23 @@
   font-weight: bolder;
 }
 
+.nav-link .fa {
+  font-size: 22px;
+  padding: 0;
+}
+
 .nav-link:hover {
   color: rgb(88, 24, 69)!important;
 }
 
 .flash {
+  position: absolute;
+  top: 100px;
+  z-index: 999;
+  height: 3.5rem;
+  width: 100%;
+  letter-spacing: 1px;
+  padding: 15px;
   border-radius: 0;
 }
 

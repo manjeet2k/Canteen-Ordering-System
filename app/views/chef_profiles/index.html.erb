@@ -1,6 +1,6 @@
 <div class="col-8 offset-2">
-  <h3>Approve Chefs</h3>
-  <hr>
+  <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> Approve Chefs</h3>
+  <hr/>
   <table class="table table-borderless">
     <thead>
       <tr>
@@ -8,6 +8,7 @@
         <th>Chef Name</th>
         <th>Food Store</th>
         <th>Phone</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -17,10 +18,15 @@
         <td><%= chef.name %></td>
         <td><%= chef.food_store.name %></td>
         <td><%= chef.phone %></td>
-        <td><%= link_to "approve", approve_employee_path(employee.id) %></td>
+        <td>
+          <a class="btn btn-info btn-sm px-3" href="chef/<%= chef.id %>/approve" role="button" title="Approve Chef">
+            <i class="fa fa-check" aria-hidden="true"></i> Approve
+          </a>
+        </td>
       </tr>      
     <% end %>
     </tbody>
-  </table>      
-  <a class="btn btn-primary" href="/dashboard" role="button">Back</a>
+  </table>  
+  <hr/>
+  <div class="text-center"><a class="btn btn-secondary  px-4" href="/dashboard" role="button" title="back">Back</a></div>  
 </div>

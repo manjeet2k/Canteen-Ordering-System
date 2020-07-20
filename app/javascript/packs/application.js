@@ -12,7 +12,7 @@ require("channels")
 $(document).on('turbolinks:load', function() {
   setTimeout(function() {
     $('.flash').fadeOut();
-  }, 3000);
+  }, 2000);
 })
 
 

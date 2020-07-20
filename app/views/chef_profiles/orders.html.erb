@@ -22,7 +22,7 @@
               </tr>               
             <% end %>
           </table> 
-          <%= form_for order, url: order_update_chef_profile_path(order.id) do |f| %>
+          <%= form_for order, url: order_update_chef_profile_path(order.id), remote: true  do |f| %>
             <div class="form-group row">
               <%= f.label :order_status, for: "order_status", class:"col-sm-3 col-form-label" %>
               <div class="col-sm-3">
@@ -55,7 +55,7 @@
               </tr>               
             <% end %>
           </table> 
-          <%= form_for order, url: order_update_chef_profile_path(order.id) do |f| %>
+          <%= form_for order, url: order_update_chef_profile_path(order.id), class: "form-inline" do |f| %>
             <div class="form-group row">
               <%= f.label :order_status, for: "order_status", class:"col-sm-3 col-form-label" %>
               <div class="col-sm-3">

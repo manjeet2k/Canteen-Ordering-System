@@ -1,6 +1,6 @@
 class EmployeeProfilesController < ApplicationController
   before_action :validate_admin,    only: :index
-  before_action :validate_employee, except: [:index, :show]
+  before_action :validate_employee, only: [:dashboard, :show]
   before_action :set_company, only: [:new, :create]
 
   def index
@@ -8,10 +8,11 @@ class EmployeeProfilesController < ApplicationController
   end
 
   def dashboard
+    redirect_to error_path if current_user.employee_profile.present? && !current_user.employee_profile.approved? 
   end
 
   def new
-    @profile = EmployeeProfile.new
+    @profile = EmployeeProfile.new unless current_user.employee_profile.present?
   end
 
   def create

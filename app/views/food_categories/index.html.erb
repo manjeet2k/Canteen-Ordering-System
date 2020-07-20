@@ -1,9 +1,12 @@
 <div class="col-8 offset-2">
+  <h3><i class="fa fa-tags" aria-hidden="true"></i> Food Categories</h3>
+  <hr/>
   <table class="table table-borderless">
     <thead>
       <tr>
         <th>S.No:</th>
         <th>Category Name</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -12,23 +15,17 @@
         <td><%= i+1 %></td>
         <td><%= category.name %></td>
         <td>
-          <%= 
-            link_to "Edit", edit_food_category_path(category.id),
-            class: "btn btn-primary btn-sm"
-          %>
+          <a class="btn btn-info btn-sm px-3" href="<%= category.id%>/edit" role="button" title="Edit Category">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-danger btn-sm px-3" href="<%= category.id%>" data-confirm="Are you sure?" data-method="delete" role="button" title="Delete Category">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </a>
         </td>
-        <td>
-          <%= link_to "Delete",food_category_path(category.id), 
-            data: { method: :Delete, confirm: "Are you sure ?"},
-            class: "btn btn-danger btn-sm"
-          %>
-        </td>
-      </tr>
-      
+      </tr>      
     <% end %>
     </tbody>
   </table>
-  
-      
-  <a class="btn btn-primary" href="/food_categories/new" role="button">New Category</a>
+  <hr/>
+  <div class="text-center"><a class="btn btn-primary" href="/food_categories/new" role="button" title="Create New Category">New Category</a></div>
 </div>

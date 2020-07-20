@@ -1,6 +1,6 @@
 class ChefProfilesController < ApplicationController
   before_action :validate_admin, only: :index
-  before_action :validate_chef,  except: [:index, :show]
+  before_action :validate_chef,  except: [:index, :new, :create]
 
   def index
     @chef = ChefProfile.where(approved: false)
@@ -38,6 +38,7 @@ class ChefProfilesController < ApplicationController
     cart = Cart.find params[:id]
     if cart.update(order_status: params[:cart][:order_status])
       flash[:success]= "Order Status Updated"
+      Notification.create(user_id: cart.user_id, content: "Your Current Order Status: #{cart.order_status}")
       redirect_to orders_chef_profiles_path
     end
   end 

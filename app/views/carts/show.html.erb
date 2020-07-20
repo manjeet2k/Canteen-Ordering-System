@@ -33,7 +33,7 @@
     </table>
     <p class="text-right mr-6"><strong>Total: Rs.<%= current_cart.total %></strong></p>
 
-    <%= form_for @cart, url: cart_order_path(@cart.id) do |f| %>
+    <%= form_for @cart, url: cart_order_path do |f| %>
       <%= f.hidden_field :order_status, value: "Placed" %>
       <%= f.submit "Order" %>
     <% end %>

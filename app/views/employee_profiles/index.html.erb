@@ -1,5 +1,5 @@
 <div class="col-8 offset-2">
-  <h3>Approve Employees</h3>
+  <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> Approve Employees</h3>
   <hr>
   <table class="table table-borderless">
     <thead>
@@ -18,10 +18,15 @@
         <td><%= employee.name %></td>
         <td><%= employee.company.name %></td>
         <td><%= employee.phone %></td>
-        <td><%= link_to "approve", approve_employee_path(employee.id), class: "btn btn-danger" %></td>
+        <td>
+          <a class="btn btn-info btn-sm px-3" href="employee/<%= employee.id %>/approve" role="button" title="Approve Employee">
+            <i class="fa fa-check" aria-hidden="true"></i> Approve
+          </a>
+        </td>
        </tr>      
     <% end %>
     </tbody>
-  </table>      
-  <a class="btn btn-secondary" href="/dashboard" role="button">Back</a>
+  </table>
+  <hr/>
+  <div class="text-center"><a class="btn btn-secondary  px-4" href="/dashboard" role="button" title="back">Back</a></div>      
 </div>

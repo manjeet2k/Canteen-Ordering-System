@@ -1,9 +1,12 @@
 <div class="col-8 offset-2">
+  <h3><i class="fa fa-building" aria-hidden="true"></i> Companies</h3>
+  <hr/>
   <table class="table table-borderless">
     <thead>
       <tr>
         <th>S.No:</th>
         <th>Company Name</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -12,23 +15,20 @@
         <td><%= i+1 %></td>
         <td><%= company.name %></td>
         <td>
-          <%= 
-            link_to "Edit", edit_company_path(company.id),
-            class: "btn btn-primary btn-sm"
-          %>
-        </td>
-        <td>
-          <%= link_to "Delete",company_path(company.id), 
-            data: { method: :Delete, confirm: "Are you sure ?"},
-            class: "btn btn-danger btn-sm"
-          %>
+          <a class="btn btn-info btn-sm px-3" href="<%= company.id%>/edit" role="button" title="Edit Company">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-danger btn-sm px-3" href="<%= company.id%>" data-confirm="Are you sure?" data-method="delete" role="button" title="Delete Company">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </a>
         </td>
       </tr>
       
     <% end %>
     </tbody>
   </table>
-  
+  <hr/>
+  <div class="text-center"><a class="btn btn-primary px-4" href="/companies/new" role="button" title="Create new company">New Company</a></div>
       
-  <a class="btn btn-primary" href="/companies/new" role="button">New Company</a>
+  
 </div>

@@ -16,5 +16,6 @@ class User < ApplicationRecord
   has_one  :company, through: :employee_profile
   
   has_many :carts
+  has_many :notifications
   
 end

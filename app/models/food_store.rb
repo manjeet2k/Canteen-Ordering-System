@@ -4,4 +4,9 @@ class FoodStore < ApplicationRecord
   has_many   :chef_profiles, dependent: :destroy  
 
   validates :name, presence: true, length: { maximum: 80, minimum: 2 }, uniqueness: true 
+
+  def chefs
+    ChefProfile.where(food_store_id: self.id)
+  end
+
 end

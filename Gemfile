@@ -26,6 +26,7 @@ gem 'hirb'
 gem 'rails-erd'
 gem 'faker'
 gem "font-awesome-rails" 
+gem "redis"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

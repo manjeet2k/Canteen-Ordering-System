@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+      Notification.create!(user_id: User.where(admin: true).first.id, content: "You have got new #{current_user.role} to approve") unless current_user.user?
       get_cart unless current_user.chef? || current_user.admin?
       redirect_to new_chef_profile_path     if current_user.chef?
       redirect_to new_employee_profile_path if current_user.employee?

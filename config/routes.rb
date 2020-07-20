@@ -43,13 +43,14 @@ Rails.application.routes.draw do
   get   'chef/:id/approve',     to: 'admins#approve_chef', as: 'approve_chef'
   get   'employee/:id/approve', to: 'admins#approve_employee', as: 'approve_employee'
 
-  get 'menu', to: "pages#menu"
-  get 'error',to: "pages#show"
+  get 'menu',  to: "pages#menu"
+  get 'error', to: "pages#show"
+  get "notification", to: "pages#notification"
    
   post   'carts/add'
   get    'cart',   to: 'carts#show'
   get    'orders', to: 'carts#order_show', as: 'order_show'
   patch  'cart_item/:id/update', to: 'cart_items#update', as: 'item_update'
-  patch  'order/:id',     to: 'carts#order',       as: 'cart_order'
+  patch  'order', to: 'carts#order', as: 'cart_order'
   delete 'cart_item/:id', to: 'cart_items#delete', as: 'item_delete'  
 end

@@ -1,9 +1,12 @@
 <div class="col-8 offset-2">
+  <h3><i class="fa fa-cutlery" aria-hidden="true"></i> Food Stores</h3>
+  <hr/>
   <table class="table table-borderless">
     <thead>
       <tr>
         <th>S.No:</th>
         <th>Food Store Name</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -12,23 +15,17 @@
         <td><%= i+1 %></td>
         <td><%= store.name %></td>
         <td>
-          <%= 
-            link_to "Edit", edit_food_store_path(store.id),
-            class: "btn btn-primary btn-sm"
-          %>
+          <a class="btn btn-info btn-sm px-3" href="<%= store.id%>/edit" role="button" title="Edit Food Store">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-danger btn-sm px-3" href="<%= store.id%>" data-confirm="Are you sure?" data-method="delete" role="button" title="Delete Food Store">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </a>
         </td>
-        <td>
-          <%= link_to "Delete",food_store_path(store.id), 
-            data: { method: :Delete, confirm: "Are you sure ?"},
-            class: "btn btn-danger btn-sm"
-          %>
-        </td>
-      </tr>
-      
+      </tr>      
     <% end %>
     </tbody>
-  </table>
-  
-      
-  <a class="btn btn-primary" href="/food_stores/new" role="button">New Food Store</a>
+  </table>  
+  <hr/>
+  <div class="text-center"><a class="btn btn-primary px-3" href="/food_stores/new" role="button" title="Create New Food Store">New Food Store</a></div>
 </div>

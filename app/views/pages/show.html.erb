@@ -1,7 +1,26 @@
 <div class="jumbotron bg-white">
-  <% if (current_user.employee? && !current_user.employee_profile.approved?) || (current_user.chef? && !current_user.chef_profile.approved?)%>
-    <h1 class="text-center">Awaiting Admin's approval</h1>  
-  <% else %>
-    <h1 class="text-center">Access Denied</h1>  
-  <% end %>  
+  <% if current_user.employee? %>
+    <% unless !current_user.employee_profile.present? %>
+      <% if !current_user.employee_profile.approved? %>
+        <h1 class="text-center">Awaiting Admin's approval</h1>    
+      <% else %>
+       <h1 class="text-center">Access Denied</h1>  
+      <% end %>
+    <% else %>
+      <h1 class="text-center">Complete your profile first</h1>
+      <div class="text-center"><%= link_to "Complete Profile", new_employee_profile_path, class: "btn btn-md btn-primary my-5" %></div>
+    <% end %>      
+  <% elsif current_user.chef? %>
+    <% unless !current_user.chef_profile.present? %>
+      <% if !current_user.chef_profile.approved? %>
+        <h1 class="text-center">Awaiting Admin's approval</h1>    
+      <% else %>
+       <h1 class="text-center">Access Denied</h1>  
+      <% end %>
+    <% else %>
+      <h1 class="text-center">Complete your profile first</h1>
+      <div class="text-center"><%= link_to "Complete Profile", new_chef_profile_path, class: "btn btn-md btn-primary my-5" %></div>
+    <% end %>
+  <% end %>
 </div>
+

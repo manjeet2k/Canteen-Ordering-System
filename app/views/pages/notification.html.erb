@@ -1,0 +1,13 @@
+<h3><i class="fa fa-bell-o" aria-hidden="true"></i> Notifications</h3>
+<hr/>
+<% if current_user.notifications.present? %>
+  <ul>
+    <% current_user.notifications.each do |notification| %>
+      <li><%= notification.content %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="text-center">
+    <h1 class="text-muted">No Notification</h1>
+  </div>
+<% end %>

@@ -19,13 +19,14 @@ class CartsController < ApplicationController
 
   def order
     check_cart
-    @cart = Cart.find(params[:id])
+    @cart = current_cart
     unless current_user.carts.where(order_status: 0..2).count == 0    
       flash[:warning] = "Please wait till last order is completed!"
       redirect_back(fallback_location: cart_path)
     else
       if @cart.update cart_params
         flash[:success] = "Order placed Successfully!"
+        Notification.create(user_id: 1, content: "You got new order to approve") 
         get_cart
         redirect_to order_show_path
       else
