@@ -1,7 +1,7 @@
 <% if current_cart.cart_items.present? %>
-  <h1 class="text-center">Cart</h1>
-  <hr>
   <div class="col-8 offset-2">
+    <h3><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</h3>
+    <hr>
     <table class="table table-borderless">
       <thead>
         <tr>
@@ -22,21 +22,36 @@
           <td>        
             <%= form_for item, url: item_update_path(item.id) do |f| %>
               <%= f.number_field :quantity, value: item.quantity, max:5, min:1 %>
-              <%= f.submit "Update" %>
+              <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm px-3", title: "Update Cart" do %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <% end %>
             <% end %>          
           </td>
           <td>Rs.<%= item.sub_total %></td>
-          <td><%= link_to "remove item", item_delete_path(item.id), method: :delete %></td>
+          <td>
+            <a class="btn btn-danger btn-sm px-4" href="cart_item/<%= item.id%>" data-method="delete" role="button" title="Delete Item">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </a>
+          </td>          
         </tr>      
       <% end %>
       </tbody>
     </table>
-    <p class="text-right mr-6"><strong>Total: Rs.<%= current_cart.total %></strong></p>
+    <hr/>
+    <div class="d-flex justify-content-between">
+      <div class="col-3"><p><strong>Total: Rs.<%= current_cart.total %></strong></p></div>
+      <div class="col-3"> 
+        <%= form_for @cart, url: cart_order_path do |f| %>
+          <%= f.hidden_field :order_status, value: "Placed" %>
+          <%= button_tag type: 'submit', class: "btn btn-success  px-4", title: "Place Order" do %>
+            <i class="fa fa-credit-card" aria-hidden="true"></i> Order
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    
 
-    <%= form_for @cart, url: cart_order_path do |f| %>
-      <%= f.hidden_field :order_status, value: "Placed" %>
-      <%= f.submit "Order" %>
-    <% end %>
+    
   </div>
 <% else %>
   <h2 class="text-center text-muted">Add Some items to cart</h2>

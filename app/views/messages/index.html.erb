@@ -1,0 +1,26 @@
+<div class="col-md-6 col-sm-12 offset-md-3">
+  <div class="card">
+      <div class="card-header">
+        Chat for Order<%= placed_cart.id %>
+      </div>
+      <div class="card-body">
+        <% @messages.each do |message| %>
+          <p><strong><%= message.user.role.titleize %>:</strong><%= message.body %></p>
+        <% end %> 
+        <div id="messages" data-channel-subscribe="cart" data-cart-id="<%= placed_cart.id %>"></div>     
+      </div>
+      <div class="card-footer ">
+        <%= form_for Message.new, url: messages_create_path do |f| %>
+          <%= f.hidden_field :cart_id, value: placed_cart.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <div class="input-group mt-3">
+            <%= f.text_field :body, placeholder: "Type a message...", autofocus: true, required: true, class: "form-control", id: "body_input", title: "Type a message", maxlength: 255, minlength: 1 %>
+            <div class="input-group-append">
+              <%= f.submit "Send", class: "btn btn-secondary", title: "Send new message" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

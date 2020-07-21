@@ -19,6 +19,7 @@ class EmployeeProfilesController < ApplicationController
     @profile = EmployeeProfile.new(emp_params)
     if @profile.save
       flash[:success] = "Profile Saved Successfully!"
+      Notification.create(user_id: User.where(admin: true).first.id, content: "You have got new employee to approve")
       redirect_to employee_profile_path(@profile.id)
     else
       render "new"

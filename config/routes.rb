@@ -46,7 +46,10 @@ Rails.application.routes.draw do
   get 'menu',  to: "pages#menu"
   get 'error', to: "pages#show"
   get "notification", to: "pages#notification"
-   
+
+  get 'messages/index'
+  post 'messages/create'
+  
   post   'carts/add'
   get    'cart',   to: 'carts#show'
   get    'orders', to: 'carts#order_show', as: 'order_show'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_19_105650) do
+ActiveRecord::Schema.define(version: 2020_07_21_171519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,12 +87,27 @@ ActiveRecord::Schema.define(version: 2020_07_19_105650) do
     t.index ["food_category_id"], name: "index_food_stores_on_food_category_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "user_id", null: false
+    t.string "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_messages_on_cart_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -122,6 +137,8 @@ ActiveRecord::Schema.define(version: 2020_07_19_105650) do
   add_foreign_key "employee_profiles", "users"
   add_foreign_key "food_items", "food_stores"
   add_foreign_key "food_stores", "food_categories"
+  add_foreign_key "messages", "carts"
+  add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "user_profiles", "users"
 end

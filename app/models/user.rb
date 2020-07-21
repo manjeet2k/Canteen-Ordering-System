@@ -15,7 +15,8 @@ class User < ApplicationRecord
   has_one  :food_store, through: :chef_profile
   has_one  :company, through: :employee_profile
   
-  has_many :carts
-  has_many :notifications
+  has_many :carts, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :messages, dependent: :destroy
   
 end

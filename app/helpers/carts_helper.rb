@@ -15,4 +15,8 @@ module CartsHelper
   def current_cart
     @cart ||= current_user.carts.last
   end 
+
+  def placed_cart
+    @placed_cart ||= current_user.carts.where(order_status: 0..2).first
+  end
 end

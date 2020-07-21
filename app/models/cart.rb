@@ -1,7 +1,8 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  has_many   :cart_items, dependent: :destroy
-  has_many   :food_items, through: :cart_items
+  has_many :cart_items, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :food_items, through: :cart_items
 
 
   enum order_status: [:Placed, :Recieved, :Cooking, :Delivered]

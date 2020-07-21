@@ -19,6 +19,7 @@ class ChefProfilesController < ApplicationController
     @store = FoodStore.all
     if @profile.save
       flash[:success] = "Profile Saved Successfully!"
+      Notification.create(user_id: User.where(admin: true).first.id, content: "You have got new chef to approve")
       redirect_to chef_profile_path(@profile.id)
     else
       render "new"
