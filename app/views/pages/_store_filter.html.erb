@@ -1,7 +1,12 @@
-<h3 class="text-center mb-4"><%= @store.name%></h1>
-<div class="row justify-content-center">
-  <% @item.each do |i| %>
-    <div class="card text-left col-sm-4 m-2">
+<% if @items_filtered %>
+  <p class="w-100  ml-4 text-muted">
+    Applied filter: <%=@store.name%>
+    <a href="/">reset</a>
+  </p>
+<% end %>
+<% obj.each do |i| %>
+  <div class="col-4">
+    <div class="card text-left mb-2">
       <div class="card-body">
         <h4 class="card-title"><%= i.name %></h4>
         <p class="card-body text-muted p-0"><%= i.description %></p>
@@ -22,5 +27,5 @@
         <% end %>                 
       </div>
     </div>
-  <% end %>
-</div>
+  </div>    
+<% end %>

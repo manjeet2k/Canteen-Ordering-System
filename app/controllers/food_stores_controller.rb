@@ -1,5 +1,4 @@
 class FoodStoresController < ApplicationController
-
   before_action :validate_admin
   
   def index

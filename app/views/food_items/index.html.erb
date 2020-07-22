@@ -1,13 +1,15 @@
-<div class=" col-8 offset-2">
-  <h1 class="text-center"> <%= current_user.food_store.name %> Items </h1>
-  <hr>
-  <% if @item.present? %>
-    <table class="table table-borderless">
+<div class="row">
+  <div class="col-md-7 col-xs-12 offset-md-2">
+    <h3><i class="fa fa-cutlery" aria-hidden="true"></i> <%= current_user.food_store.name %> Items </h3>
+    <hr/>
+    <% if @item.present? %>
+      <table class="table table-borderless">
       <thead>
         <tr>
           <th>S.No:</th>
           <th>Food Item Name</th>
           <th>Price</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -15,26 +17,23 @@
           <tr>
             <td><%= i+1 %></td>
             <td><%= item.name %></td>
-            <td>Rs.<%= item.price %></td>
+            <td>Rs.<%= item.price %> </td>
             <td>
-              <%= 
-                link_to "Edit", edit_food_item_path(item.id),
-                class: "btn btn-primary btn-sm"
-              %>
-            </td>
-            <td>
-              <%= link_to "Delete",food_item_path(item.id), 
-                data: { method: :Delete, confirm: "Are you sure ?"},
-                class: "btn btn-danger btn-sm"
-              %>
+              <a class="btn btn-info btn-sm px-3" href="food_items/<%= item.id%>/edit" role="button" title="Edit Food Item">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </a>
+              <a class="btn btn-danger btn-sm px-3" href="food_items/<%= item.id%>" data-confirm="Are you sure?" data-method="delete" role="button" title="Delete Food Item">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </a>
             </td>
           </tr>        
         <% end %>
       </tbody>
-    </table>
-  <% else %>
-    <h4 class="text-center text-muted">Add some food items</h4>
-  <% end %>
-  <hr>  
-  <%= link_to "New Food Item", new_food_item_path, class: "btn btn-primary" %>
+    </table>    
+    <% else %>
+      <h4 class="text-center text-muted">Add some food items</h4>    
+    <% end %>  
+    <hr/>
+    <div class="text-center"><a class="btn btn-primary px-4" href="/food_items/new" role="button" title="Create new item">New Food Item</a></div>
+  </div>  
 </div>

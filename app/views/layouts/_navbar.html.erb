@@ -41,10 +41,10 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% if current_user.employee?%>
               <%= link_to 'Profile', employee_profile_path(current_user.employee_profile.id), class: 'dropdown-item' if !!current_user.employee_profile %>
-              <%= link_to 'Orders' , order_show_path, class: 'dropdown-item' %>
+              <%= link_to 'Current Order' , order_show_path, class: 'dropdown-item' %>
             <% elsif current_user.user? %>
               <%= link_to 'Profile', user_profile_path(current_user.user_profile.id), class: 'dropdown-item' if !!current_user.user_profile %>
-              <%= link_to 'Orders' , order_show_path, class: 'dropdown-item' if !current_user.admin? %>
+              <%= link_to 'Current Order' , order_show_path, class: 'dropdown-item' if !current_user.admin? %>
             <% else %>
               <%= link_to 'Profile', chef_profile_path(current_user.chef_profile.id), class: 'dropdown-item' if !!current_user.chef_profile %>
             <% end %>
