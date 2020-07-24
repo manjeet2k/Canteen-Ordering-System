@@ -11,6 +11,22 @@ class PagesController < ApplicationController
   end
 
   def notification
+    notifications = current_user.notifications.where(read: false)
+    
+    notifications.each do |n|
+      n.toggle!(:read)
+    end
+  end
+
+  def delete_notifications
+    notifications = current_user.notifications
+    if notifications.present?
+      notifications.delete_all  
+      flash[:success] = "Notification Cleared!"
+      redirect_to notification_path
+    else
+      redirect_to notification_path
+    end
   end
 
   private

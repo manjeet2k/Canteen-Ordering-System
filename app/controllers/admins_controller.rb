@@ -16,7 +16,7 @@ class AdminsController < ApplicationController
     redirect_to chef_profiles_path
   end
 
-  def order
+  def orders
     @orders = Cart.where(order_status: 0)
   end
 

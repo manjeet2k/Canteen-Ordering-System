@@ -46,3 +46,24 @@ ul {
   border-radius: 0;
 }
 
+.thumbnail {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+  background-color: white;
+}
+
+.modal-dialog {
+  max-width: 850px;
+}
+
+footer {
+  height: 40px;
+}
+
+footer span {
+  font-weight: 900;
+  color: rgb(88, 24, 69)!important;
+}
+

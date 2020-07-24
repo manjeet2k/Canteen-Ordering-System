@@ -30,27 +30,14 @@
 
           <li class="nav-item">
             <a class="nav-link" href="/notification" title="Notification"><i class="fa fa-bell" aria-hidden="true"></i>
-              <span class="badge badge-primary"><%= current_user.notifications.count %></span>
+              <span class="badge badge-primary"><%= unread_notifications.count %></span>
             </a> 
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <i class="fa fa-user" aria-hidden="true"></i> <%= current_user.email %>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout" title="logout" data-method="delete"><i class="fa fa-sign-out" aria-hidden="true"></i>
+              logout
             </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% if current_user.employee?%>
-              <%= link_to 'Profile', employee_profile_path(current_user.employee_profile.id), class: 'dropdown-item' if !!current_user.employee_profile %>
-              <%= link_to 'Current Order' , order_show_path, class: 'dropdown-item' %>
-            <% elsif current_user.user? %>
-              <%= link_to 'Profile', user_profile_path(current_user.user_profile.id), class: 'dropdown-item' if !!current_user.user_profile %>
-              <%= link_to 'Current Order' , order_show_path, class: 'dropdown-item' if !current_user.admin? %>
-            <% else %>
-              <%= link_to 'Profile', chef_profile_path(current_user.chef_profile.id), class: 'dropdown-item' if !!current_user.chef_profile %>
-            <% end %>
-            <div class="dropdown-divider"></div>
-              <%= link_to 'Logout', logout_path, class: 'dropdown-item', method: :delete %>
-            </div>
           </li>
             
         <% else %>

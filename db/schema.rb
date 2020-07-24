@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_171519) do
+ActiveRecord::Schema.define(version: 2020_07_24_093639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2020_07_21_171519) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "order_status"
+    t.bigint "food_store_id"
+    t.index ["food_store_id"], name: "index_carts_on_food_store_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_171519) do
     t.boolean "approved", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.json "images"
     t.index ["food_store_id"], name: "index_chef_profiles_on_food_store_id"
     t.index ["user_id"], name: "index_chef_profiles_on_user_id"
   end
@@ -102,12 +105,8 @@ ActiveRecord::Schema.define(version: 2020_07_21_171519) do
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "read", default: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
-  end
-
-  create_table "rooms", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -130,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_171519) do
 
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "food_items"
+  add_foreign_key "carts", "food_stores"
   add_foreign_key "carts", "users"
   add_foreign_key "chef_profiles", "food_stores"
   add_foreign_key "chef_profiles", "users"

@@ -43,14 +43,18 @@ class CartsController < ApplicationController
       @past_orders  = @carts.where(order_status: 3)
       @current_order = @carts.where(order_status: 0..2).first
     else
-      @current_order = Cart.find params[:format]
+      if params[:format]
+       @current_order = Cart.find params[:format]
+      else
+        redirect_to error_path
+      end
     end
   end
 
   private
 
   def cart_params
-    params.require(:cart).permit(:order_status)
+    params.require(:cart).permit(:order_status, :food_store_id)
   end
 
   def cart_items_params

@@ -30,4 +30,8 @@ module SessionsHelper
   def validate_chef
     redirect_to error_path unless logged_in? && current_user.chef? && current_user.chef_profile.present? && current_user.chef_profile.approved?
   end
+
+  def unread_notifications
+    @notifications = current_user.notifications.where(read: false)
+  end
 end

@@ -1,20 +1,29 @@
 <div class="col-12 col-lg-6 offset-lg-3 col-sm-8 offset-sm-2">
   <div class="card p-4">
-    <h3 class="mb-4"><i class="fa fa-bell-o" aria-hidden="true"></i> Notifications</h3>
+    <div class="col-12 d-flex justify-content-between">
+      <div class="col-6">
+        <h3 class="mb-4"><i class="fa fa-bell-o" aria-hidden="true"></i> Notifications</h3>
+      </div>
+      <div class="col-1">
+        <h3><a href="/notification/clear" title="Clear Notifications"><i class="fa fa-trash-o" aria-hidden="true"></i></a></h3> 
+      </div>
+    </div>
+    
     <% if current_user.notifications.present? %>
       <ul class="list-group list-group-flush ">
         <% current_user.notifications.reverse.each do |notification| %>
           <li class="list-group-item">
             <div class="d-flex w-100 justify-content-between">
               <p class="mb-1"><%= notification.content %></p>
-              <small><%= time_ago_in_words notification.created_at %></small>
+              <small><%= time_ago_in_words notification.created_at %> ago </small>
             </div>   
           </li>       
         <% end %> 
       </ul>
     <% else %>
+      <hr/>
       <div class="text-center">
-        <h1 class="text-muted">No Notification</h1>
+        <h5 class="text-muted">No Notification</h5>
       </div>
     <% end %>  
   </div>  

@@ -43,15 +43,13 @@
       <div class="col-3"> 
         <%= form_for @cart, url: cart_order_path do |f| %>
           <%= f.hidden_field :order_status, value: "Placed" %>
+          <%= f.hidden_field :food_store_id, value: current_cart.store.id %>
           <%= button_tag type: 'submit', class: "btn btn-success  px-4", title: "Place Order" do %>
             <i class="fa fa-credit-card" aria-hidden="true"></i> Order
           <% end %>
         <% end %>
       </div>
-    </div>
-    
-
-    
+    </div> 
   </div>
 <% else %>
   <h2 class="text-center text-muted">Add Some items to cart</h2>

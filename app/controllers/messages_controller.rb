@@ -3,8 +3,10 @@ class MessagesController < ApplicationController
     if logged_in?
       return redirect_to error_path if current_user.admin?
       unless current_user.chef?
-        return redirect_to error_path if placed_cart.user != current_user
-        @messages = placed_cart.messages
+        if placed_cart
+          return redirect_to error_path if placed_cart.user != current_user
+          @messages = placed_cart.messages
+        end
       else
         @placed_cart = Cart.find(params[:cart_id])
         return redirect_to error_path if @placed_cart.store != current_user.food_store

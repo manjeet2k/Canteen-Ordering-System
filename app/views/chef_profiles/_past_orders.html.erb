@@ -1,0 +1,48 @@
+<% @past_orders.each do |order| %>
+  <div class="card col-8 offset-2 p-0 mb-4">
+    <div class="card-header d-flex justify-content-between">
+      <div class="col-6">
+        <h5>Food Store:<strong class= "text-info"><%= order.store.name %></strong></h5>      
+      </div>
+      <div class="col-3">
+        <p class= "mb-0 text-muted text-right">Date: <%= order.created_at.strftime("%m/%d/%Y") %></p>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>S.No:</th>
+            <th>Food Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% order.cart_items.each_with_index do |item,i|%>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= item.food_item.name %></td>
+            <td>Rs.<%= item.food_item.price %></td>
+            <td><%= item.quantity %></td>
+            <td>Rs.<%= item.sub_total %></td>
+          </tr>      
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <div class="col-4">Placed by:
+        <strong> 
+          <%= order.user.user_profile.name if order.user.user? %>
+          <%= order.user.employee_profile.name if order.user.employee? %>
+        </strong>      
+      </div>
+      <div class="col-3">
+        <p class="mb-0"><strong>Total: Rs.<%= order.total %></strong></p>
+      </div>
+    </div>
+  </div>  
+<% end %>
+

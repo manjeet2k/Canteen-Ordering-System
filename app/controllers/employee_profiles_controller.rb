@@ -30,6 +30,10 @@ class EmployeeProfilesController < ApplicationController
     @profile = EmployeeProfile.find(params[:id])   
     redirect_to error_path unless  @profile == current_user.employee_profile
   end
+
+  def order_history
+    @past_orders = current_user.carts.where(order_status: 3)
+  end
   
   private
 

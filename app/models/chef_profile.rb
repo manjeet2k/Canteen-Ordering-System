@@ -1,4 +1,6 @@
 class ChefProfile < ApplicationRecord
+  mount_uploaders :images, ImageUploader
+  
   belongs_to :food_store
   belongs_to :user, dependent: :destroy
 

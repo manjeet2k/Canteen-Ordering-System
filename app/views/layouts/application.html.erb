@@ -9,12 +9,15 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="body-bg">
+  <body class="body">
     <%= render "/layouts/navbar" %>
     <%= render "/layouts/flash" %>
     <div class="container">
       <div id="notifications"></div>
       <%= yield %>
+      <hr/>
     </div>
+    <footer class="text-center">Copyright &copy; <span>Canteen</span> 2020</footer>
+    
   </body>
 </html>

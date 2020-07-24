@@ -1,7 +1,7 @@
 <% if @current_order %>
-  <h2> Current Order Status: <%=@current_order.order_status%></h2>
-  <hr>
   <div class="col-8 offset-2">
+    <h4> Current Order Status: <strong class= "text-info"><%= @current_order.order_status %></strong></h4>
+    <hr>
     <table class="table table-borderless">
       <thead>
         <tr>
@@ -24,8 +24,13 @@
       <% end %>
       </tbody>
     </table>
-    <p class="text-right mr-6"><strong>Total: Rs.<%= @current_order.total %></strong></p>
+    <hr/>
+    <div class="d-flex justify-content-between">
+      <div class="col-3"><p><strong>Total: Rs.<%= @current_order.total %></strong></p></div>
+      </div>
+    </div> 
   </div>
 <% else %>
-  <div class="text-center text-muted">No Current Order</div>
+  <hr/>
+  <h3 class="text-center text-muted">No Active Order</h3>
 <% end %>

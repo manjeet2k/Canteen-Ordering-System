@@ -21,6 +21,10 @@ class UserProfilesController < ApplicationController
     @profile = UserProfile.find(params[:id])   
     return redirect_to error_path unless  @profile == current_user.user_profile || current_user.admin?
   end
+
+  def order_history
+    @past_orders = current_user.carts.where(order_status: 3)
+  end
   
   private
 

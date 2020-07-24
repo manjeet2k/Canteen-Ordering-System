@@ -12,3 +12,5 @@ FoodCategory.first.food_stores.build(name: "The Real Dhaba").save
 FoodCategory.second.food_stores.build(name: "Dosa Treat").save
 FoodCategory.third.food_stores.build(name: "Thai Point").save
 Company.create([{name: "StartTrek LLC."}, {name: "Timber Corp."}, {name: "NovoPlay"}])
+
+puts "Database seeded"

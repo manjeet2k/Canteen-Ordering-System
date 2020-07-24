@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :employee_profiles do
     collection do
       get :dashboard
+      get :order_history
     end
   end
 
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     collection do
       get :dashboard
       get :orders
+      get :gallery
     end
     
     member do
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
   resources :user_profiles do
     collection do
       get :dashboard
+      get :order_history
     end
   end
 
@@ -38,7 +41,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get   'dashboard',    to: 'admins#dashboard'
-  get   "admin/orders", to: "admins#order"
+  get   "admin/orders", to: "admins#orders"
   get   "admin/order/:id/approve", to: "admins#approve_order", as: "approve_order"
   get   'chef/:id/approve',     to: 'admins#approve_chef', as: 'approve_chef'
   get   'employee/:id/approve', to: 'admins#approve_employee', as: 'approve_employee'
@@ -46,6 +49,7 @@ Rails.application.routes.draw do
   get 'menu',  to: "pages#menu"
   get 'error', to: "pages#show"
   get "notification", to: "pages#notification"
+  get "notification/clear", to: "pages#delete_notifications"
 
   get 'messages/index'
   post 'messages/create'

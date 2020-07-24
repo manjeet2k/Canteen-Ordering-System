@@ -1,5 +1,6 @@
 <div class="col-md-6 col-sm-12 offset-md-3">
-  <div class="card">
+  <% if placed_cart %>
+    <div class="card">
       <div class="card-header">
         Chat for Order#<%= placed_cart.id %>
       </div>
@@ -21,6 +22,8 @@
           </div>
         <% end %>
       </div>
-    </div>
-  </div>
-</div>
+    </div>  
+  <% else %>
+    <hr/>
+    <h3 class="text-center text-muted">No Active Order</h3>
+  <% end %>
