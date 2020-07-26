@@ -28,6 +28,8 @@ gem 'faker'
 gem "font-awesome-rails" 
 gem "redis"
 gem 'carrierwave', '~> 2.0'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

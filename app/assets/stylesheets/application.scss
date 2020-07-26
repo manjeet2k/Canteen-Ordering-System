@@ -2,15 +2,19 @@
 @import "font-awesome";
 @import "/*";
 
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
 .container {
   max-width: 1330px;
-  min-height: 70vh;
+  padding-bottom: 70px;
 }
 
 ul {
   list-style: none;
 }
-
 
 .navbar-brand {
   color: rgb(88, 24, 69)!important;
@@ -61,7 +65,12 @@ ul {
 }
 
 footer {
-  height: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 footer span {

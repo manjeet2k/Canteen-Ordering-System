@@ -1,7 +1,7 @@
 <% if @items_filtered %>
   <p class="w-100  ml-4 text-muted">
     Applied filter: <%=@store.name%>
-    <a href="/">reset</a>
+    <%= link_to "reset", root_path %>
   </p>
 <% end %>
 <% obj.each do |i| %>
