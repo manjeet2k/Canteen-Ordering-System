@@ -19,4 +19,16 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy
   
+  def self.create_with_omniauth(auth)
+    user = find_or_create_by(uid: auth["uid"], provider:  auth["provider"])
+    name = auth["info"]["name"].delete(" ").downcase
+    user.email = "#{name}@#{auth["provider"]}.com"
+    user.password = "pass123"
+    if User.exists?(user.id)
+      user
+    else
+      user.save!
+      user
+    end
+  end
 end

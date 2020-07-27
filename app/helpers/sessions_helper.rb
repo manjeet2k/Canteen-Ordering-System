@@ -34,4 +34,12 @@ module SessionsHelper
   def unread_notifications
     @notifications = current_user.notifications.where(read: false)
   end
+
+  def redirect_calls
+    redirect_to dashboard_path if current_user.admin?
+    redirect_to dashboard_chef_profiles_path if current_user.chef?
+    redirect_to dashboard_employee_profiles_path if current_user.employee? 
+    redirect_to dashboard_user_profiles_path if (current_user.user? && current_user.user_profile.present? && !current_user.admin?)
+    redirect_to new_user_profile_path if (current_user.user? && !current_user.user_profile.present? && !current_user.admin?)
+  end
 end

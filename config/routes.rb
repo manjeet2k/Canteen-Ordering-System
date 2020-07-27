@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  get "auth/facebook/callback", to: "sessions#create"
+  get "auth/failure", to: redirect("/")
 
   get   'dashboard',    to: 'admins#dashboard'
   get   "admin/orders", to: "admins#orders"

@@ -17,7 +17,7 @@
     </div>
     <div class="card-footer">
       <%= link_to "Profile", employee_profile_path(current_user.employee_profile.id), class: "btn btn-primary", title: "Profile" if current_user.employee?%>
-      <%= link_to "Profile", user_profile_path(current_user.user_profile.id), class: "btn btn-primary", title: "Profile" if current_user.user?%>
+      <%= link_to "Profile", user_profile_path(current_user.user_profile.id), class: "btn btn-primary", title: "Profile" if current_user.user? %>
     </div>
   </div>
 

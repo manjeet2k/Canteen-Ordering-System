@@ -34,17 +34,26 @@ puts "ThirdChef: chef3@abc.com:pass123"
 
 200.times do
   Faker::UniqueGenerator.clear
+  
   store_one.food_items.create(    
     name: Faker::Food.unique.dish,
     description: Faker::Food.unique.description,
     price: rand(100..2000)
   )
+end
+
+200.times do
+  Faker::UniqueGenerator.clear
 
   store_two.food_items.create(    
     name: Faker::Food.unique.dish,
     description: Faker::Food.unique.description,
     price: rand(100..2000)
   )
+end
+
+200.times do
+  Faker::UniqueGenerator.clear
 
   store_three.food_items.create(    
     name: Faker::Food.unique.dish,
