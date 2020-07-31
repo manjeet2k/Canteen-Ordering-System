@@ -38,7 +38,7 @@ class FoodItemsController < ApplicationController
 
   def destroy
     item = FoodItem.find(params[:id])
-    item.delete
+    item.destroy
     flash[:danger] = " FoodItem \"#{item.name}\" was deleted."
     redirect_to food_items_path
   end

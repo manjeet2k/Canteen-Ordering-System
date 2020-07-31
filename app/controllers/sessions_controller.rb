@@ -1,12 +1,7 @@
 class SessionsController < ApplicationController
   
   def new
-    if logged_in?
-      flash[:warning] = "You are already logged in..."
-      redirect_to root_path
-    else 
-      return
-    end
+    return redirect_to root_path, flash: { warning: "You are already logged in..." } if logged_in?
   end
 
   def create

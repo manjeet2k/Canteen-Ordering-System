@@ -6,19 +6,14 @@ class FoodStoresController < ApplicationController
   end
 
   def new
-    @store    = FoodStore.new
+    @store = FoodStore.new
     @category = FoodCategory.all
   end
 
   def create
     @store = FoodStore.new(store_params)
-    
-    if @store.save
-      flash[:success] = "FoodStore was succesfully created!"
-      redirect_to food_stores_path
-    else
-      render 'new'
-    end
+    return redirect_to food_stores_path, flash: { success: ("FoodStore was succesfully created!") } if @store.save  
+    render 'new'
   end
 
   def edit

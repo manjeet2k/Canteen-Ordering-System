@@ -52,16 +52,16 @@ class ChefProfilesController < ApplicationController
   end
 
   def update
-    unless params[:chef_profile].nil?
+    if params[:chef_profile].nil?
+      flash[:danger] = "Choose files first!"
+      redirect_to gallery_chef_profiles_path
+    else
       if @profile.update(chef_params)
         flash[:success] = "Image upload successfull!"
         redirect_to gallery_chef_profiles_path
       else
         render "gallery"
-      end
-    else
-      flash[:danger] = "Choose files first!"
-      redirect_to gallery_chef_profiles_path
+      end      
     end
   end
 

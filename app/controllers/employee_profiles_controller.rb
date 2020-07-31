@@ -38,7 +38,7 @@ class EmployeeProfilesController < ApplicationController
   private
 
   def emp_params
-    params.require(:employee_profile).permit(:name, :phone, :company_id,:user_id)
+    params.require(:employee_profile).permit(:name, :phone, :company_id, :user_id)
   end
 
   def set_company

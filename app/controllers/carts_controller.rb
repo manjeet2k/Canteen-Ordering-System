@@ -20,10 +20,7 @@ class CartsController < ApplicationController
   def order
     check_cart
     @cart = current_cart
-    unless current_user.carts.where(order_status: 0..2).count == 0    
-      flash[:warning] = "Please wait till last order is completed!"
-      redirect_back(fallback_location: cart_path)
-    else
+    if current_user.carts.where(order_status: 0..2).count == 0    
       if @cart.update cart_params
         flash[:success] = "Order placed Successfully!"
         Notification.create(user_id: 1, content: "You got new order to approve") 
@@ -33,21 +30,25 @@ class CartsController < ApplicationController
         flash[:danger] = "Something went wrong!"
         render cart_path
       end
+    else
+      flash[:warning] = "Please wait till last order is completed!"
+      redirect_back(fallback_location: cart_path)
     end
+      
   end
 
   def order_show
-    unless current_user.admin?
-      @carts = current_user.carts
-      # order_status = {"[Placed,0]", "[Recieved,1]", "[Preparing,2]", "[Delivered,3]"}
-      @past_orders  = @carts.where(order_status: 3)
-      @current_order = @carts.where(order_status: 0..2).first
-    else
+    if current_user.admin?
       if params[:format]
-       @current_order = Cart.find params[:format]
+        @current_order = Cart.find params[:format]
       else
         redirect_to error_path
       end
+    else
+      @carts = current_user.carts
+      # order_status = {"[Placed,0]", "[Recieved,1]", "[Preparing,2]", "[Delivered,3]"}
+      @past_orders  = @carts.where(order_status: 3)
+      @current_order = @carts.where(order_status: 0..2).first      
     end
   end
 

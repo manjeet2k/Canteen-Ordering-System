@@ -1,7 +1,7 @@
 class UsersController < ApplicationController    
 
   def new
-    return redirect_to root_path, flash: { warning: ("User already logged in") } if logged_in?
+    return redirect_to root_path, flash: { warning: "User already logged in" } if logged_in?
     @user = User.new   
   end
 
