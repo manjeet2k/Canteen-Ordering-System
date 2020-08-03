@@ -5,10 +5,10 @@ class CartsController < ApplicationController
     require_same_food_store
     if item.save
       flash[:success] = "Item Added to Cart"
-      redirect_back(fallback_location: menu_path)
+      redirect_to menu_path
     else
       flash[:danger] = "Food Item already in the cart"
-      redirect_back(fallback_location: menu_path)
+      redirect_to menu_path
     end
   end
 
