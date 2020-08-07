@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_070622) do
+ActiveRecord::Schema.define(version: 2020_08_07_190802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2020_07_27_070622) do
 
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "order_status"
     t.bigint "food_store_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["food_store_id"], name: "index_carts_on_food_store_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 2020_07_27_070622) do
     t.bigint "user_id", null: false
     t.bigint "food_store_id", null: false
     t.boolean "approved", default: false
+    t.json "images"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.json "images"
     t.index ["food_store_id"], name: "index_chef_profiles_on_food_store_id"
     t.index ["user_id"], name: "index_chef_profiles_on_user_id"
   end
@@ -75,18 +75,18 @@ ActiveRecord::Schema.define(version: 2020_07_27_070622) do
   create_table "food_items", force: :cascade do |t|
     t.string "name", null: false
     t.decimal "price", null: false
+    t.string "description"
     t.bigint "food_store_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "description"
     t.index ["food_store_id"], name: "index_food_items_on_food_store_id"
   end
 
   create_table "food_stores", force: :cascade do |t|
     t.string "name", null: false
+    t.bigint "food_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "food_category_id", null: false
     t.index ["food_category_id"], name: "index_food_stores_on_food_category_id"
   end
 
@@ -103,9 +103,9 @@ ActiveRecord::Schema.define(version: 2020_07_27_070622) do
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "content"
+    t.boolean "read", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "read", default: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -121,12 +121,12 @@ ActiveRecord::Schema.define(version: 2020_07_27_070622) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "role", default: 0
     t.boolean "admin", default: false
     t.string "provider"
     t.string "uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "cart_items", "carts"

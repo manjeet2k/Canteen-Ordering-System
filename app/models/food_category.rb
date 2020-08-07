@@ -1,5 +1,7 @@
 class FoodCategory < ApplicationRecord
   has_many :food_stores, dependent: :destroy 
 
-  validates :name,  presence: true, length: { maximum: 80, minimum: 3 }, uniqueness: true
+  VALID_NAME_REGEX = /\A[\sA-Za-z]*\z/i
+
+  validates :name,  presence: true, format: { with: VALID_NAME_REGEX }, length: { maximum: 40, minimum: 2 }, uniqueness: true
 end

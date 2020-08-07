@@ -69,6 +69,7 @@ class CartsController < ApplicationController
     end
   end
 
+  # Ensures Cart Items From Same Food Store 
   def require_same_food_store
     unless @cart.cart_items.first.food_item.food_store.id == @cart.cart_items.last.food_item.food_store.id
       @cart.cart_items.destroy_all

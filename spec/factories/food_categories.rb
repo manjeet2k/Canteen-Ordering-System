@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :food_category do
-    name { "Some Category" }
+    name { Faker::Lorem.word }
   end
 end

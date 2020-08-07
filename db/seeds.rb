@@ -10,15 +10,15 @@ User.create(email:"admin@abc.com", password: "pass123", password_confirmation: "
 puts "Admin: admin@abc.com, password: pass123"
 
 FoodCategory.create([{name: "North Indian"}, {name: "South Indian"}, {name: "Thai"}])
-puts "Food Category Created"
+puts "Food Categories Created"
 
 store_one = FoodCategory.first.food_stores.create(name: "The Real Dhaba")
 store_two = FoodCategory.second.food_stores.create(name: "Dosa Treat")
 store_three = FoodCategory.third.food_stores.create(name: "Thai Point")
-puts "Food Store Created"
+puts "Food Stores Created"
 
 Company.create([{name: "StartTrek LLC."}, {name: "Timber Corp."}, {name: "NovoPlay"}])
-puts "Company Created"
+puts "Companies Created"
 
 chef_one = User.create(email:"chef1@abc.com", password: "pass123", password_confirmation: "pass123", role: 2)
 ChefProfile.create(name: "Timothy Sen", phone: "8754219865", user_id: chef_one.id, food_store_id: store_one.id, approved: true)
@@ -33,8 +33,7 @@ ChefProfile.create(name: "Chandra Sekhar", phone: "8754216578", user_id: chef_th
 puts "ThirdChef: chef3@abc.com:pass123"
 
 200.times do
-  Faker::UniqueGenerator.clear
-  
+  Faker::UniqueGenerator.clear  
   store_one.food_items.create(    
     name: Faker::Food.unique.dish,
     description: Faker::Food.unique.description,
@@ -44,7 +43,6 @@ end
 
 200.times do
   Faker::UniqueGenerator.clear
-
   store_two.food_items.create(    
     name: Faker::Food.unique.dish,
     description: Faker::Food.unique.description,
@@ -54,7 +52,6 @@ end
 
 200.times do
   Faker::UniqueGenerator.clear
-
   store_three.food_items.create(    
     name: Faker::Food.unique.dish,
     description: Faker::Food.unique.description,

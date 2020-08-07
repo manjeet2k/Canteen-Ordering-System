@@ -4,7 +4,7 @@ FactoryBot.define do
     phone { "9865215432" }
     user_id { 1 }
     food_store_id { 1 }
-    user { create(:user) }
+    user { create(:chef) }
     food_store { create(:food_store) }
   end
 end

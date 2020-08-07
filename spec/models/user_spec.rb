@@ -124,4 +124,26 @@ RSpec.describe User, type: :model do
   describe "has_secure_password" do
     it { is_expected.to have_secure_password }
   end
+
+  describe "#from_omniauth" do
+    context "with registered user" do
+      it "using omniauth" do
+        user = FactoryBot.create(:user, email: "manjeetsingh@facebook.com", provider: "facebook", uid: "12345678910")
+        OmniAuth.config.test_mode = true
+        expect(User.create_with_omniauth(OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+          provider: "facebook",
+            uid: "12345678910",
+            info: {
+              email: "dem@gmail.com",
+              name: "Manjeet Singh"
+            },
+            credentials: {
+              token: "abcdefg12345",
+              refresh_token: "abcdefg12345",
+              expires_at: DateTime.now,
+            }
+          }))).to eq(user)
+      end
+    end
+  end
 end
