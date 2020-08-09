@@ -40,12 +40,12 @@ jobs:
           cmd: install
       
       - name: Bundle Install, Create DB and Rubn tests
-          env:
-            DATABASE_URL: postgres://postgres:@localhost:5432/test
-            REDIS_URL: redis://localhost:6379/0
-            RAILS_ENV: test
-          run: |
-            gem install bundler --version 1.17.3
-            bundle install --jobs 4 --retry 3
-            bundle exec rails db:prepare --trace
-            bundle exec rspec
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_ENV: test
+        run: |
+          gem install bundler --version 1.17.3
+          bundle install --jobs 4 --retry 3
+          bundle exec rails db:prepare --trace
+          bundle exec rspec
