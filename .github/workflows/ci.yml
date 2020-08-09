@@ -7,6 +7,8 @@ jobs:
       db:
         image: postgres
         ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -36,7 +38,6 @@ jobs:
       
       - name: Bundle Install, Create DB and Rubn tests
         env:
-          POSTGRES_PASSWORD: postgres
           DATABASE_URL: postgres://postgres:@localhost:5432/test
           REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
