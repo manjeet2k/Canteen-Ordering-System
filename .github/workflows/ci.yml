@@ -15,15 +15,14 @@ jobs:
         redis: 
           image: redis
           ports: ['6379:6379']
-          options: --entrypoint redis-server
-      
+          options: --entrypoint redis-server      
       steps:
-        - uses: actions/checkout@v1
         - name: Setup Ruby
+          uses: actions/checkout@v1
           uses: actions/setup-ruby@v1
           with:
             ruby-version: 2.6.x
-        - uses: borales/actions-yarnv@2.0.0'
+          uses: borales/actions-yarnv@2.0.0'
           with:
             cmd: install
         - name: Build and run tests
