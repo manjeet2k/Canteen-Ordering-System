@@ -36,6 +36,7 @@ jobs:
       
       - name: Bundle Install, Create DB and Rubn tests
         env:
+          POSTGRES_PASSWORD: postgres
           DATABASE_URL: postgres://postgres:@localhost:5432/test
           REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
