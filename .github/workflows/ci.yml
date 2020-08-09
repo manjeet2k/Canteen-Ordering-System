@@ -34,11 +34,6 @@ jobs:
         with:
           fetch-depth: 1  
       
-      - name: Install Yarn
-        uses: borales/actions-yarnv@2.0.0'
-        with:
-          cmd: install
-      
       - name: Bundle Install, Create DB and Rubn tests
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/test
