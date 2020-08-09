@@ -1,9 +1,9 @@
-name: CI
-on: [push,pull_request]
+name: Ruby
+on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    services: 
+    services:
       db:
         image: postgres:11
         ports: ['5432:5432']
@@ -12,28 +12,40 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        redis: 
-          image: redis
-          ports: ['6379:6379']
-          options: --entrypoint redis-server      
-      steps:
-        - name: Setup Ruby
-          uses: actions/checkout@v1
-          uses: actions/setup-ruby@v1
-          with:
-            ruby-version: 2.6.x
-          uses: borales/actions-yarnv@2.0.0'
-          with:
-            cmd: install
-        - name: Build and run tests
+      
+      redis:
+        image: redis
+        ports: ['6379:6379']
+        options: --entrypoint redis-server
+
+    steps:  
+      - name: Setup ubuntu
+        run: |
+          sudo apt-get -yqq install libpq-dev
+          sudo apt-get update
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+
+      - name: Checkout Code
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1  
+      
+      - name: Install Yarn
+        uses: borales/actions-yarnv@2.0.0'
+        with:
+          cmd: install
+      
+      - name: Bundle Install, Create DB and Rubn tests
           env:
             DATABASE_URL: postgres://postgres:@localhost:5432/test
             REDIS_URL: redis://localhost:6379/0
             RAILS_ENV: test
           run: |
-            sudo apt-get -yqq install libpq-dev
-            gem install bundler
+            gem install bundler --version 1.17.3
             bundle install --jobs 4 --retry 3
-            bundle exec rails db:prepare
+            bundle exec rails db:prepare --trace
             bundle exec rspec
-
