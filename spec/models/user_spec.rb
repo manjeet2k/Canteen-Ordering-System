@@ -134,7 +134,7 @@ RSpec.describe User, type: :model do
           provider: "facebook",
             uid: "12345678910",
             info: {
-              email: "dem@gmail.com",
+              email: "demo@gmail.com",
               name: "Manjeet Singh"
             },
             credentials: {

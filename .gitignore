@@ -33,7 +33,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+/.vscode
 /public/packs
+/public/uploads
 /public/packs-test
 /node_modules
 /yarn-error.log

@@ -6,6 +6,7 @@
       </div>
 
       <div class="card-body text-right">
+        <%= render "layouts/error", obj: @category %>
         <div class="form-group row">
           <%= form.label :name, for: "name", class:"col-sm-4 col-form-label"%>
           <div class="col-sm-6">

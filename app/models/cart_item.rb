@@ -3,7 +3,7 @@ class CartItem < ApplicationRecord
   belongs_to :food_item
   validates_uniqueness_of :food_item_id, scope: :cart_id
 
-  validates :quantity, presence: true, numericality: { greater_than: 0 }
+  validates :quantity, presence: true, numericality: { greater_than: 0, less_than: 5 }
 
   def sub_total
     quantity*food_item.price
