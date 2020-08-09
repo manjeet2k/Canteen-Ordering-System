@@ -45,8 +45,6 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_DB: canteen_app_ci_db
           POSTGRES_PASSWORD: root
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
-          REDIS_URL: redis://localhost:6379/0
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
