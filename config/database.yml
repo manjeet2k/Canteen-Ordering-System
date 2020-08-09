@@ -46,6 +46,5 @@ test:
   adapter: postgresql
   encoding: unicode
   database: canteen_app_test
-  passord: "postgres"
   pool: 5
   timeout: 5000

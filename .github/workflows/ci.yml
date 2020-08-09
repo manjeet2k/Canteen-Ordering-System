@@ -8,7 +8,9 @@ jobs:
         image: postgres
         ports: ['5432:5432']
         env:
-          POSTGRES_PASSWORD: ""
+          POSTGRES_USER: root
+          POSTGRES_DB: canteen_app_ci_db
+          POSTGRES_PASSWORD: root
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -38,11 +40,16 @@ jobs:
       
       - name: Bundle Install, Create DB and Run tests
         env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          POSTGRES_USER: root
+          POSTGRES_DB: canteen_app_ci_db
+          POSTGRES_PASSWORD: root
           DATABASE_URL: postgres://postgres:@localhost:5432/test
           REDIS_URL: redis://localhost:6379/0
-          RAILS_ENV: test
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
+          cp config/database.ci.yml config/database.yml
           bundle exec rails db:prepare --trace
           bundle exec rspec
