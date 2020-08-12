@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2020_08_07_190802) do
   create_table "food_stores", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "food_category_id", null: false
+    t.boolean "indexing", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_category_id"], name: "index_food_stores_on_food_category_id"

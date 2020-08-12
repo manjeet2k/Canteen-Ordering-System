@@ -7,6 +7,7 @@
         <th>S.No:</th>
         <th>Food Store Name</th>
         <th>Actions</th>
+        <th>Order Hide/Show</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,13 @@
         <td>
           <%= edit_link(edit_food_store_path(store.id)) %>
           <%= delete_link(food_store_path(store.id)) %>
+        </td>
+        <td>
+          <% if store.indexing %>
+            <%= link_to "Hide Order Button", store_indexing_toggle_path(store.id), class: "btn btn-sm btn-secondary px-3" %>            
+          <% else %>
+            <%= link_to "Show Order Button", store_indexing_toggle_path(store.id), class: "btn btn-sm btn-success px-3" %>            
+          <% end %>
         </td>
       </tr>      
     <% end %>

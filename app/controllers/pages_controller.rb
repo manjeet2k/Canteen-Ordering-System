@@ -1,8 +1,8 @@
 class PagesController < ApplicationController  
   
   def home 
-    @store_options ||= FoodStore.all
-    @category_options ||= FoodCategory.all
+    @store_options ||= FoodStore.all.order(:id)
+    @category_options ||= FoodCategory.all.order(:id)
     initialize_filters
     handle_filters
   end
@@ -34,8 +34,10 @@ class PagesController < ApplicationController
   def initialize_filters
     @stores = @store_options
     @items = FoodItem.all
-    session[:store_filter] = params[:store_filter]
+    session[:store_filter] = params[:store_filter] 
+    session[:store_filter] = nil if params[:store_filter] == ""
     session[:category_filter] = params[:category_filter]
+    session[:category_filter] = nil if params[:category_filter] == ""
   end
 
   def handle_filters
@@ -45,7 +47,6 @@ class PagesController < ApplicationController
     elsif session[:category_filter]
       @category = FoodCategory.find(session[:category_filter])
       @stores = @category.food_stores
-      @check_id = @category.id
     end
   end
 end

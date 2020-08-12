@@ -28,6 +28,12 @@ class AdminsController < ApplicationController
     redirect_to chef_profiles_path
   end
 
+  def hide_store
+    @store = FoodStore.find(params[:id])
+    @store.toggle!(:indexing)
+    redirect_to food_stores_path
+  end
+
   def orders
     @orders = Cart.where(order_status: 0)
   end

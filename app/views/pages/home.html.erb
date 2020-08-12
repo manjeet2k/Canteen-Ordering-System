@@ -20,7 +20,7 @@
     <div>
       <form action="/" method="GET">
         <select name="store_filter" onchange="this.form.submit()">
-          <option value="">filter by food store</option>
+          <option value = "">filter by food store</option>
           <% @store_options.each do |store| %>
             <% if session[:store_filter] && store.id == @store.id %>
               <option value="<%= store.id %>" selected><%= store.name %></option>

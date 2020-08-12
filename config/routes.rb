@@ -39,16 +39,17 @@ Rails.application.routes.draw do
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  get "auth/facebook/callback", to: "sessions#create"
-  get "auth/failure", to: redirect("/")
+  get 'auth/facebook/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect("/")
 
-  get   'dashboard',    to: 'admins#dashboard'
-  get   "admin/orders", to: "admins#orders"
-  get   "admin/order/:id/approve", to: "admins#approve_order", as: "approve_order"
-  get   'chef/:id/approve',     to: 'admins#approve_chef', as: 'approve_chef'
-  get   'employee/:id/approve', to: 'admins#approve_employee', as: 'approve_employee'
-  get   'chef/:id/reject',     to: 'admins#reject_chef', as: 'reject_chef'
-  get   'employee/:id/reject', to: 'admins#reject_employee', as: 'reject_employee'
+  get 'dashboard',    to: 'admins#dashboard'
+  get 'admin/orders', to: 'admins#orders'
+  get 'admin/order/:id/approve', to: 'admins#approve_order', as: 'approve_order'
+  get 'chef/:id/approve',     to: 'admins#approve_chef', as: 'approve_chef'
+  get 'employee/:id/approve', to: 'admins#approve_employee', as: 'approve_employee'
+  get 'chef/:id/reject',     to: 'admins#reject_chef', as: 'reject_chef'
+  get 'employee/:id/reject', to: 'admins#reject_employee', as: 'reject_employee'
+  get 'store/:id', to: 'admins#hide_store', as: 'store_indexing_toggle'
 
   get 'error', to: "pages#show"
   get "notification", to: "pages#notification"

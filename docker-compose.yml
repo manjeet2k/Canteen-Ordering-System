@@ -1,0 +1,30 @@
+version: "3.7"
+    
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+
+  
+  redis:
+    image: "redis:6.0"
+
+
+  web:
+    depends_on:
+      - db
+      - redis
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+    volumes:
+      - ".:/myapp"
+    links: 
+      - db
+      - redis
+

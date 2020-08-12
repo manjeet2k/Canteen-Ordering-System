@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/manjeet/Canteen/app/models/cart_item.rb": {
+      "/myapp/app/models/cart_item.rb": {
         "lines": [
           1,
           1,
@@ -17,14 +17,14 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/application_record.rb": {
+      "/myapp/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/cart.rb": {
+      "/myapp/app/models/cart.rb": {
         "lines": [
           1,
           1,
@@ -45,7 +45,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/chef_profile.rb": {
+      "/myapp/app/models/chef_profile.rb": {
         "lines": [
           1,
           1,
@@ -61,7 +61,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/employee_profile.rb": {
+      "/myapp/app/models/employee_profile.rb": {
         "lines": [
           1,
           1,
@@ -75,7 +75,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/food_item.rb": {
+      "/myapp/app/models/food_item.rb": {
         "lines": [
           1,
           1,
@@ -87,7 +87,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/user_profile.rb": {
+      "/myapp/app/models/user_profile.rb": {
         "lines": [
           1,
           1,
@@ -100,7 +100,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/user.rb": {
+      "/myapp/app/models/user.rb": {
         "lines": [
           1,
           1,
@@ -137,7 +137,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/food_category.rb": {
+      "/myapp/app/models/food_category.rb": {
         "lines": [
           1,
           1,
@@ -148,7 +148,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/food_store.rb": {
+      "/myapp/app/models/food_store.rb": {
         "lines": [
           1,
           1,
@@ -165,7 +165,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/message.rb": {
+      "/myapp/app/models/message.rb": {
         "lines": [
           1,
           1,
@@ -175,7 +175,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/notification.rb": {
+      "/myapp/app/models/notification.rb": {
         "lines": [
           1,
           1,
@@ -186,7 +186,7 @@
           null
         ]
       },
-      "/home/manjeet/Canteen/app/models/company.rb": {
+      "/myapp/app/models/company.rb": {
         "lines": [
           1,
           1,
@@ -197,6 +197,6 @@
         ]
       }
     },
-    "timestamp": 1597004147
+    "timestamp": 1597273290
   }
 }
