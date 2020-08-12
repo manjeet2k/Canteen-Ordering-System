@@ -29,9 +29,7 @@
           </td>
           <td>Rs.<%= item.sub_total %></td>
           <td>
-            <a class="btn btn-danger btn-sm px-4" href="cart_item/<%= item.id%>" data-method="delete" role="button" title="Delete Item">
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
-            </a>
+            <%= delete_link(item_delete_path(item.id)) %>
           </td>          
         </tr>      
       <% end %>

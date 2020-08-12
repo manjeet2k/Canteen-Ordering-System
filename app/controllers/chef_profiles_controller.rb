@@ -4,7 +4,7 @@ class ChefProfilesController < ApplicationController
   before_action :set_chef, only: [:show, :update]
 
   def index
-    @chef = ChefProfile.where(approved: false)
+    @chef = ChefProfile.where(approved: false, rejected: false)
   end
 
   def dashboard

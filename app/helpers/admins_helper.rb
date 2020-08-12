@@ -8,4 +8,14 @@ module AdminsHelper
       flash[:danger] = "#{user.name} approval failure"
     end
   end
+
+  def reject_user(user)
+    user.rejected = true
+    if user.save
+      flash[:success] = "#{user.name} rejected!"
+      Notification.create!(user_id: user.user.id, content: "Your Profile was not approved")
+    else
+      flash[:danger] = "#{user.name} rejection failure"
+    end
+  end
 end

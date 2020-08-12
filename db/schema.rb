@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_08_07_190802) do
     t.bigint "user_id", null: false
     t.bigint "food_store_id", null: false
     t.boolean "approved", default: false
+    t.boolean "rejected", default: false
     t.json "images"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_08_07_190802) do
     t.bigint "user_id", null: false
     t.bigint "company_id", null: false
     t.boolean "approved", default: false
+    t.boolean "rejected", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_employee_profiles_on_company_id"

@@ -2,7 +2,7 @@ class FoodCategoriesController < ApplicationController
   before_action :validate_admin
 
   def index
-    @category = FoodCategory.all
+    @category = FoodCategory.all.order(:id)
   end
 
   def new
@@ -26,7 +26,7 @@ class FoodCategoriesController < ApplicationController
   def update
     @category = FoodCategory.find(params[:id])
     
-    if @category.update(store_params)
+    if @category.update(cat_params)
       flash[:success] = "FoodCategory was succesfully Updated!"
       redirect_to food_categories_path
     else

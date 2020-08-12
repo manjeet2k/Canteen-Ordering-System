@@ -1,6 +1,6 @@
 <p class="w-100  ml-4 text-muted">
-  Applied filter: <%=@category.name%>
-  <a href="/">reset</a>  
+  Applied filter: <%= @category.name %>
+  <%= link_to "reset", root_path %>
 </p>
 <% @stores.each do |s| %>
   <% s.food_items.each do |i| %>

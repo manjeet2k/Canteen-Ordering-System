@@ -15,20 +15,15 @@
         <td><%= i+1 %></td>
         <td><%= company.name %></td>
         <td>
-          <a class="btn btn-info btn-sm px-3" href="companies/<%= company.id%>/edit" role="button" title="Edit Company">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </a>
-          <a class="btn btn-danger btn-sm px-3" href="companies/<%= company.id%>" data-confirm="Are you sure?" data-method="delete" role="button" title="Delete Company">
-            <i class="fa fa-trash-o" aria-hidden="true"></i>
-          </a>
+          <%= edit_link(edit_company_path(company.id)) %>
+          <%= delete_link(company_path(company.id)) %>
         </td>
-      </tr>
-      
+      </tr>      
     <% end %>
     </tbody>
   </table>
   <hr/>
-  <div class="text-center"><a class="btn btn-primary px-4" href="/companies/new" role="button" title="Create new company">New Company</a></div>
-      
-  
+  <div class="text-center">
+    <%= link_to "New Company", new_company_path, class: "btn btn-primary px-4", title: "create new company" %>
+  </div>
 </div>

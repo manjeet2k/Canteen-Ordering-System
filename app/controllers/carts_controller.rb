@@ -2,13 +2,17 @@ class CartsController < ApplicationController
 
   def add
     item = current_cart.cart_items.new(cart_items_params)
-    require_same_food_store
-    if item.save
-      flash[:success] = "Item Added to Cart"
-      redirect_to menu_path
+    if same_food_store
+      if item.save
+        flash[:success] = "Item Added to Cart"
+        redirect_to root_path
+      else
+        flash[:danger] = "Food Item already in the cart"
+        redirect_to root_path
+      end
     else
-      flash[:danger] = "Food Item already in the cart"
-      redirect_to menu_path
+      flash[:warning] = "Clear cart first to add items from different store!"
+      redirect_to root_path
     end
   end
 
@@ -33,8 +37,7 @@ class CartsController < ApplicationController
     else
       flash[:warning] = "Please wait till last order is completed!"
       redirect_back(fallback_location: cart_path)
-    end
-      
+    end      
   end
 
   def order_show
@@ -70,10 +73,11 @@ class CartsController < ApplicationController
   end
 
   # Ensures Cart Items From Same Food Store 
-  def require_same_food_store
+  def same_food_store
     unless @cart.cart_items.first.food_item.food_store.id == @cart.cart_items.last.food_item.food_store.id
-      @cart.cart_items.destroy_all
+      return false
     end
+    true
   end
 
 end

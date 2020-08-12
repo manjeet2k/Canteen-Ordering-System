@@ -10,9 +10,21 @@ class AdminsController < ApplicationController
     redirect_to employee_profiles_path
   end
 
+  def reject_employee
+    @user = EmployeeProfile.find(params[:id])
+    reject_user(@user)
+    redirect_to employee_profiles_path
+  end
+
   def approve_chef
     @user = ChefProfile.find(params[:id])
     approve_user(@user)
+    redirect_to chef_profiles_path
+  end
+
+  def reject_chef
+    @user = ChefProfile.find(params[:id])
+    reject_user(@user)
     redirect_to chef_profiles_path
   end
 

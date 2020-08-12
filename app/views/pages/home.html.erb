@@ -8,7 +8,11 @@
         <select name="category_filter" onchange="this.form.submit()">
           <option value="">filter by category</option>
           <% @category_options.each do |category| %>
-            <option value="<%= category.id %>"><%= category.name %></option>
+            <% if session[:category_filter] && category.id == @category.id %>
+              <option value="<%= category.id %>" selected><%= category.name %></option>
+            <% else %>
+              <option value="<%= category.id %>"><%= category.name %></option>
+            <% end %>
           <% end %>
         </select>
       </form>    
@@ -18,7 +22,11 @@
         <select name="store_filter" onchange="this.form.submit()">
           <option value="">filter by food store</option>
           <% @store_options.each do |store| %>
-            <option value="<%= store.id %>"><%= store.name %></option>
+            <% if session[:store_filter] && store.id == @store.id %>
+              <option value="<%= store.id %>" selected><%= store.name %></option>
+            <% else %>
+              <option value="<%= store.id %>"><%= store.name %></option>
+            <% end %>
           <% end %>
         </select>
       </form>    

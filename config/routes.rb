@@ -47,8 +47,9 @@ Rails.application.routes.draw do
   get   "admin/order/:id/approve", to: "admins#approve_order", as: "approve_order"
   get   'chef/:id/approve',     to: 'admins#approve_chef', as: 'approve_chef'
   get   'employee/:id/approve', to: 'admins#approve_employee', as: 'approve_employee'
+  get   'chef/:id/reject',     to: 'admins#reject_chef', as: 'reject_chef'
+  get   'employee/:id/reject', to: 'admins#reject_employee', as: 'reject_employee'
 
-  get 'menu',  to: "pages#home"
   get 'error', to: "pages#show"
   get "notification", to: "pages#notification"
   get "notification/clear", to: "pages#delete_notifications"

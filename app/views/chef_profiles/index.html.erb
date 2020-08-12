@@ -19,9 +19,8 @@
         <td><%= chef.food_store.name %></td>
         <td><%= chef.phone %></td>
         <td>
-          <a class="btn btn-info btn-sm px-3" href="chef/<%= chef.id %>/approve" role="button" title="Approve Chef">
-            <i class="fa fa-check" aria-hidden="true"></i> Approve
-          </a>
+          <%= link_to fa_icon("check", text: "Approve"), approve_chef_path(chef.id), class: "btn btn-sm btn-primary px-3" %>
+          <%= link_to fa_icon("times", text: "Reject"), reject_chef_path(chef.id), class: "btn btn-sm btn-secondary px-3" %>
         </td>
       </tr>      
     <% end %>

@@ -1,0 +1,22 @@
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th>S.No:</th>
+      <th>Food Item</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% obj.cart_items.each_with_index do |item,i|%>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= item.food_item.name %></td>
+        <td>Rs.<%= item.food_item.price %></td>
+        <td><%= item.quantity %></td>
+        <td>Rs.<%= item.sub_total %></td>
+      </tr>      
+    <% end %>
+  </tbody>
+</table>

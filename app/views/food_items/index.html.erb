@@ -19,12 +19,8 @@
             <td><%= item.name %></td>
             <td>Rs.<%= item.price %> </td>
             <td>
-              <a class="btn btn-info btn-sm px-3" href="food_items/<%= item.id%>/edit" role="button" title="Edit Food Item">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-              </a>
-              <a class="btn btn-danger btn-sm px-3" href="food_items/<%= item.id%>" data-confirm="Are you sure?" data-method="delete" role="button" title="Delete Food Item">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </a>
+              <%= edit_link(edit_food_item_path(item.id)) %>
+              <%= delete_link(food_item_path(item.id)) %>
             </td>
           </tr>        
         <% end %>
@@ -34,6 +30,8 @@
       <h4 class="text-center text-muted">Add some food items</h4>    
     <% end %>  
     <hr/>
-    <div class="text-center"><a class="btn btn-primary px-4" href="/food_items/new" role="button" title="Create new item">New Food Item</a></div>
+    <div class="text-center">
+      <%= link_to "New Food Item", new_food_item_path, class: "btn btn-primary px-4", title: "create new food item" %>
+    </div>
   </div>  
 </div>

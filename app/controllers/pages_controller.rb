@@ -34,9 +34,7 @@ class PagesController < ApplicationController
   def initialize_filters
     @stores = @store_options
     @items = FoodItem.all
-    params[:store_filter] = nil if params[:store_filter] == ""
     session[:store_filter] = params[:store_filter]
-    params[:category_filter] = nil if params[:category_filter] == ""
     session[:category_filter] = params[:category_filter]
   end
 
@@ -47,6 +45,7 @@ class PagesController < ApplicationController
     elsif session[:category_filter]
       @category = FoodCategory.find(session[:category_filter])
       @stores = @category.food_stores
+      @check_id = @category.id
     end
   end
 end

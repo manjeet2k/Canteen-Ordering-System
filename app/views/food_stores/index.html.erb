@@ -15,17 +15,15 @@
         <td><%= i+1 %></td>
         <td><%= store.name %></td>
         <td>
-          <a class="btn btn-info btn-sm px-3" href="food_stores/<%= store.id%>/edit" role="button" title="Edit Food Store">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </a>
-          <a class="btn btn-danger btn-sm px-3" href="foods_stores/<%= store.id%>" data-confirm="Are you sure?" data-method="delete" role="button" title="Delete Food Store">
-            <i class="fa fa-trash-o" aria-hidden="true"></i>
-          </a>
+          <%= edit_link(edit_food_store_path(store.id)) %>
+          <%= delete_link(food_store_path(store.id)) %>
         </td>
       </tr>      
     <% end %>
     </tbody>
   </table>  
   <hr/>
-  <div class="text-center"><a class="btn btn-primary px-3" href="/food_stores/new" role="button" title="Create New Food Store">New Food Store</a></div>
+  <div class="text-center">
+    <%= link_to "New Food Store", new_food_store_path, class: "btn btn-primary px-3", title: "add new food store" %>
+  </div>
 </div>

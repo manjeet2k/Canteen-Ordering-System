@@ -4,7 +4,7 @@ class EmployeeProfilesController < ApplicationController
   before_action :set_company, only: [:new, :create]
 
   def index
-    @employee = EmployeeProfile.where(approved: false) 
+    @employee = EmployeeProfile.where(approved: false, rejected: false) 
   end
 
   def dashboard

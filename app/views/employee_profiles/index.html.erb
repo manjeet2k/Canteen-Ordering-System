@@ -19,14 +19,11 @@
         <td><%= employee.company.name %></td>
         <td><%= employee.phone %></td>
         <td>
-          <a class="btn btn-info btn-sm px-3" href="employee/<%= employee.id %>/approve" role="button" title="Approve Employee">
-            <i class="fa fa-check" aria-hidden="true"></i> Approve
-          </a>
+          <%= link_to fa_icon("check", text: "Approve"), approve_employee_path(employee.id), class: "btn btn-sm btn-primary" %>
+          <%= link_to fa_icon("times", text: "Reject"), reject_employee_path(employee.id), class: "btn btn-sm btn-secondary" %>
         </td>
        </tr>      
     <% end %>
     </tbody>
-  </table>
-  <hr/>
-  <div class="text-center"><a class="btn btn-secondary  px-4" href="/dashboard" role="button" title="back">Back</a></div>      
+  </table>    
 </div>

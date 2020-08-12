@@ -38,7 +38,7 @@
       <p class="card-text text-muted">Section to add or remove Food Stores</p>
     </div>
     <div class="card-footer">
-      <a href="/food_stores" class="btn btn-primary" title="Mange Food Stores">Manage</a>
+      <%= link_to "Manage", food_stores_path, class: "btn btn-primary", title: "Mange Food Stores" %>
     </div>
   </div>
 
@@ -48,7 +48,7 @@
       <p class="card-text text-muted">Section to add or remove Store Category</p>        
     </div>
     <div class="card-footer">
-      <a href="/food_categories" class="btn btn-primary" title="Manage Store Category">Manage</a>
+      <%= link_to "Manage", food_categories_path, class: "btn btn-primary", title: "Mange Food Categories" %>
     </div>
   </div>
 
@@ -58,7 +58,7 @@
       <p class="card-text text-muted">Section to confirm orders placed in the app</p>        
     </div>
     <div class="card-footer">
-      <a href="/admin/orders" class="btn btn-primary" title="Mange Orders">Orders</a>
+      <%= link_to "Manage Orders", admin_orders_path, class: "btn btn-primary", title: "Mange Orders" %>
     </div>
   </div>
 </div>

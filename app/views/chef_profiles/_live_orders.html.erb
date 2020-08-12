@@ -1,7 +1,17 @@
 <div class="row d-flex">
   <% @live_orders.each do |order| %>
     <% if order.store == current_user.food_store && order.user.employee? %>
-      <div class="card text-left col-3 m-2 p-0">
+      <div class="card text-left col-5 m-2 p-0">
+        <div class="card-header d-flex">
+          <div class="col-7">Placed by:
+            <strong> 
+              <%= order.user.employee_profile.name %>
+            </strong>  
+          </div>    
+          <div class="col-5">
+            <p class="mb-0 text-right"><strong>Total: Rs.<%= order.total %></strong></p>
+          </div>
+        </div>
         <div class="card-body pb-0">
           <div class="col-12 d-flex justify-content-between p-0">
             <div class="col-4 p-0">
@@ -12,21 +22,7 @@
             </div>
           </div>
           <div class="col-12 p-0"> 
-            <table class="table m-0 table-borderless">
-              <thead>
-                <tr>
-                  <th>Food Item</th>
-                  <th>Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-              <% order.cart_items.each do |item| %>
-                <tr>
-                  <td><%= item.food_item.name %></td>
-                  <td><%= item.quantity %></td>
-                </tr>               
-              <% end %>
-            </table>
+            <%= render "table", obj: order %>
           </div>
         </div>          
         <div class="card-footer px-2 text-muted">
@@ -46,25 +42,21 @@
 
   <% @live_orders.each do |order| %>
     <% if order.store == current_user.food_store && order.user.user? %>
-      <div class="card text-left col-3 m-2 p-0">
+      <div class="card text-left col-5 m-2 p-0">
+        <div class="card-header d-flex p-0 py-2">
+          <div class="col-7">Placed by:
+            <strong> 
+              <%= order.user.user_profile.name %>
+            </strong>  
+          </div>    
+          <div class="col-5">
+            <p class="mb-0 text-right"><strong>Total: Rs.<%= order.total %></strong></p>
+          </div>
+        </div> 
         <div class="card-body pb-0">
           <div class="col-12 p-0"> 
             <p class="text-right"><%= link_to "Messages", messages_index_path(cart_id: order.id) %> </p>
-            <table class="table m-0 table-borderless">
-              <thead>
-                <tr>
-                  <th>Food Item</th>
-                  <th>Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-              <% order.cart_items.each do |item| %>
-                <tr>
-                  <td><%= item.food_item.name %></td>
-                  <td><%= item.quantity %></td>
-                </tr>               
-              <% end %>
-            </table>
+            <%= render "table", obj: order %>
           </div>
         </div>          
         <div class="card-footer px-2 text-muted">

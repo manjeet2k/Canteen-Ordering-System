@@ -1,5 +1,5 @@
 <% @past_orders.each do |order| %>
-  <div class="card col-8 offset-2 p-0 mb-4">
+  <div class="card col-md-8 offset-md-2 col-sm-12 p-0 mb-4">
     <div class="card-header d-flex justify-content-between">
       <div class="col-6">
         <h5>Food Store:<strong class= "text-info"><%= order.store.name %></strong></h5>      
@@ -20,15 +20,15 @@
           </tr>
         </thead>
         <tbody>
-        <% order.cart_items.each_with_index do |item,i|%>
-          <tr>
-            <td><%= i+1 %></td>
-            <td><%= item.food_item.name %></td>
-            <td>Rs.<%= item.food_item.price %></td>
-            <td><%= item.quantity %></td>
-            <td>Rs.<%= item.sub_total %></td>
-          </tr>      
-        <% end %>
+          <% order.cart_items.each_with_index do |item,i|%>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= item.food_item.name %></td>
+              <td>Rs.<%= item.food_item.price %></td>
+              <td><%= item.quantity %></td>
+              <td>Rs.<%= item.sub_total %></td>
+            </tr>      
+          <% end %>
         </tbody>
       </table>
     </div>

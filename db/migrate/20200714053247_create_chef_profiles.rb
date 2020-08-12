@@ -6,6 +6,7 @@ class CreateChefProfiles < ActiveRecord::Migration[6.0]
       t.references :user, null: false, foreign_key: true
       t.references :food_store, null: false, foreign_key: true
       t.boolean :approved, default: false
+      t.boolean :rejected, default: false
 
       t.timestamps
     end

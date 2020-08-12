@@ -19,7 +19,7 @@
       <p class="card-text text-muted">Section to manage food item of the store.</p>
     </div>
     <div class="card-footer">
-      <a href="/food_items" class="btn btn-primary" title="Food Items">Add food items</a>
+      <%= link_to "Manage food items", food_items_path, class: "btn btn-primary", title: "manage food items" %>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
       <p class="card-text text-muted">Section to manage ongoing orders (alongwith messages) placed in the store.</p>
     </div>
     <div class="card-footer">
-      <a href="/chef_profiles/orders" class="btn btn-primary" title= "Manage orders">Manage Orders</a>
+      <%= link_to "Manage Orders", orders_chef_profiles_path, class: "btn btn-primary", title: "manage orders" %>
     </div>
   </div>
 
@@ -39,7 +39,7 @@
       <p class="card-text text-muted">Section to upload and view existing uploaded images.</p>
     </div>
     <div class="card-footer">
-      <a href="/chef_profiles/gallery" class="btn btn-primary" title="Gallery">Gallery</a>
+      <%= link_to "Gallery", gallery_chef_profiles_path, class: "btn btn-primary", title: "gallery" %>
     </div>
   </div>
 </div> 

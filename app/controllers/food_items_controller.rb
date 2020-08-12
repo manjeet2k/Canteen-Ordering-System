@@ -2,7 +2,7 @@ class FoodItemsController < ApplicationController
   before_action :validate_chef
 
   def index
-    @item = current_store.food_items
+    @item = current_store.food_items.order(:id)
   end
 
   def new
@@ -28,7 +28,7 @@ class FoodItemsController < ApplicationController
 
   def update
     @item = FoodItem.find(params[:id])
-    if @item.update(itm_params)
+    if @item.update(item_params)
       flash[:success] = "Food item was succesfully Updated!"
       redirect_to food_items_path
     else

@@ -17,7 +17,7 @@
         <div class="form-group row">
           <%= form.label :price, for: "price", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
-            <%= form.number_field :price, value: @item.price ? '%.2f' % @item.price : nil, min: 0, step: 1, for: "price", class: "form-control", autocomplete: "price", placeholder: "Enter price of food item", required: true %>
+            <%= form.number_field :price, value: @item.price ? '%.2f' % @item.price : nil, min: 0, step: 0.01, for: "price", class: "form-control", autocomplete: "price", placeholder: "Enter price of food item", required: true %>
           </div>
         </div>  
         
