@@ -1,4 +1,4 @@
-<div class="row d-flex">
+<div class="row d-flex justify-content-center">
   <% @live_orders.each do |order| %>
     <% if order.store == current_user.food_store && order.user.employee? %>
       <div class="card text-left col-5 m-2 p-0">
@@ -7,24 +7,29 @@
             <strong> 
               <%= order.user.employee_profile.name %>
             </strong>  
-          </div>    
+          </div> 
+
           <div class="col-5">
             <p class="mb-0 text-right"><strong>Total: Rs.<%= order.total %></strong></p>
           </div>
         </div>
+
         <div class="card-body pb-0">
           <div class="col-12 d-flex justify-content-between p-0">
             <div class="col-4 p-0">
               <p class="m-0"><span class="badge badge-pill badge-primary">Priority Order</span></p>
             </div>
+
             <div class="col-4 p-0">
               <p class=" m-0 text-right"><%= link_to "Messages", messages_index_path(cart_id: order.id) %> </p>
             </div>
           </div>
+
           <div class="col-12 p-0"> 
             <%= render "table", obj: order %>
           </div>
-        </div>          
+        </div>
+
         <div class="card-footer px-2 text-muted">
           <%= form_for order, url: order_update_chef_profile_path(order.id), remote: true  do |f| %>
             <div class="form-group m-0 row">
@@ -32,6 +37,7 @@
               <div class="col-4 px-0 mt-2">
                 <%= f.select(:order_status, Cart.order_statuses.keys.map {|order_status| [order_status.titleize,order_status]}, value: order.order_status, class: "form-control") %>      
               </div>
+
               <div class="col-4 mt-1"><%= f.submit "Update order", class: "btn btn-sm btn-primary"%></div>
             </div>
           <% end %>             
@@ -43,22 +49,25 @@
   <% @live_orders.each do |order| %>
     <% if order.store == current_user.food_store && order.user.user? %>
       <div class="card text-left col-5 m-2 p-0">
-        <div class="card-header d-flex p-0 py-2">
+        <div class="card-header d-flex">
           <div class="col-7">Placed by:
             <strong> 
               <%= order.user.user_profile.name %>
             </strong>  
-          </div>    
+          </div>
+
           <div class="col-5">
             <p class="mb-0 text-right"><strong>Total: Rs.<%= order.total %></strong></p>
           </div>
         </div> 
+        
         <div class="card-body pb-0">
           <div class="col-12 p-0"> 
             <p class="text-right"><%= link_to "Messages", messages_index_path(cart_id: order.id) %> </p>
             <%= render "table", obj: order %>
           </div>
-        </div>          
+        </div>
+                  
         <div class="card-footer px-2 text-muted">
           <%= form_for order, url: order_update_chef_profile_path(order.id), remote: true  do |f| %>
             <div class="form-group m-0 row">

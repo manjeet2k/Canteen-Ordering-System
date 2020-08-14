@@ -4,10 +4,12 @@
       <div class="col-6">
         <h5>Food Store:<strong class= "text-info"><%= order.store.name %></strong></h5>      
       </div>
+
       <div class="col-3">
         <p class= "mb-0 text-muted text-right">Date: <%= order.created_at.strftime("%m/%d/%Y") %></p>
       </div>
     </div>
+
     <div class="card-body">
       <table class="table table-borderless">
         <thead>
@@ -19,6 +21,7 @@
             <th>Subtotal</th>
           </tr>
         </thead>
+
         <tbody>
           <% order.cart_items.each_with_index do |item,i|%>
             <tr>
@@ -32,6 +35,7 @@
         </tbody>
       </table>
     </div>
+
     <div class="card-footer d-flex justify-content-between">
       <div class="col-4">Placed by:
         <strong> 
@@ -39,6 +43,7 @@
           <%= order.user.employee_profile.name if order.user.employee? %>
         </strong>      
       </div>
+      
       <div class="col-3">
         <p class="mb-0"><strong>Total: Rs.<%= order.total %></strong></p>
       </div>

@@ -1,12 +1,14 @@
 <h3><i class="fa fa-home" aria-hidden="true"></i> Admin Dashboard </h3>
-<hr/> 
-<div class="row d-flex justify-content-center">
 
+<hr/>
+
+<div class="row d-flex justify-content-center">
   <div class="card col-md-3 col-xs-12  m-2 p-0">
     <div class="card-body">
       <h5 class="card-title">Employee Confirmation</h5>
       <p class="card-text text-muted">Section to accept employees and grant them priority while placing orders on the application.</p>  
     </div>
+
     <div class="card-footer">
       <%= link_to "Approve", employee_profiles_path, class: "btn btn-primary", title: "Approve Employees" %>
     </div>
@@ -17,6 +19,7 @@
       <h5 class="card-title">Chef Confirmation</h5>
       <p class="card-text text-muted">Section to approve Chefs of respective food store so that they can create food items available to order.</p>
     </div>
+
     <div class="card-footer">
       <%= link_to "Approve", chef_profiles_path, class: "btn btn-primary", title: "Approve Chefs" %>
     </div>
@@ -27,6 +30,7 @@
       <h5 class="card-title">Manage Companies</h5>
       <p class="card-text text-muted">Section to add or remove companies belonging to the app.</p>
     </div>
+
     <div class="card-footer">
       <%= link_to "Manage", companies_path, class: "btn btn-primary", title: "Manage Companies" %>
     </div>
@@ -37,6 +41,7 @@
       <h5 class="card-title">Food Stores</h5>
       <p class="card-text text-muted">Section to add or remove Food Stores, also hide order button.</p>
     </div>
+
     <div class="card-footer">
       <%= link_to "Manage", food_stores_path, class: "btn btn-primary", title: "Mange Food Stores" %>
     </div>
@@ -47,6 +52,7 @@
       <h5 class="card-title">Store Category</h5>
       <p class="card-text text-muted">Section to add or remove Store Category</p>        
     </div>
+
     <div class="card-footer">
       <%= link_to "Manage", food_categories_path, class: "btn btn-primary", title: "Mange Food Categories" %>
     </div>
@@ -57,6 +63,7 @@
       <h5 class="card-title">Confirm orders</h5>
       <p class="card-text text-muted">Section to confirm orders placed in the app</p>        
     </div>
+    
     <div class="card-footer">
       <%= link_to "Manage Orders", admin_orders_path, class: "btn btn-primary", title: "Mange Orders" %>
     </div>

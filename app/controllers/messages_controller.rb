@@ -2,15 +2,17 @@ class MessagesController < ApplicationController
   def index
     if logged_in?
       return redirect_to error_path if current_user.admin?
-      unless current_user.chef?
-        if placed_cart
-          return redirect_to error_path if placed_cart.user != current_user
-          @messages = placed_cart.messages
+
+      if !current_user.chef?
+        if active_order
+          return redirect_to error_path if active_order.user != current_user
+          @messages = active_order.messages
         end
       else
-        @placed_cart = Cart.find(params[:cart_id])
-        return redirect_to error_path if @placed_cart.store != current_user.food_store
-        @messages = placed_cart.messages
+        @active_order = Cart.find(params[:cart_id])
+        return redirect_to error_path if @active_order.store != current_user.food_store
+        return redirect_to dashboard_chef_profiles_path if @active_order.order_status == "Delivered"
+        @messages = @active_order.messages
       end
     else  
       redirect_to error_path
@@ -19,6 +21,7 @@ class MessagesController < ApplicationController
 
   def create
     message = Message.new(msg_params)
+    
     if message.save
       redirect_to messages_index_path unless current_user.chef?
       redirect_to messages_index_path(cart_id: message.cart_id) if current_user.chef?

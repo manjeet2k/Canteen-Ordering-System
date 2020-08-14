@@ -1,7 +1,9 @@
 <% if current_cart.cart_items.present? %>
   <div class="col-md-8 offset-md-2 col-sm-12">
     <h3><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</h3>
+
     <hr>
+
     <table class="table table-borderless">
       <thead>
         <tr>
@@ -14,7 +16,8 @@
         </tr>
       </thead>
       <tbody>
-      <% @item.each_with_index do |item,i|%>
+
+      <% @cart_items.each_with_index do |item,i|%>
         <tr>
           <td><%= i+1 %></td>
           <td><%= item.food_item.name %></td>
@@ -35,7 +38,9 @@
       <% end %>
       </tbody>
     </table>
+
     <hr/>
+    
     <div class="d-flex justify-content-between">
       <div class="col-3"><p><strong>Total: Rs.<%= current_cart.total %></strong></p></div>
       <div class="col-3"> 

@@ -1,35 +1,40 @@
 <div class="row">
   <div class="col-md-7 col-xs-12 offset-md-2">
     <h3><i class="fa fa-cutlery" aria-hidden="true"></i> <%= current_user.food_store.name %> Items </h3>
+
     <hr/>
-    <% if @item.present? %>
+
+    <% if @food_items.present? %>
       <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th>S.No:</th>
-          <th>Food Item Name</th>
-          <th>Price</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @item.each_with_index do |item,i|%>
+        <thead>
           <tr>
-            <td><%= i+1 %></td>
-            <td><%= item.name %></td>
-            <td>Rs.<%= item.price %> </td>
-            <td>
-              <%= edit_link(edit_food_item_path(item.id)) %>
-              <%= delete_link(food_item_path(item.id)) %>
-            </td>
-          </tr>        
-        <% end %>
-      </tbody>
-    </table>    
+            <th>S.No:</th>
+            <th>Food Item Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @food_items.each_with_index do |item,i|%>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= item.name %></td>
+              <td>Rs.<%= item.price %> </td>
+              <td>
+                <%= edit_link(edit_food_item_path(item.id)) %>
+                <%= delete_link(food_item_path(item.id)) %>
+              </td>
+            </tr>        
+          <% end %>
+        </tbody>
+      </table>    
     <% else %>
       <h4 class="text-center text-muted">Add some food items</h4>    
-    <% end %>  
+    <% end %>
+
     <hr/>
+
     <div class="text-center">
       <%= link_to "New Food Item", new_food_item_path, class: "btn btn-primary px-4", title: "create new food item" %>
     </div>

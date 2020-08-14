@@ -32,16 +32,17 @@ RSpec.describe User, type: :model do
   end
   
   describe ".user_email_uniqueness" do
-    let(:user_duplicate) { User.new(email: "some@gmail.com", password: "11111111") }
+    let(:duplicate_user) { FactoryBot.create(:duplicate_user) }
     context "with unique email" do
       it "user having unique email is valid" do
-        expect(user_duplicate.email).not_to eq(user.email)
+        expect(duplicate_user).to be_valid
       end
     end
+    
     context "with non-unique email" do
       it "user not having unique email is invalid" do
-        user.email = "some@gmail.com"
-        expect(user_duplicate.email).to eq(user.email)
+        user.email = duplicate_user.email
+        expect(user).not_to be_valid
       end
     end
   end
@@ -60,7 +61,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#user_password_presence" do
+  describe ".user_password_presence" do
     context "when password is present" do
       it "user having a password is valid" do
         expect(user).to be_valid
@@ -88,7 +89,13 @@ RSpec.describe User, type: :model do
     end
   end
 
-  #association tests
+  describe ".admin_scope_method" do
+    let(:admin) { FactoryBot.create(:admin) }
+    it "returns the admin" do
+      expect(admin).to eq(User.admin)
+    end
+  end
+
   describe "has_many :messages" do
     it { is_expected.to have_many :messages } 
   end

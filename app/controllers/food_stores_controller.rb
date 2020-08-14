@@ -22,9 +22,9 @@ class FoodStoresController < ApplicationController
   end
 
   def update
-    store = FoodStore.find(params[:id])
+    @store = FoodStore.find(params[:id])
     
-    if store.update(store_params)
+    if @store.update(store_params)
       flash[:success] = "FoodStore was succesfully Updated!"
       redirect_to food_stores_path
     else
@@ -35,7 +35,7 @@ class FoodStoresController < ApplicationController
 
   def destroy
     store = FoodStore.find(params[:id])
-    store.delete
+    store.destroy
     flash[:danger] = " FoodStore #{store.name} was deleted."
     redirect_to food_stores_path
   end

@@ -9,15 +9,17 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { maximum: 30, minimum: 6 } , on: :create 
 
 
-  has_one  :chef_profile
-  has_one  :employee_profile
-  has_one  :user_profile
+  has_one  :chef_profile, dependent: :destroy
+  has_one  :employee_profile, dependent: :destroy
+  has_one  :user_profile, dependent: :destroy
   has_one  :food_store, through: :chef_profile
   has_one  :company, through: :employee_profile  
   has_many :carts, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy
-  
+
+  scope :admin, -> { where(admin: true).first }
+
   def self.create_with_omniauth(auth)
     user = find_or_create_by(uid: auth["uid"], provider:  auth["provider"])
     name = auth["info"]["name"].delete(" ").downcase

@@ -1,4 +1,4 @@
-<%= form_for @item do |form| %>
+<%= form_for @food_item do |form| %>
   <div class="col-8 mx-auto">    
     <div class="card">
       <div class="card-header text-center">
@@ -6,7 +6,7 @@
       </div>
 
       <div class="card-body text-right">
-        <%= render 'layouts/error', obj: @item %>
+        <%= render 'layouts/error', obj: @food_item %>
         <div class="form-group row">
           <%= form.label :name, for: "name", class:"col-sm-4 col-form-label"%>
           <div class="col-sm-6">
@@ -17,7 +17,7 @@
         <div class="form-group row">
           <%= form.label :price, for: "price", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
-            <%= form.number_field :price, value: @item.price ? '%.2f' % @item.price : nil, min: 0, step: 0.01, for: "price", class: "form-control", autocomplete: "price", placeholder: "Enter price of food item", required: true %>
+            <%= form.number_field :price, value: @food_item.price ? '%.2f' % @food_item.price : nil, min: 0, step: 0.01, for: "price", class: "form-control", autocomplete: "price", placeholder: "Enter price of food item", required: true %>
           </div>
         </div>  
         

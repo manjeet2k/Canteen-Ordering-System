@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       redirect_calls  
     else
       user = User.find_by(email: params[:session][:email].downcase)
+      
       if user && user.authenticate(params[:session][:password])
         session[:user_id] = user.id
         get_cart unless current_user.chef? || current_user.admin? 
@@ -25,9 +26,18 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session.clear
     flash[:success] = "Logged out succesfully!"
     redirect_to root_path
   end
 
+  private
+  
+  def redirect_calls
+    redirect_to dashboard_path if current_user.admin?
+    redirect_to dashboard_chef_profiles_path if current_user.chef?
+    redirect_to dashboard_employee_profiles_path if current_user.employee? 
+    redirect_to dashboard_user_profiles_path if (current_user.user? && current_user.user_profile.present? && !current_user.admin?)
+    redirect_to new_user_profile_path if (current_user.user? && !current_user.user_profile.present? && !current_user.admin?)
+  end
 end

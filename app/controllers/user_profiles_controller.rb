@@ -1,29 +1,30 @@
 class UserProfilesController < ApplicationController
 
   def new
-    @profile = UserProfile.new
+    @user_profile = UserProfile.new
   end
 
   def dashboard
   end
 
   def create
-    @profile = UserProfile.new(user_profile_params)
-    if @profile.save
+    @user_profile = UserProfile.new(user_profile_params)
+    
+    if @user_profile.save
       flash[:success] = "Profile Saved Successfully!"
-      redirect_to user_profile_path(@profile.id)
+      redirect_to user_profile_path(@user_profile.id)
     else
       render "new"
     end
   end
 
   def show
-    @profile = UserProfile.find(params[:id])   
-    return redirect_to error_path unless  @profile == current_user.user_profile || current_user.admin?
+    @user_profile = UserProfile.find(params[:id])   
+    return redirect_to error_path unless  @user_profile == current_user.user_profile || current_user.admin?
   end
 
   def order_history
-    @past_orders = current_user.carts.where(order_status: 3)
+    @past_orders = current_user.carts.delivered_orders
   end
   
   private

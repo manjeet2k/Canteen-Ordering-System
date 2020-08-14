@@ -1,7 +1,9 @@
 <% if @current_order %>
   <div class="col-8 offset-2">
     <h4> Current Order Status: <strong class= "text-info"><%= @current_order.order_status %></strong></h4>
+
     <hr>
+
     <table class="table table-borderless">
       <thead>
         <tr>
@@ -12,8 +14,9 @@
           <th>Subtotal</th>
         </tr>
       </thead>
+
       <tbody>
-      <% @current_order.cart_items.each_with_index do |item,i|%>
+      <% @current_order.cart_items.each_with_index do |item,i| %>
         <tr>
           <td><%= i+1 %></td>
           <td><%= item.food_item.name %></td>
@@ -24,7 +27,9 @@
       <% end %>
       </tbody>
     </table>
+
     <hr/>
+    
     <div class="d-flex justify-content-between">
       <div class="col-3"><p><strong>Total: Rs.<%= @current_order.total %></strong></p></div>
       </div>

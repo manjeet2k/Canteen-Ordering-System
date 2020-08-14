@@ -1,6 +1,8 @@
 <div class="col-6 offset-3">
   <h3><i class="fa fa-cutlery" aria-hidden="true"></i> Food Stores</h3>
+
   <hr/>
+
   <table class="table table-borderless">
     <thead>
       <tr>
@@ -10,27 +12,30 @@
         <th>Order Hide/Show</th>
       </tr>
     </thead>
+
     <tbody>
-    <% @store.each_with_index do |store,i|%>
-      <tr>
-        <td><%= i+1 %></td>
-        <td><%= store.name %></td>
-        <td>
-          <%= edit_link(edit_food_store_path(store.id)) %>
-          <%= delete_link(food_store_path(store.id)) %>
-        </td>
-        <td>
-          <% if store.indexing %>
-            <%= link_to "Hide Order Button", store_indexing_toggle_path(store.id), class: "btn btn-sm btn-secondary px-3" %>            
-          <% else %>
-            <%= link_to "Show Order Button", store_indexing_toggle_path(store.id), class: "btn btn-sm btn-success px-3" %>            
-          <% end %>
-        </td>
-      </tr>      
-    <% end %>
+      <% @store.each_with_index do |store,i|%>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= store.name %></td>
+          <td>
+            <%= edit_link(edit_food_store_path(store.id)) %>
+            <%= delete_link(food_store_path(store.id)) %>
+          </td>
+          <td>
+            <% if store.indexing %>
+              <%= link_to "Hide Order Button", store_indexing_toggle_path(store.id), class: "btn btn-sm btn-secondary px-3" %>            
+            <% else %>
+              <%= link_to "Show Order Button", store_indexing_toggle_path(store.id), class: "btn btn-sm btn-success px-3" %>            
+            <% end %>
+          </td>
+        </tr>      
+      <% end %>
     </tbody>
-  </table>  
+  </table>
+
   <hr/>
+  
   <div class="text-center">
     <%= link_to "New Food Store", new_food_store_path, class: "btn btn-primary px-3", title: "add new food store" %>
   </div>

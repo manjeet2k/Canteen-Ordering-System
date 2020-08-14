@@ -1,5 +1,7 @@
 <h3>Listing all orders</h3>
+
 <hr/>
+
 <div class="col-8 offset-2">
   <table class="table table-borderless">
     <thead>
@@ -12,6 +14,7 @@
         <th>Actions</th>
       </tr>
     </thead>
+
     <tbody>
     <% i=0 %>
     <% @orders.each do |order|%>
@@ -29,6 +32,7 @@
         </tr>  
       <% end %>              
     <% end %>
+    
     <% @orders.each do |order|%>
       <% if !order.user.employee? %>
         <tr>

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CartItem, type: :model do
   let(:food_item) { FactoryBot.create(:food_item) }
-  subject(:cart_item) { FactoryBot.create(:cart_item, quantity: 3, food_item_id: food_item.id) }  
+  subject(:cart_item) { FactoryBot.build(:cart_item, quantity: 3, food_item_id: food_item.id) }  
 
   describe ".quantity_presence" do
     context "quantity is present" do 

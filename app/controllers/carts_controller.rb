@@ -1,9 +1,10 @@
 class CartsController < ApplicationController
 
   def add
-    item = current_cart.cart_items.new(cart_items_params)
+    cart_item = current_cart.cart_items.new(cart_items_params)
+
     if same_food_store
-      if item.save
+      if cart_item.save
         flash[:success] = "Item Added to Cart"
         redirect_to root_path
       else
@@ -18,13 +19,14 @@ class CartsController < ApplicationController
 
   def show
     @cart = current_cart
-    @item = @cart.cart_items.order(:id)
+    @cart_items = @cart.cart_items.order(:id)
   end
 
   def order
     check_cart
     @cart = current_cart
-    if current_user.carts.where(order_status: 0..2).count == 0    
+    
+    if current_user.carts.active_orders.count == 0    
       if @cart.update cart_params
         flash[:success] = "Order placed Successfully!"
         Notification.create(user_id: 1, content: "You got new order to approve") 
@@ -49,9 +51,8 @@ class CartsController < ApplicationController
       end
     else
       @carts = current_user.carts
-      # order_status = {"[Placed,0]", "[Recieved,1]", "[Preparing,2]", "[Delivered,3]"}
-      @past_orders  = @carts.where(order_status: 3)
-      @current_order = @carts.where(order_status: 0..2).first      
+      @past_orders  = @carts.delivered_orders
+      @current_order = @carts.active_orders.first     
     end
   end
 

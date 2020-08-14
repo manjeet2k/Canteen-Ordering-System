@@ -7,6 +7,12 @@ class PagesController < ApplicationController
     handle_filters
   end
 
+  def reset_filters
+    session[:store_filter] = nil
+    session[:category_filter] = nil
+    redirect_to root_path
+  end
+
   def show
   end
 
@@ -20,6 +26,7 @@ class PagesController < ApplicationController
 
   def delete_notifications
     notifications = current_user.notifications
+    
     if notifications.present?
       notifications.delete_all  
       flash[:success] = "Notification Cleared!"
@@ -34,9 +41,18 @@ class PagesController < ApplicationController
   def initialize_filters
     @stores = @store_options
     @items = FoodItem.all
-    session[:store_filter] = params[:store_filter] 
-    session[:store_filter] = nil if params[:store_filter] == ""
-    session[:category_filter] = params[:category_filter]
+
+    unless params[:store_filter].nil?
+      session[:category_filter] = nil if session[:category_filter]
+      session[:store_filter] = params[:store_filter] 
+    end
+
+    unless params[:category_filter].nil?
+      session[:store_filter] = nil if session[:store_filter]
+      session[:category_filter] = params[:category_filter]
+    end     
+    
+    session[:store_filter] = nil    if params[:store_filter] == ""
     session[:category_filter] = nil if params[:category_filter] == ""
   end
 

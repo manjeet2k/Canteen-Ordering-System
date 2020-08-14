@@ -1,6 +1,8 @@
 <div class="col-8 offset-2">
   <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> Approve Chefs</h3>
+
   <hr/>
+
   <table class="table table-borderless">
     <thead>
       <tr>
@@ -11,8 +13,9 @@
         <th>Actions</th>
       </tr>
     </thead>
+
     <tbody>
-    <% @chef.each_with_index do |chef,i|%>
+    <% @chef_profiles.each_with_index do |chef,i|%>
       <tr>
         <td><%= i+1 %></td>
         <td><%= chef.name %></td>
@@ -25,7 +28,9 @@
       </tr>      
     <% end %>
     </tbody>
-  </table>  
+  </table>
+
   <hr/>
+  
   <div class="text-center"><a class="btn btn-secondary  px-4" href="/dashboard" role="button" title="back">Back</a></div>  
 </div>

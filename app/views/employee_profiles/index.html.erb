@@ -1,6 +1,8 @@
 <div class="col-8 offset-2">
   <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> Approve Employees</h3>
+
   <hr>
+
   <table class="table table-borderless">
     <thead>
       <tr>
@@ -11,19 +13,20 @@
         <th>Action</th>
       </tr>
     </thead>
+
     <tbody>
-    <% @employee.each_with_index do |employee,i|%>
-      <tr>
-        <td><%= i+1 %></td>
-        <td><%= employee.name %></td>
-        <td><%= employee.company.name %></td>
-        <td><%= employee.phone %></td>
-        <td>
-          <%= link_to fa_icon("check", text: "Approve"), approve_employee_path(employee.id), class: "btn btn-sm btn-primary" %>
-          <%= link_to fa_icon("times", text: "Reject"), reject_employee_path(employee.id), class: "btn btn-sm btn-secondary" %>
-        </td>
-       </tr>      
-    <% end %>
+      <% @employee_profiles.each_with_index do |employee,i|%>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= employee.name %></td>
+          <td><%= employee.company.name %></td>
+          <td><%= employee.phone %></td>
+          <td>
+            <%= link_to fa_icon("check", text: "Approve"), approve_employee_path(employee.id), class: "btn btn-sm btn-primary" %>
+            <%= link_to fa_icon("times", text: "Reject"), reject_employee_path(employee.id), class: "btn btn-sm btn-secondary" %>
+          </td>
+        </tr>      
+      <% end %>
     </tbody>
   </table>    
 </div>

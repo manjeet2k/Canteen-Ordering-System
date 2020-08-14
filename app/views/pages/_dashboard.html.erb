@@ -2,6 +2,7 @@
   <div class="col-6">
     <h3><i class="fa fa-home" aria-hidden="true"></i> <%= yield(:header) %> Dashboard </h3>
   </div>
+
   <div class="col-1">
     <%= link_to "Order", root_path, class: "btn btn-success btn-md px-3", tittle: "Order Page" %>
   </div>
@@ -9,12 +10,12 @@
 <hr/>
  
 <div class="row d-flex justify-content-center">
-
   <div class="card col-md-3 col-xs-12  m-2 p-0">
     <div class="card-body">
       <h5 class="card-title">Profile</h5>
       <p class="card-text text-muted">Section to view or create profile.</p>  
     </div>
+
     <div class="card-footer">
       <%= link_to "Profile", employee_profile_path(current_user.employee_profile.id), class: "btn btn-primary", title: "Profile" if current_user.employee?%>
       <%= link_to "Profile", user_profile_path(current_user.user_profile.id), class: "btn btn-primary", title: "Profile" if current_user.user? %>
@@ -26,6 +27,7 @@
       <h5 class="card-title">Active Order</h5>
       <p class="card-text text-muted">Section to track active order details alongwith current order status</p>  
     </div>
+
     <div class="card-footer">
       <%= link_to "Current Order", order_show_path, class: "btn btn-primary", title: "Active order details" %>
     </div>
@@ -36,6 +38,7 @@
       <h5 class="card-title">Messages</h5>
       <p class="card-text text-muted">Section to directly communicate with chef regarding active order.</p>  
     </div>
+
     <div class="card-footer">
       <%= link_to "Message", messages_index_path, class: "btn btn-primary", title: "Chat with Chef" %>
     </div>
@@ -46,6 +49,7 @@
       <h5 class="card-title">Order History</h5>
       <p class="card-text text-muted">Section for order history.</p>  
     </div>
+    
     <div class="card-footer">
       <%= link_to "Orders", order_history_employee_profiles_path, class: "btn btn-primary", title: "Past Orders" if current_user.employee? %>
       <%= link_to "Orders", order_history_user_profiles_path, class: "btn btn-primary", title: "Past Orders" if current_user.user? %>

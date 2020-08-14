@@ -1,13 +1,19 @@
 <h3>Live Orders Section</h3>
+
 <hr/>
+
 <% if @live_orders.present? %>
   <%= render "live_orders" %>  
 <% else %>
   <h4 class="text-center text-muted">No live orders</h3>  
 <% end %>
+
 <hr/>
+
 <h3> Past Orders Section</h3>
+
 <hr/>
+
 <% if @past_orders.present? %>  
   <%= render "past_orders" %>   
 <% else %>

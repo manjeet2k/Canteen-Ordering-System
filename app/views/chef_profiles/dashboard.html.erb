@@ -1,13 +1,14 @@
 <h3><i class="fa fa-home" aria-hidden="true"></i> Chef Dashboard </h3>
+
 <hr/>
  
 <div class="row d-flex justify-content-center">
-
   <div class="card col-md-3 col-xs-12  m-2 p-0">
     <div class="card-body">
       <h5 class="card-title">Profile</h5>
       <p class="card-text text-muted">Section to view or create profile.</p>  
     </div>
+
     <div class="card-footer">
       <%= link_to "Profile", chef_profile_path(current_user.chef_profile.id), class: "btn btn-primary", title: "Profile" %>
     </div>
@@ -18,6 +19,7 @@
       <h5 class="card-title">Add Food Item</h5>
       <p class="card-text text-muted">Section to manage food item of the store.</p>
     </div>
+
     <div class="card-footer">
       <%= link_to "Manage food items", food_items_path, class: "btn btn-primary", title: "manage food items" %>
     </div>
@@ -28,6 +30,7 @@
       <h5 class="card-title">Manage Orders</h5>
       <p class="card-text text-muted">Section to manage ongoing orders (alongwith messages) placed in the store.</p>
     </div>
+
     <div class="card-footer">
       <%= link_to "Manage Orders", orders_chef_profiles_path, class: "btn btn-primary", title: "manage orders" %>
     </div>
@@ -38,6 +41,7 @@
       <h5 class="card-title">Gallery</h5>
       <p class="card-text text-muted">Section to upload and view existing uploaded images.</p>
     </div>
+    
     <div class="card-footer">
       <%= link_to "Gallery", gallery_chef_profiles_path, class: "btn btn-primary", title: "gallery" %>
     </div>

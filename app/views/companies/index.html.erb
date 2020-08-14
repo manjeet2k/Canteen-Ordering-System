@@ -1,6 +1,8 @@
 <div class="col-6 offset-3">
   <h3><i class="fa fa-building" aria-hidden="true"></i> Companies</h3>
+
   <hr/>
+
   <table class="table table-borderless">
     <thead>
       <tr>
@@ -9,6 +11,7 @@
         <th>Actions</th>
       </tr>
     </thead>
+
     <tbody>
     <% @company.each_with_index do |company,i|%>
       <tr>
@@ -22,7 +25,9 @@
     <% end %>
     </tbody>
   </table>
+
   <hr/>
+  
   <div class="text-center">
     <%= link_to "New Company", new_company_path, class: "btn btn-primary px-4", title: "create new company" %>
   </div>

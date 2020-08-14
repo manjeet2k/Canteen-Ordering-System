@@ -2,6 +2,7 @@
   <div class="title col-4">
     <h3>Available Food Items</h3>
   </div>
+
   <div class="filter d-flex justify-content-end col-md-4">
     <div> 
       <form action="/" method="GET">
@@ -17,6 +18,7 @@
         </select>
       </form>    
     </div>
+
     <div>
       <form action="/" method="GET">
         <select name="store_filter" onchange="this.form.submit()">
@@ -33,7 +35,9 @@
     </div>
   </div>
 </div>
+
 <hr class="mt-0"/>
+
 <div class="row">
   <% if session[:store_filter] %>
     <%= render "store_filter", obj: @items_filtered %>        
