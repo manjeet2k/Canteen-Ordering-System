@@ -44,7 +44,7 @@
     <div class="d-flex justify-content-between">
       <div class="col-3"><p><strong>Total: Rs.<%= current_cart.total %></strong></p></div>
       <div class="col-3"> 
-        <%= form_for @cart, url: cart_order_path do |f| %>
+        <%= form_for current_cart, url: cart_order_path do |f| %>
           <%= f.hidden_field :order_status, value: "Placed" %>
           <%= f.hidden_field :food_store_id, value: current_cart.store.id %>
           <%= button_tag type: 'submit', class: "btn btn-success  px-4", title: "Place Order" do %>

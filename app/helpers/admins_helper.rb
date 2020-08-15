@@ -1,21 +1,23 @@
 module AdminsHelper
-  def approve_user(user)
-    user.approved = true
-    if user.save
-      flash[:success] = "#{user.name} approved!"
-      Notification.create!(user_id: user.user.id, content: "You are now approved")
+  def approve_profile(profile)
+    profile.approved = true
+
+    if profile.save
+      flash[:success] = "#{profile.name} approved!"
+      Notification.create!(user_id: profile.user.id, content: "You are now approved")
     else
-      flash[:danger] = "#{user.name} approval failure"
+      flash[:danger] = "#{profile.name} approval failure"
     end
   end
 
-  def reject_user(user)
-    user.rejected = true
-    if user.save
-      flash[:success] = "#{user.name} rejected!"
-      Notification.create!(user_id: user.user.id, content: "Your Profile was not approved")
+  def reject_profile(profile)
+    profile.rejected = true
+    
+    if profile.save
+      flash[:success] = "#{profile.name} rejected!"
+      Notification.create!(user_id: profile.profile.id, content: "Your Profile was not approved")
     else
-      flash[:danger] = "#{user.name} rejection failure"
+      flash[:danger] = "#{profile.name} rejection failure"
     end
   end
 end

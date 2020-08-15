@@ -2,7 +2,7 @@ class FoodStoresController < ApplicationController
   before_action :validate_admin
   
   def index
-    @store = FoodStore.all.order(:id)
+    @stores = FoodStore.all
   end
 
   def new

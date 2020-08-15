@@ -15,7 +15,7 @@ module SessionsHelper
     end
   end
   
-  def current_role
+  def user_role
     @role ||= User.find(session[:user_id]).role
   end
 

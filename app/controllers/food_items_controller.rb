@@ -1,8 +1,9 @@
 class FoodItemsController < ApplicationController
   before_action :validate_chef
+  before_action :set_food_item, only: [:edit, :update, :destroy]
 
   def index
-    @food_items = current_store.food_items.order(:id)
+    @food_items = current_store.food_items
   end
 
   def new
@@ -20,16 +21,10 @@ class FoodItemsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
-    @food_item = FoodItem.find(params[:id])
   end
 
   def update
-    @food_item = FoodItem.find(params[:id])
-
     if @food_item.update(food_item_params)
       flash[:success] = "Food item was succesfully Updated!"
       redirect_to food_items_path
@@ -39,7 +34,6 @@ class FoodItemsController < ApplicationController
   end
 
   def destroy
-    food_item = FoodItem.find(params[:id])
     food_item.destroy
     flash[:danger] = " FoodItem \"#{food_item.name}\" was deleted."
     redirect_to food_items_path
@@ -47,11 +41,15 @@ class FoodItemsController < ApplicationController
 
   private
 
-  def food_item_params
-    params.require(:food_item).permit(:name, :price, :description, :food_store_id)
+  def set_food_item
+    food_item = FoodItem.find(params[:id])
   end
 
   def current_store
     current_user.food_store
+  end
+
+  def food_item_params
+    params.require(:food_item).permit(:name, :price, :description, :food_store_id)
   end
 end

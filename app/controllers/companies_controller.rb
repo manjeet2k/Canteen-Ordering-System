@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:edit, :update, :destroy]
   
   def index
-    @company = Company.all.order(:id)
+    @companies = Company.all
   end
 
   def new
@@ -29,12 +29,12 @@ class CompaniesController < ApplicationController
   end
 
   private
+
+  def set_company
+    @company = Company.find(params[:id])
+  end
   
   def comp_params
     params.require(:company).permit(:name)
   end
-
-  def set_company
-    @company = Company.find(params[:id])
-  end  
 end

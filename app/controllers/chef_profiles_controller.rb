@@ -2,6 +2,7 @@ class ChefProfilesController < ApplicationController
   before_action :validate_admin, only: :index
   before_action :validate_chef,  except: [:index, :new, :create]
   before_action :set_chef, only: [:show, :update]
+  before_action :set_store, only: [:new, :create]
 
   def index
     @chef_profiles = ChefProfile.where(approved: false, rejected: false)
@@ -12,16 +13,18 @@ class ChefProfilesController < ApplicationController
    
   def new
     @chef_profile  = ChefProfile.new
-    @store = FoodStore.all
   end
 
   def create
     @chef_profile = ChefProfile.new(chef_params)
-    @store = FoodStore.all
 
     if @chef_profile.save
       flash[:success] = "Profile Saved Successfully!"
-      Notification.create(user_id: User.admin.id, content: "You have got new chef to approve")
+
+      User.admins.each do |admin|
+        Notification.create(user_id: admin.id, content: "You have got new chef to approve")
+      end
+
       redirect_to chef_profile_path(@chef_profile.id)
     else
       render "new"
@@ -34,7 +37,7 @@ class ChefProfilesController < ApplicationController
 
   def orders
     orders = Cart.where(food_store_id: current_user.chef_profile.food_store_id)
-    @live_orders = orders.live_orders.order(:id)
+    @live_orders = orders.live_orders
     @past_orders = orders.delivered_orders
   end
 
@@ -73,11 +76,15 @@ class ChefProfilesController < ApplicationController
 
   private
 
-  def chef_params
-    params.require(:chef_profile).permit(:name, :phone, :food_store_id, :user_id, images: [])
-  end
-
   def set_chef
     @chef_profile = ChefProfile.find(params[:id])
+  end
+
+  def set_store
+    @store = FoodStore.all
+  end
+
+  def chef_params
+    params.require(:chef_profile).permit(:name, :phone, :food_store_id, :user_id, images: [])
   end
 end

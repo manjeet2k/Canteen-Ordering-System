@@ -92,7 +92,7 @@ RSpec.describe User, type: :model do
   describe ".admin_scope_method" do
     let(:admin) { FactoryBot.create(:admin) }
     it "returns the admin" do
-      expect(admin).to eq(User.admin)
+      expect(admin).to eq(User.admins.first)
     end
   end
 

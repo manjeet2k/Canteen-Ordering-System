@@ -24,7 +24,7 @@
 
         <% if current_user.employee? %>      
           <div class="form-group row">
-            <%= form.label :company, for: "phone", class:"col-sm-4 col-form-label"  %>
+            <%= form.label :company, for: "phone", class:"col-sm-4 col-form-label" %>
             <div class="col-sm-2 my-2">
               <%= form.select(:company_id)  do %>
                 <% @company.each do |c| -%>

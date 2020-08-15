@@ -18,10 +18,10 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy
 
-  scope :admin, -> { where(admin: true).first }
+  scope :admins, -> { where(admin: true) }
 
   def self.create_with_omniauth(auth)
-    user = find_or_create_by(uid: auth["uid"], provider:  auth["provider"])
+    user = find_or_create_by(uid: auth["uid"], provider: auth["provider"])
     name = auth["info"]["name"].delete(" ").downcase
     user.email = "#{name}@#{auth["provider"]}.com"
     user.password = "pass123"

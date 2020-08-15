@@ -18,18 +18,20 @@ class CartsController < ApplicationController
   end
 
   def show
-    @cart = current_cart
-    @cart_items = @cart.cart_items.order(:id)
+    @cart_items = current_cart.cart_items
   end
 
   def order
     check_cart
-    @cart = current_cart
     
     if current_user.carts.active_orders.count == 0    
-      if @cart.update cart_params
+      if current_cart.update cart_params
         flash[:success] = "Order placed Successfully!"
-        Notification.create(user_id: 1, content: "You got new order to approve") 
+
+        User.admins.each do |admin|
+          Notification.create(user_id: admin.id, content: "You got new order to approve")
+        end
+        
         get_cart
         redirect_to order_show_path
       else
@@ -51,7 +53,7 @@ class CartsController < ApplicationController
       end
     else
       @carts = current_user.carts
-      @past_orders  = @carts.delivered_orders
+      @past_orders   = @carts.delivered_orders
       @current_order = @carts.active_orders.first     
     end
   end
