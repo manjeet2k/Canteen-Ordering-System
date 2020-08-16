@@ -1,44 +1,45 @@
 <% if current_cart.cart_items.present? %>
   <div class="col-md-8 offset-md-2 col-sm-12">
-    <h3><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</h3>
+    <div class="card p-4">
+      <h3><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</h3>
+      <hr>
 
-    <hr>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>S.No:</th>
+            <th>Food Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Action</th>
+          </tr>
+        </thead>
 
-    <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th>S.No:</th>
-          <th>Food Item</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-      <% @cart_items.each_with_index do |item,i|%>
-        <tr>
-          <td><%= i+1 %></td>
-          <td><%= item.food_item.name %></td>
-          <td>Rs.<%= item.food_item.price %></td>
-          <td>        
-            <%= form_for item, url: item_update_path(item.id) do |f| %>
-              <%= f.number_field :quantity, value: item.quantity, max:5, min:1 %>
-              <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm px-3", title: "Update Cart" do %>
-                <i class="fa fa-check" aria-hidden="true"></i>
-              <% end %>
-            <% end %>          
-          </td>
-          <td>Rs.<%= item.sub_total %></td>
-          <td>
-            <%= delete_link(item_delete_path(item.id)) %>
-          </td>          
-        </tr>      
-      <% end %>
-      </tbody>
-    </table>
-
+        <tbody>
+        <% @cart_items.each_with_index do |item,i|%>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= item.food_item.name %></td>
+            <td>Rs.<%= item.food_item.price %></td>
+            <td>        
+              <%= form_for item, url: item_update_path(item.id) do |f| %>
+                <%= f.number_field :quantity, value: item.quantity, max:5, min:1 %>
+                <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm px-3", title: "Update Cart" do %>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                <% end %>
+              <% end %>          
+            </td>
+            <td>Rs.<%= item.sub_total %></td>
+            <td>
+              <%= delete_link(item_delete_path(item.id)) %>
+            </td>          
+          </tr>      
+        <% end %>
+        </tbody>
+      </table>    
+    </div>
+    
     <hr/>
     
     <div class="d-flex justify-content-between">
