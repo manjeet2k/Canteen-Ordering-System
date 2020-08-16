@@ -37,7 +37,7 @@ class EmployeeProfilesController < ApplicationController
   end
 
   def order_history
-    @past_orders = current_user.carts.delivered
+    @past_orders = current_user.carts.delivered_orders
   end
   
   private

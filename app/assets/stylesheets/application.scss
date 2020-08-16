@@ -5,8 +5,18 @@
 body {
   position: relative;
   min-height: 100vh;
+  background-image: url("img.png"), url("img2.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: left top, right bottom;
 }
 
+.img {
+  position: sticky;
+  top: 100px;
+  right: 0;
+  z-index: -1;
+}
 .container {
   max-width: 1330px;
   padding-bottom: 70px;
