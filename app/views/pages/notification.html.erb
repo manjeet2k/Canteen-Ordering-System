@@ -13,7 +13,7 @@
     <% if current_user.notifications.present? %>
       <ul class="list-group list-group-flush ">
         <% current_user.notifications.reverse.each do |notification| %>
-          <li class="list-group-item">
+          <li class="list-group-item li-bg">
             <div class="d-flex w-100 justify-content-between">
               <p class="mb-1"><%= notification.content %></p>
               <small><%= time_ago_in_words notification.created_at %> ago </small>

@@ -1,32 +1,33 @@
 <% if @current_order %>
   <div class="col-8 offset-2">
-    <h4> Current Order Status: <strong class= "text-info"><%= @current_order.order_status %></strong></h4>
+    <div class="card p-4">
+      <h4> Current Order Status: <strong class= "text-info"><%= @current_order.order_status %></strong></h4>
+      <hr>
 
-    <hr>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>S.No:</th>
+            <th>Food Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
 
-    <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th>S.No:</th>
-          <th>Food Item</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
-        </tr>
-      </thead>
-
-      <tbody>
-      <% @current_order.cart_items.each_with_index do |item,i| %>
-        <tr>
-          <td><%= i+1 %></td>
-          <td><%= item.food_item.name %></td>
-          <td>Rs.<%= item.food_item.price %></td>
-          <td><%= item.quantity %></td>
-          <td>Rs.<%= item.sub_total %></td>
-        </tr>      
-      <% end %>
-      </tbody>
-    </table>
+        <tbody>
+        <% @current_order.cart_items.each_with_index do |item,i| %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= item.food_item.name %></td>
+            <td>Rs.<%= item.food_item.price %></td>
+            <td><%= item.quantity %></td>
+            <td>Rs.<%= item.sub_total %></td>
+          </tr>      
+        <% end %>
+        </tbody>
+      </table>    
+    </div>    
 
     <hr/>
     
