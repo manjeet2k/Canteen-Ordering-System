@@ -18,12 +18,8 @@
           <td><%= i+1 %></td>
           <td><%= category.name %></td>
           <td>
-            <a class="btn btn-info btn-sm px-3" href="food_categories/<%= category.id%>/edit" role="button" title="Edit Category">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-            <a class="btn btn-danger btn-sm px-3" href="/food_categories/<%= category.id%>" data-confirm="Are you sure?" data-method="delete" role="button" title="Delete Category">
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
-            </a>
+            <%= edit_link(edit_food_category_path(category.id)) %>
+            <%= delete_link(food_category_path(category.id)) %>
           </td>
         </tr>      
       <% end %>
@@ -32,5 +28,7 @@
 
   <hr/>
   
-  <div class="text-center"><a class="btn btn-primary" href="/food_categories/new" role="button" title="Create New Category">New Category</a></div>
+  <div class="text-center">
+    <%= link_to "New Category", new_food_category_path, class: "btn btn-primary", title: "Create new category" %>
+  </div>
 </div>
