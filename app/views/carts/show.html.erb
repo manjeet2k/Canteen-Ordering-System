@@ -46,7 +46,7 @@
       <div class="col-5">
         <% if current_user.employee? %>
           <% if current_user.employee_profile.credit>0 && current_cart.total > 300 %>
-            <p><strong>Total: Rs.<%= current_cart.total - (current_user.employee_profile.credit*0.2)  %><span> ( <%= current_user.user_profile.credit*0.2  %> credits adjusted)</span></strong></p>
+            <p><strong>Total: Rs.<%= current_cart.total - (current_user.employee_profile.credit*0.2)  %><span> ( <%= current_user.employee_profile.credit*0.2  %> credits adjusted)</span></strong></p>
           <% else %>
             <p><strong>Total: Rs.<%= current_cart.total %></strong></p></div>
           <% end %>

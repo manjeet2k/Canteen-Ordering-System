@@ -9,7 +9,6 @@
         <th>S.No:</th>
         <th>Employee Name</th>
         <th>Credit</th>
-        <th>Action</th>
       </tr>
     </thead>
 
@@ -18,16 +17,13 @@
         <tr>
           <td><%= i+1 %></td>
           <td><%= employee.name %></td>
-          <%= form_for employee, url: employee_profile_path(employee.id) do |f| %>
-            <td>
+          <td>
+            <%= form_for employee, url: employee_profile_path(employee.id) do |f| %>  
               <%= f.number_field :credit, value: employee.credit ? '%.2f' % employee.credit : nil, min: 0, step: 0.01, for: "credit", class: "form-control", autocomplete: "credit", placeholder: "Enter credit", required: true %>
-            </td>
-            <td>
               <%= button_tag type: 'submit', class: "btn btn-secondary px-3", title: "Update Cart" do %>
                 <i class="fa fa-check" aria-hidden="true"></i> Update
               <% end %>
-            </td>
-          <% end %> 
+            <% end %> 
           </td>
         </tr>      
       <% end %>
@@ -46,7 +42,6 @@
         <th>S.No:</th>
         <th>User Name</th>
         <th>Credit</th>
-        <th>Action</th>
       </tr>
     </thead>
 
@@ -54,17 +49,15 @@
       <% @users.each_with_index do |user,i|%>
         <tr>
           <td><%= i+1 %></td>
-          <td><%= user.name %></td>
-          <%= form_for user, url: user_profile_path(user.id) do |f| %>
-            <td>
+          <td><%= user.name %></td>          
+          <td>
+            <%= form_for user, url: user_profile_path(user.id) do |f| %>
               <%= f.number_field :credit, value: user.credit ? '%.2f' % user.credit : nil, min: 0, step: 0.01, for: "credit", class: "form-control", autocomplete: "credit", placeholder: "Enter credit", required: true %>
-            </td>
-            <td>
               <%= button_tag type: 'submit', class: "btn btn-secondary px-3", title: "Update Cart" do %>
                 <i class="fa fa-check" aria-hidden="true"></i> Update
               <% end %>
-            </td>
-          <% end %>
+            <% end %>
+          </td>
         </tr>      
       <% end %>
     </tbody>

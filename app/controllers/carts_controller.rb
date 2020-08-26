@@ -28,6 +28,11 @@ class CartsController < ApplicationController
       if current_cart.update cart_params
         flash[:success] = "Order placed Successfully!"
 
+        if current_cart.total > 300
+          current_user.user_profile.update(credit: current_user.user_profile.credit*0.8) if current_user.user?
+          current_user.employee_profile.update(credit: current_user.employee_profile.credit*0.8) if current_user.employee?
+        end
+        
         User.admins.each do |admin|
           Notification.create(user_id: admin.id, content: "You got new order to approve")
         end
@@ -45,18 +50,37 @@ class CartsController < ApplicationController
   end
 
   def reorder
-    fail
     @cart = Cart.find params[:id]
 
     if current_user.carts.active_orders.count == 0  
-      @copy_cart = current_cart
+      current_cart.cart_items.delete_all
 
       @cart.cart_items.each do |cart_item|
-        @copy_cart.cart_items.create(food_item_id: cart_item.food_item.id, quantity: cart_item.quantity)
+        current_cart.cart_items.create(food_item_id: cart_item.food_item.id, quantity: cart_item.quantity)
       end
       
-      @copy_cart.update(order_status: "Placed")
-    end
+      if current_cart.update(order_status: "Placed")
+        flash[:success] = "Order placed Successfully!"
+
+        if cart.total > 300
+          current_user.user_profile.update(credit: current_user.user_profile.credit*0.8) if current_user.user? && current_user.user_profile.credit > 0 
+          current_user.employee_profile.update(credit: current_user.employee_profile.credit*0.8) if current_user.employee? && current_user.employee_profile.credit > 0 
+        end
+        
+        User.admins.each do |admin|
+          Notification.create(user_id: admin.id, content: "You got new order to approve")
+        end
+        
+        get_cart
+        redirect_to order_show_path
+      else
+        flash[:danger] = "Something went wrong!"
+        render cart_path
+      end
+    else
+      flash[:warning] = "Please wait till last order is completed!"
+      redirect_back(fallback_location: cart_path)
+    end      
   end
 
   def order_show
