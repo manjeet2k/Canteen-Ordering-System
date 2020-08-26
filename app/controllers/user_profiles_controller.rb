@@ -23,13 +23,26 @@ class UserProfilesController < ApplicationController
     return redirect_to error_path unless  @user_profile == current_user.user_profile || current_user.admin?
   end
 
+  def update
+    @user_profile = UserProfile.find(params[:id])
+    
+    if @user_profile.update(user_profile_params)
+      flash[:success] = "Credits Added"
+      redirect_to admin_credit_path
+    end
+  end
+
   def order_history
     @past_orders = current_user.carts.delivered_orders
+  end
+
+  def favourite_order
+    @orders = current_user.carts.delivered_orders.where(favourite: true)
   end
   
   private
 
   def user_profile_params
-    params.require(:user_profile).permit(:name, :phone, :user_id)
+    params.require(:user_profile).permit(:name, :phone, :user_id, :credit)
   end
 end

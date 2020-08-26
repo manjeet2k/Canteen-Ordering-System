@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :reviews
 
   scope :admins, -> { where(admin: true) }
 

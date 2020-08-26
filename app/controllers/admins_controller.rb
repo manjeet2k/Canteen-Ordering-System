@@ -50,6 +50,11 @@ class AdminsController < ApplicationController
     end
   end
 
+  def provide_credits
+    @employees = EmployeeProfile.all
+    @users = UserProfile.all
+  end
+
   private 
 
   def set_employee

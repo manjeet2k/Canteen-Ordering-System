@@ -1,5 +1,5 @@
 class EmployeeProfilesController < ApplicationController
-  before_action :validate_admin,    only: :index
+  before_action :validate_admin,    only: [:index, :update]
   before_action :validate_employee, only: [:dashboard, :show]
   before_action :set_company, only: [:new, :create]
 
@@ -36,14 +36,27 @@ class EmployeeProfilesController < ApplicationController
     redirect_to error_path unless  @employee_profile == current_user.employee_profile
   end
 
+  def update
+    @employee_profile = EmployeeProfile.find(params[:id])
+    
+    if @employee_profile.update(emp_params)
+      flash[:success] = "Credits Added"
+      redirect_to admin_credit_path
+    end
+  end
+
   def order_history
     @past_orders = current_user.carts.delivered_orders
+  end
+
+  def favourite_order
+    @orders = current_user.carts.delivered_orders.where(favourite: true)
   end
   
   private
 
   def emp_params
-    params.require(:employee_profile).permit(:name, :phone, :company_id, :user_id)
+    params.require(:employee_profile).permit(:name, :phone, :company_id, :user_id, :credit)
   end
 
   def set_company

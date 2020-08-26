@@ -44,6 +44,21 @@ class CartsController < ApplicationController
     end      
   end
 
+  def reorder
+    fail
+    @cart = Cart.find params[:id]
+
+    if current_user.carts.active_orders.count == 0  
+      @copy_cart = current_cart
+
+      @cart.cart_items.each do |cart_item|
+        @copy_cart.cart_items.create(food_item_id: cart_item.food_item.id, quantity: cart_item.quantity)
+      end
+      
+      @copy_cart.update(order_status: "Placed")
+    end
+  end
+
   def order_show
     if current_user.admin?
       if params[:format]
@@ -56,6 +71,19 @@ class CartsController < ApplicationController
       @past_orders   = @carts.delivered_orders
       @current_order = @carts.active_orders.first     
     end
+  end
+
+  def set_favourite
+    @cart = Cart.find params[:id]
+    @cart.toggle!(:favourite)
+    if @cart.favourite
+      flash[:success] = "Added to favourites"
+    else
+      flash[:danger] = "Removed from favourites"
+    end
+
+    redirect_to order_history_user_profiles_path if current_user.user?
+    redirect_to order_history_employee_profiles_path if current_user.employee?
   end
 
   private
@@ -74,7 +102,7 @@ class CartsController < ApplicationController
       redirect_to root_path
     end
   end
-
+  
   # Ensures Cart Items From Same Food Store 
   def same_food_store
     unless @cart.cart_items.first.food_item.food_store.id == @cart.cart_items.last.food_item.food_store.id

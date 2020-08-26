@@ -43,7 +43,22 @@
     <hr/>
     
     <div class="d-flex justify-content-between">
-      <div class="col-3"><p><strong>Total: Rs.<%= current_cart.total %></strong></p></div>
+      <div class="col-5">
+        <% if current_user.employee? %>
+          <% if current_user.employee_profile.credit>0 && current_cart.total > 300 %>
+            <p><strong>Total: Rs.<%= current_cart.total - (current_user.employee_profile.credit*0.2)  %><span> ( <%= current_user.user_profile.credit*0.2  %> credits adjusted)</span></strong></p>
+          <% else %>
+            <p><strong>Total: Rs.<%= current_cart.total %></strong></p></div>
+          <% end %>
+        <% elsif current_user.user? %>
+          <% if current_user.user_profile.credit>0 && current_cart.total > 300 %>
+            <p><strong>Total: Rs.<%= current_cart.total - (current_user.user_profile.credit*0.2)  %></strong><span> ( <%= current_user.user_profile.credit*0.2  %> credits adjusted)</span></p>
+          <% else %>
+            <p><strong>Total: Rs.<%= current_cart.total %></strong></p></div>
+          <% end %>
+        <% end %>
+      </div>
+
       <div class="col-3"> 
         <%= form_for current_cart, url: cart_order_path do |f| %>
           <%= f.hidden_field :order_status, value: "Placed" %>

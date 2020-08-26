@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     collection do
       get :dashboard
       get :order_history
+      get :favourite_order
     end
   end
 
@@ -21,10 +22,12 @@ Rails.application.routes.draw do
       patch :order_update
     end
   end
+
   resources :user_profiles do
     collection do
       get :dashboard
       get :order_history
+      get :favourite_order
     end
   end
 
@@ -33,6 +36,7 @@ Rails.application.routes.draw do
   resources :food_stores
   resources :food_items
   resources :food_categories
+  resources :reviews
 
 
   get    "signup", to: "users#new"
@@ -50,6 +54,7 @@ Rails.application.routes.draw do
   get "chef/:id/reject",     to: "admins#reject_chef", as: "reject_chef"
   get "employee/:id/reject", to: "admins#reject_employee", as: "reject_employee"
   get "store/:id", to: "admins#hide_store", as: "store_indexing_toggle"
+  get "admin/credits", to: "admins#provide_credits", as: "admin_credit"
 
   get "error", to: "pages#show"
   get "notification", to: "pages#notification"
@@ -62,6 +67,8 @@ Rails.application.routes.draw do
   post   "carts/add"
   get    "cart",   to: "carts#show"
   get    "orders", to: "carts#order_show", as: "order_show"
+  get    "cart/:id/reorder", to: "carts#reorder", as: "reorder_cart"
+  get    "cart/:id/favourite", to: "carts#set_favourite", as: "set_favourite"
   patch  "cart_item/:id/update", to: "cart_items#update", as: "item_update"
   patch  "order", to: "carts#order", as: "cart_order"
   delete "cart_item/:id", to: "cart_items#delete", as: "item_delete"  

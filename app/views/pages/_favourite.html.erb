@@ -1,8 +1,8 @@
-<h3>Past Orders</h3>
+<h3>Favourite Orders</h3>
 
 <hr/>
 
-<% @past_orders.each do |order| %>
+<% @orders.each do |order| %>
   <div class="card col-8 offset-2 p-0 mb-4">
     <div class="card-header d-flex justify-content-between">
       <div class="col-6">
@@ -11,11 +11,15 @@
 
       <div class="col-5">
         <p class= "mb-0 text-muted text-right">Date: <%= order.created_at.strftime("%m/%d/%Y") %></p>
+
         <% if order.favourite %>
-            <%= link_to "Remove Favourite", set_favourite_path(order), class: "btn btn-sm btn-secondary px-3" %>            
-          <% else %>
-            <%= link_to "Add to Fovourite", set_favourite_path(order), class: "btn btn-sm btn-success px-3" %>            
-          <% end %>
+          <%= link_to "Remove Favourite", set_favourite_path(order), class: "btn btn-sm btn-secondary px-3" %>            
+        <% else %>
+          <%= link_to "Add to Fovourite", set_favourite_path(order), class: "btn btn-sm btn-success px-3" %>
+        <% end %>
+
+      <%= link_to "Reorder", reorder_cart_path(order), class: "btn btn-sm btn-success px-3" %>
+
       </div>
     </div>
 

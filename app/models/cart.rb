@@ -6,6 +6,7 @@ class Cart < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :food_items, through: :cart_items
+  has_one :review
 
   scope :to_approve,       -> { where(order_status: 0) }
   scope :live_orders,      -> { where(order_status: 1..2) }

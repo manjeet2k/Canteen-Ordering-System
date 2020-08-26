@@ -1,0 +1,36 @@
+<%= form_for @review do |form| %>
+  <div class="col-8 mx-auto">    
+    <div class="card">
+      <div class="card-header text-center">
+        <h3><%= yield(:card_header) %></h3>
+      </div>
+
+      <div class="card-body text-right">
+        <%= render 'layouts/error', obj: @review %>
+          <%= form.hidden_field :user_id, value: current_user.id %>
+          <%= form.hidden_field :cart_id, value: current_user.carts.delivered_orders.find(params[:order_id]).id if params[:order_id] %>
+          <%= form.hidden_field :cart_id, value: @review.cart.id if !params[:order_id] %>
+
+         <div class="form-group row">
+          <%= form.label :rating, for: "rating", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= form.number_field :rating, min: 1, max:5, for: "rating", class: "form-control", autocomplete: "rating", placeholder: "Enter rating for your order", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :feedback, for: "feedback", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= form.text_area :feedback, for: "feedback", rows: 4, class: "form-control", autofocus: true, autocomplete: "feedback", placeholder: "Enter item feedback", required: true %>
+          </div>
+        </div> 
+      </div>
+    </div>
+    
+    <div class="row justify-content-center my-4"> 
+      <div class="col-2">
+        <strong><%= form.submit( yield(:button_text),{ class: "btn btn-primary btn-md btn-block", data:{disable_with: "saving..."}})%></strong>
+      </div>
+    </div>
+  </div>
+<% end %>

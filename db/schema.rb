@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_190802) do
+ActiveRecord::Schema.define(version: 2020_08_26_074423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_08_07_190802) do
     t.bigint "food_store_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "favourite", default: false
     t.index ["food_store_id"], name: "index_carts_on_food_store_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_08_07_190802) do
     t.boolean "rejected", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "credit", default: "0.0"
     t.index ["company_id"], name: "index_employee_profiles_on_company_id"
     t.index ["user_id"], name: "index_employee_profiles_on_user_id"
   end
@@ -112,12 +114,24 @@ ActiveRecord::Schema.define(version: 2020_08_07_190802) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "feedback", null: false
+    t.integer "rating", default: 1
+    t.bigint "user_id", null: false
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_reviews_on_cart_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "user_profiles", force: :cascade do |t|
     t.string "name", null: false
     t.string "phone", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "credit", default: "0.0"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
@@ -145,5 +159,7 @@ ActiveRecord::Schema.define(version: 2020_08_07_190802) do
   add_foreign_key "messages", "carts"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "reviews", "carts"
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_profiles", "users"
 end

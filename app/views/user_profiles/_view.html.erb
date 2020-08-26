@@ -10,7 +10,10 @@
         <% if current_user.chef? || (current_user.admin? && profile.user.chef?) %>
           <p><b>Food Store:</b> <%= profile.food_store.name %> </p>
         <% elsif current_user.employee? || (current_user.admin? && profile.user.employee?) %>
-          <p><b>Company:</b> <%= profile.company.name %> </p>  
+          <p><b>Company:</b> <%= profile.company.name %> </p>
+          <p><b>Credits:</b> <%= profile.credit %> </p>  
+        <% else %>
+          <p><b>Credits:</b> <%= profile.credit %> </p>  
         <% end %>        
       </div>
     </div>
