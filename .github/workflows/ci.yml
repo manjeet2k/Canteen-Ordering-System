@@ -28,15 +28,15 @@ jobs:
           sudo apt-get -yqq install libpq-dev
           sudo apt-get update
 
+      - name: Checkout Code
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundle-cache: true
-
-      - name: Checkout Code
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1  
       
       - name: Bundle Install, Create DB and Run tests
         env:
