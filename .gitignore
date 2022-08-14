@@ -38,6 +38,7 @@
 /public/uploads
 /public/packs-test
 /node_modules
+/.tool-versions
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
