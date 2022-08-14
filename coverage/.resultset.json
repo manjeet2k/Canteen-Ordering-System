@@ -11,7 +11,7 @@
           1,
           null,
           1,
-          0,
+          5,
           null,
           null,
           null
@@ -36,17 +36,17 @@
           1,
           1,
           null,
-          1,
-          1,
-          1,
-          1,
+          2,
+          2,
+          2,
+          2,
           null,
           1,
-          0,
+          3,
           null,
           null,
           1,
-          0,
+          1,
           null,
           null
         ]
@@ -129,15 +129,15 @@
           1,
           1,
           null,
-          1,
+          2,
           null,
           1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           null,
           0,
           0,
@@ -146,86 +146,74 @@
           null
         ]
       },
-      "/home/manjeet/Canteen-Ordering-System/app/models/food_store.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/home/manjeet/Canteen-Ordering-System/app/models/food_category.rb": {
         "lines": [
-          0,
-          0,
+          1,
+          1,
           null,
-          0,
+          1,
           null,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
+      },
+      "/home/manjeet/Canteen-Ordering-System/app/models/food_store.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
       },
       "/home/manjeet/Canteen-Ordering-System/app/models/message.rb": {
         "lines": [
-          0,
-          0,
-          0,
+          1,
+          1,
+          1,
           null,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
       },
       "/home/manjeet/Canteen-Ordering-System/app/models/notification.rb": {
         "lines": [
-          0,
-          0,
+          1,
+          1,
           null,
-          0,
+          1,
           null,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
       },
       "/home/manjeet/Canteen-Ordering-System/app/models/review.rb": {
         "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          1,
+          1,
+          null
+        ]
       },
       "/home/manjeet/Canteen-Ordering-System/app/models/company.rb": {
         "lines": [
-          0,
-          0,
-          0,
+          1,
+          1,
+          1,
           null,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1660468799
+    "timestamp": 1660474073
   }
 }
