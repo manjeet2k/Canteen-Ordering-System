@@ -31,7 +31,7 @@ jobs:
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.6.6
+          version: 2.6.6
           bundle-cache: true
 
       - name: Checkout Code
