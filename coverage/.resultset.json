@@ -195,14 +195,6 @@
           null
         ]
       },
-      "/home/manjeet/Canteen-Ordering-System/app/models/review.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
       "/home/manjeet/Canteen-Ordering-System/app/models/company.rb": {
         "lines": [
           1,
@@ -212,8 +204,18 @@
           1,
           null
         ]
+      },
+      "/home/manjeet/Canteen-Ordering-System/app/models/review.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1660474073
+    "timestamp": 1660474283
   }
 }
