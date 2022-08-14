@@ -29,9 +29,8 @@ jobs:
           sudo apt-get update
 
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          version: 2.6.6
           bundle-cache: true
 
       - name: Checkout Code
