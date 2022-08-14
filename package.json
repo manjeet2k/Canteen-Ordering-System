@@ -1,6 +1,15 @@
 {
   "name": "Canteen",
   "private": true,
+  "resolutions": {
+    "@rails/webpacker/**/glob-parent": "^5.1.2",
+    "@rails/webpacker/**/nth-check": "^2.0.1",
+    "@rails/webpacker/**/node-sass": "^7.0.0",
+    "@rails/webpacker/**/tar": "^3.2.3",
+    "@rails/webpacker/**/trim-newlines": "^3.0.1",
+    "@rails/webpacker/**/serialize-javascript": "^3.1.0",
+    "webpack-dev-server/**/node-forge": "^1.0.0"
+  },
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
